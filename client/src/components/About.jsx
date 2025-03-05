@@ -46,8 +46,7 @@ const About = () => {
   return (
     <>
       <Helmet>
-        <title>Rushabh Rajpara - About</title>
-        <meta
+          <meta
           name="description"
           content="Learn more about Rushabh Rajpara, a passionate Full-Stack Developer with expertise in modern web technologies."
         />

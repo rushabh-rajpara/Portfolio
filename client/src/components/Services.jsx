@@ -32,7 +32,6 @@ const Services = () => {
   return (
     <>
       <Helmet>
-        <title>Rushabh Rajpara - Services</title>
         <meta name="description" content="Explore the variety of development and design services offered by Rushabh Rajpara." />
         <meta name="keywords" content="Rushabh Rajpara, Services, Web Development, UI/UX Design, Mobile Development, SEO Optimization, Database Management, eCommerce Solutions" />
         <meta name="author" content="Rushabh Rajpara" />

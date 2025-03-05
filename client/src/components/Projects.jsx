@@ -95,7 +95,6 @@ const Projects = () => {
   return (
     <>
       <Helmet>
-        <title>Rushabh Rajpara - Projects</title>
         <meta name="description" content="Browse through some of the projects by Rushabh Rajpara. Click on a category to filter." />
         <meta name="keywords" content="Rushabh Rajpara, Projects, Web Design, Branding, UI/UX, Portfolio" />
         <meta name="author" content="Rushabh Rajpara" />

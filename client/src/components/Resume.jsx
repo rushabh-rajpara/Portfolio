@@ -50,7 +50,6 @@ const Resume = () => {
   return (
     <>
       <Helmet>
-        <title>Rushabh Rajpara - Resume</title>
         <meta name="description" content="A glimpse of Rushabh Rajpara's education and work experience." />
         <meta name="keywords" content="Rushabh Rajpara, Resume, Education, Work Experience, UI/UX Designer, Frontend Developer" />
         <meta name="author" content="Rushabh Rajpara" />
