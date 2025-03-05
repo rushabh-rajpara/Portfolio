@@ -1,0 +1,4 @@
+// filepath: /c:/Users/rusha/React Projects/Portfolio/public/robots.txt
+User-agent: *
+Allow: /
+Sitemap: https://yourwebsite.com/sitemap.xml
