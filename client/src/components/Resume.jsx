@@ -1,4 +1,11 @@
-import { Box, Heading, VStack, Text, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  VStack,
+  Text,
+  SimpleGrid,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaGraduationCap, FaBriefcase } from "react-icons/fa";
 import { Helmet } from "react-helmet";
@@ -27,7 +34,7 @@ const experienceData = [
     date: "Jan 2023 – Apr 2023",
     title: "Web Developer Intern",
     company: "Webercodes Technology, Ahmedabad, Gujarat",
-    description: "Designed user-friendly and functional web pages with Enhanced user experience by testing UI components and resolving bugs to improve performance.",
+    description: "Designed user-friendly and functional web pages. Enhanced user experience by testing UI components and resolving bugs to improve performance.",
     techUsed: ["HTML", "CSS", "JavaScript", "ReactJS"],
   },
   {
@@ -38,7 +45,6 @@ const experienceData = [
     techUsed: ["Python", "SQL", "Machine Learning"],
   },
 ];
-
 
 const Resume = () => {
   // Dark Mode Styles
@@ -92,6 +98,7 @@ const Resume = () => {
                 className="resume-card"
                 initial={{ x: -50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
+                whileTap={{ scale: 0.97 }} // Tap effect on mobile
                 transition={{ duration: 1, delay: index * 0.2 }}
               >
                 <Text fontSize="sm" color="gray.400">
@@ -100,7 +107,7 @@ const Resume = () => {
                 <Heading fontSize="lg" color={headingColor}>
                   {edu.title}
                 </Heading>
-                <Text fontWeight="bold">{edu.institution}</Text><br></br>
+                <Text fontWeight="bold">{edu.institution}</Text><br />
                 <Text>{edu.description}</Text>
               </MotionBox>
             ))}
@@ -121,6 +128,7 @@ const Resume = () => {
                 className="resume-card"
                 initial={{ x: 50, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
+                whileTap={{ scale: 0.97 }} // Tap effect for mobile
                 transition={{ duration: 1, delay: index * 0.2 }}
               >
                 <Text fontSize="sm" color="gray.400">
@@ -129,22 +137,24 @@ const Resume = () => {
                 <Heading fontSize="lg" color={headingColor}>
                   {exp.title}
                 </Heading>
-                <Text fontWeight="bold">{exp.company}</Text><br></br>
+                <Text fontWeight="bold">{exp.company}</Text><br />
                 <Text>{exp.description}</Text>
               </MotionBox>
             ))}
           </VStack>
         </SimpleGrid>
 
-        {/* CSS for Hover Effects */}
+        {/* CSS for Hover Effects - Disabled for Mobile */}
         <style>
           {`
             .resume-card {
               transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             }
-            .resume-card:hover {
-              transform: scale(1.05);
-              box-shadow: 0px 0px 15px var(--accent-color);
+            @media (min-width: 768px) { 
+              .resume-card:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 0px 15px var(--accent-color);
+              }
             }
           `}
         </style>

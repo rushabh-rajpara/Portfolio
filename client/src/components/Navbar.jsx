@@ -9,9 +9,16 @@ import {
   useColorModeValue,
   Text,
   Input,
+  Drawer,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerCloseButton,
+  DrawerBody,
+  VStack,
+  HStack,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
-import { FaMoon, FaSun, FaAngleDown } from "react-icons/fa";
+import { FaMoon, FaSun, FaBars } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const MotionBox = motion(Box);
@@ -31,13 +38,14 @@ const Navbar = () => {
   const navBg = useColorModeValue("white", "rgba(10, 10, 10, 0.9)");
   const navTextColor = useColorModeValue("black", "white");
 
-  // Default Accent Color (Yellow in Dark Mode)
   const defaultAccentColor = useColorModeValue("#007bff", "#ffcc00");
 
   const [activeSection, setActiveSection] = useState("home");
   const [accentColor, setAccentColor] = useState(
     localStorage.getItem("accentColor") || defaultAccentColor
   );
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("accentColor", accentColor);
@@ -70,6 +78,7 @@ const Navbar = () => {
       const targetPosition = targetSection.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({ top: targetPosition, behavior: "smooth" });
     }
+    setIsOpen(false); // Close menu on click (for mobile)
   };
 
   return (
@@ -89,16 +98,14 @@ const Navbar = () => {
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
       >
-        <Flex align="center" maxW="1200px" mx="auto">
+        <Flex align="center" maxW="1200px" mx="auto" justify="space-between">
           {/* Logo */}
           <Text fontSize="2xl" fontWeight="bold" color={navTextColor}>
             Rushabh
           </Text>
 
-          <Spacer />
-
-          {/* Navigation Links */}
-          <Flex gap={9}>
+          {/* Desktop Navigation (Hidden on Mobile) */}
+          <Flex gap={9} display={{ base: "none", md: "flex" }}>
             {navLinks.map((link, index) => (
               <Link
                 key={index}
@@ -111,17 +118,20 @@ const Navbar = () => {
                 onClick={(e) => handleSmoothScroll(e, link.href)}
               >
                 {link.name}
-                {link.dropdown && (
-                  <FaAngleDown style={{ display: "inline", marginLeft: "5px" }} />
-                )}
               </Link>
             ))}
           </Flex>
 
-          <Spacer />
+          {/* Mobile Menu Button (Hidden on Desktop) */}
+          <IconButton
+            aria-label="Open Menu"
+            icon={<FaBars />}
+            display={{ base: "flex", md: "none" }}
+            onClick={() => setIsOpen(true)}
+          />
 
-          {/* Theme Customization & Dark Mode Toggle */}
-          <Flex align="center" gap={4}>
+          {/* Theme Customization & Dark Mode Toggle (Desktop Only) */}
+          <Flex align="center" gap={4} display={{ base: "none", md: "flex" }}>
             <Text fontSize="lg" fontWeight="bold" color={navTextColor}>
               ENG
             </Text>
@@ -155,6 +165,56 @@ const Navbar = () => {
             </motion.div>
           </Flex>
         </Flex>
+
+        {/* Mobile Menu (Drawer) */}
+        <Drawer isOpen={isOpen} placement="right" onClose={() => setIsOpen(false)}>
+          <DrawerOverlay />
+          <DrawerContent bg={navBg}>
+            <DrawerCloseButton />
+            <DrawerBody>
+              <VStack spacing={6} mt={10} align="center">
+                {navLinks.map((link, index) => (
+                  <Link
+                    key={index}
+                    href={link.href}
+                    fontSize="lg"
+                    color={navTextColor}
+                    _hover={{ color: "var(--accent-color)" }}
+                    onClick={(e) => handleSmoothScroll(e, link.href)}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+
+                {/* Dark Mode & Accent Picker (Now inside Mobile Menu) */}
+                <HStack spacing={4} mt={6}>
+                  {/* Accent Color Picker */}
+                  <Input
+                    type="color"
+                    value={accentColor}
+                    onChange={(e) => setAccentColor(e.target.value)}
+                    w="10"
+                    h="10"
+                    cursor="pointer"
+                    border="none"
+                    p="1"
+                    bg="transparent"
+                  />
+
+                  {/* Dark Mode Toggle */}
+                  <IconButton
+                    onClick={toggleColorMode}
+                    icon={<Icon as={colorMode === "light" ? FaMoon : FaSun} />}
+                    aria-label="Toggle Dark Mode"
+                    color={navTextColor}
+                    bg="transparent"
+                    _hover={{ color: "var(--accent-color)" }}
+                  />
+                </HStack>
+              </VStack>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </MotionBox>
     </AnimatePresence>
   );
