@@ -36,7 +36,7 @@ const projects = [
     techStack: ["React", "Node", "Tailwind", "MongoDB", "GSAP", "Locomotive Scroll"],
     image: Personal_finance_dashboard,
     liveDemo: "",
-    github: "https://github.com/yourrepo",
+    github: "https://github.com/rushabh-rajpara/personal-finance-dashboard",
   },
   {
     title: "Artisan Marketplace",
@@ -45,7 +45,7 @@ const projects = [
     techStack: ["PHP", "AWS RDS", "Bootstrap", "Amazon S3"],
     image: Artisan_Marketplace,
     liveDemo: "http://172.105.22.192/index.php",
-    github: "https://github.com/yourrepo",
+    github: "https://github.com/rushabh-rajpara/Artisan_Marketplace",
   },
   {
     title: "Online Learning Platform",
@@ -63,7 +63,7 @@ const projects = [
     techStack: ["React", "Node", "MongoDB", "Tailwind"],
     image: Ecommerce,
     liveDemo: "",
-    github: "https://github.com/yourrepo",
+    github: "git@github.com:rushabh-rajpara/HappyBox_Php",
   },
   {
     title: "UI/UX Redesign",

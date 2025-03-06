@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { useRef } from "react";
 import { useScroll, useTransform, useInView } from "framer-motion";
+import profile from "../images/profile.jpg";
 
 const textVariant = {
   hidden: { opacity: 0 },
@@ -65,7 +66,7 @@ const Hero = () => {
             <Image
               borderRadius="full"
               boxSize={{ base: "100px", sm: "120px", md: "160px" }} // Adjust profile pic size for mobile
-              src="https://via.placeholder.com/150"
+              src= {profile}
               alt="Rushabh Rajpara Profile Picture"
               border="4px solid var(--accent-color)"
               loading="lazy"
@@ -112,7 +113,7 @@ const Hero = () => {
               background="#ffd700"
               size="lg"
               as="a"
-              href="https://drive.google.com/uc?export=download&id=1_rpsT9uuICu32nMNemRPtDp_f4avwhP3"
+              href="https://drive.google.com/uc?export=download&id=1sizkqSzSYPSq2YmlzMm6dEYVskg27CYX"
               download
               width={{ base: "100%", sm: "auto" }} // Full width on mobile
             >

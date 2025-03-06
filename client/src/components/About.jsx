@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import {
   Box,
   Heading,
@@ -5,30 +6,15 @@ import {
   Text,
   HStack,
   Button,
-  Image,
-  Progress,
-  Tooltip,
   useColorModeValue,
-  Divider,
 } from "@chakra-ui/react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Helmet } from "react-helmet";
 
 // Motion Components
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
-
-const skills = [
-  { name: "HTML5", value: 90 },
-  { name: "CSS3", value: 95 },
-  { name: "JavaScript", value: 92 },
-  { name: "React.js", value: 85 },
-  { name: "Node.js", value: 88 },
-  { name: "MongoDB", value: 87 },
-  { name: "Git", value: 93 },
-  { name: "Figma", value: 80 },
-];
 
 const About = () => {
   const bg = useColorModeValue("white", "black");
@@ -36,74 +22,67 @@ const About = () => {
   const headingColor = useColorModeValue("black", "yellow.400");
 
   const aboutRef = useRef(null);
-  const skillsRef = useRef(null);
   const aboutInView = useInView(aboutRef, { once: true });
-  const skillsInView = useInView(skillsRef, { once: true });
 
   return (
     <>
       <Helmet>
-        <meta name="description" content="Learn more about Rushabh Rajpara, a passionate Full-Stack Developer with expertise in modern web technologies." />
-        <meta name="keywords" content="Rushabh Rajpara, About, Full-Stack Developer, Web Technologies, Interactive Web Applications" />
-        <meta name="author" content="Rushabh Rajpara" />
+        <meta name="description" content="Hi, I'm Rushabh Rajpara, a passionate Full-Stack Developer." />
+        <meta name="keywords" content="Rushabh Rajpara, Portfolio, Web Developer" />
       </Helmet>
 
       <Box
         id="about"
-        py={16}
+        py={20}
         px={{ base: 6, md: 20 }}
         bg={bg}
         color={textColor}
+        ref={aboutRef}
+        overflow="hidden"
       >
-        {/* Floating About Section */}
         <HStack
           align="center"
-          spacing={{ base: 6, md: 12 }}
-          flexDirection={{ base: "column", md: "row" }} // Stack on mobile, row on larger screens
-          justify="space-between"
+          spacing={12}
+          flexWrap="wrap"
+          justify="center"  // ✅ Centers content on all screens
           maxW="1200px"
           mx="auto"
-          ref={aboutRef}
+          flexDirection={{ base: "column", md: "row" }} // ✅ Stack on mobile, row on larger screens
+          textAlign={{ base: "center", md: "left" }} // ✅ Centers text on mobile, aligns left on larger screens
         >
-          {/* Profile Image with Lazy Loading (Removed Hover for Mobile) */}
-          <motion.div
-            initial={{ y: 30, opacity: 0 }}
-            animate={aboutInView ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 1.2 }}
-          >
-            <Image
-              borderRadius="lg"
-              src="https://via.placeholder.com/400"
-              alt="Profile"
-              boxSize={{ base: "200px", sm: "250px", md: "300px" }} // Adjusted size for mobile
-              mx="auto"
-              loading="lazy"
-              _hover={{
-                transform: { md: "rotate(3deg)" }, // Only apply hover effect on larger screens
-                transition: "transform 0.3s ease-in-out",
-              }}
-            />
-          </motion.div>
+          {/* ✅ Centered Lottie Animation */}
+          <Box display="flex" justifyContent="center">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={aboutInView ? { scale: 1, opacity: 1 } : {}}
+              transition={{ duration: 1 }}
+            >
+              <DotLottieReact
+                src="https://lottie.host/c1c6a87e-8b37-4e2b-b6f5-fc51469e037c/yOCTgija8O.lottie"
+                loop
+                autoplay
+                style={{ width: "300px", height: "300px" }}
+              />
+            </motion.div>
+          </Box>
 
-          {/* Right Section: About Content */}
+          {/* About Me Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={aboutInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
-            textAlign={{ base: "center", md: "left" }} // Center text for mobile
           >
-            <Heading fontSize={{ base: "2xl", md: "4xl" }} mb={4} color={headingColor}>
+            <Heading fontSize="4xl" mb={4} color={headingColor}>
               About Me
             </Heading>
-            <Text fontSize={{ base: "md", md: "lg" }} maxW="600px" mb={6} lineHeight="1.8">
-              I'm a passionate Full-Stack Developer with expertise in modern web
-              technologies. I love creating **interactive, responsive** web
-              applications and ensuring a **smooth UX**.
+            <Text fontSize="lg" maxW="600px" mb={6} lineHeight="1.8">
+              I'm a passionate Full-Stack Developer specializing in **React, Node.js, and modern web technologies**.
+              I love crafting **interactive, high-performance applications** that provide a seamless UX.
             </Text>
 
-            {/* Signature & Resume Button */}
-            <HStack mt={6} spacing={4} flexDirection={{ base: "column", sm: "row" }}> {/* Stack buttons on mobile */}
-              <Text fontSize="2xl" fontFamily="cursive" fontWeight="bold">
+            {/* Resume Button */}
+            <HStack mt={6} spacing={6} justify={{ base: "center", md: "flex-start" }}> {/* ✅ Centers on mobile */}
+              <Text fontSize="3xl" fontFamily="cursive" fontWeight="bold">
                 Rushabh
               </Text>
               <Button
@@ -111,63 +90,14 @@ const About = () => {
                 background="#ffd700"
                 size="lg"
                 as="a"
-                href="https://drive.google.com/uc?export=download&id=1_rpsT9uuICu32nMNemRPtDp_f4avwhP3"
+                href="https://drive.google.com/uc?export=download&id=1sizkqSzSYPSq2YmlzMm6dEYVskg27CYX"
                 download
-                width={{ base: "100%", sm: "auto" }} // Full width on mobile
               >
                 Download Resume
               </Button>
             </HStack>
           </motion.div>
         </HStack>
-
-        <Divider my={16} />
-
-        
-        <Box id="skills-section" maxW="900px" mx="auto" mt={12} ref={skillsRef}>
-          <MotionHeading
-            fontSize="3xl"
-            textAlign="center"
-            mb={6}
-            color={headingColor}
-            initial={{ opacity: 0 }}
-            animate={skillsInView ? { opacity: 1 } : {}}
-            transition={{ duration: 1 }}
-          >
-            My Skills
-          </MotionHeading>
-
-          <HStack spacing={8} flexWrap="wrap">
-            {[0, 1].map((col) => (
-              <VStack flex="1" spacing={6} w="full" key={col}>
-                {skills.slice(col * 4, col * 4 + 4).map((skill, index) => (
-                  <Box key={index} w="full">
-                    <HStack justify="space-between">
-                      <Text fontWeight="bold">{skill.name}</Text>
-                      <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={skillsInView ? { opacity: 1 } : {}}
-                        transition={{ duration: 1.5, delay: index * 0.2 }}
-                      >
-                        {skill.value}%
-                      </motion.span>
-                    </HStack>
-                    <Tooltip
-                      label={`${skill.value}%`}
-                      aria-label="Skill Percentage"
-                    >
-                      <Progress
-                        value={skillsInView ? skill.value : 0}
-                        size="lg"
-                        colorScheme="yellow"
-                      />
-                    </Tooltip>
-                  </Box>
-                ))}
-              </VStack>
-            ))}
-          </HStack>
-        </Box>
       </Box>
     </>
   );

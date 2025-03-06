@@ -67,7 +67,7 @@ const Contact = () => {
             {[
               { icon: FaPhone, text: "+1 548 398 0233" },
               { icon: FaEnvelope, text: "rushabh4478@gmail.com", link: "mailto:rushabh4478@gmail.com" },
-              { icon: FaGlobe, text: "yourwebsite.com", link: "https://yourwebsite.com" },
+              { icon: FaGlobe, text: "rushabh-rajpara", link: "https://rushabh-rajpara.github.io/Portfolio/" },
               { icon: FaMapMarkerAlt, text: "Waterloo, ON, CA" }
             ].map(({ icon, text, link }, index) => (
               <HStack key={index} spacing={4} w="100%">
