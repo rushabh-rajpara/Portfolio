@@ -1,141 +1,87 @@
 ﻿import {
   Box,
-  Heading,
-  VStack,
-  Text,
-  Input,
-  Textarea,
   Button,
-  HStack,
-  useColorModeValue,
-  Link,
-  Icon,
+  Container,
   Flex,
+  Heading,
+  HStack,
+  Input,
+  Link,
+  Stack,
+  Text,
+  Textarea,
+  VStack,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import {
-  FaEnvelope,
-  FaPhone,
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaMapMarkerAlt,
-  FaGlobe,
-} from "react-icons/fa";
-import { Helmet } from "react-helmet";
 import emailjs from "@emailjs/browser";
+import { contactDetails } from "../content/siteContent";
 
 const Contact = () => {
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "white");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const inputBg = useColorModeValue("gray.900", "gray.800");
-  const inputBorder = useColorModeValue("yellow.400", "yellow.600");
-  const buttonBg = useColorModeValue("yellow.400", "yellow.500");
-  const githubColor = useColorModeValue("black", "white");
-
-  const formRef = useRef();
+  const formRef = useRef(null);
   const [isSending, setIsSending] = useState(false);
-  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("");
 
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const sendEmail = async (event) => {
+    event.preventDefault();
     setIsSending(true);
+    setStatus("");
 
-    emailjs
-      .sendForm(
+    try {
+      await emailjs.sendForm(
         "service_a01ix4l",
         "template_t252a75",
         formRef.current,
         "JEfOG-4XHbVzPJHbe",
-      )
-      .then(
-        (result) => {
-          console.log("Email successfully sent:", result.text);
-          setMessage("Message sent successfully!");
-          setIsSending(false);
-        },
-        (error) => {
-          console.log("Email sending failed:", error.text);
-          setMessage("Failed to send message. Try again later.");
-          setIsSending(false);
-        },
       );
+      setStatus("Message sent successfully. I will get back to you soon.");
+      formRef.current?.reset();
+    } catch {
+      setStatus("Unable to send right now. Please email me directly.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
-    <>
-      <Helmet>
-        <meta
-          name="description"
-          content="Get in touch with Rushabh Rajpara for collaborations and project inquiries."
-        />
-      </Helmet>
-
-      <Box id="contact" py={20} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
-        <VStack spacing={4} textAlign="center" mb={12}>
-          <Heading fontSize="4xl" fontWeight="bold" color={headingColor}>
-            Let&apos;s Work Together
+    <Box as="section" id="contact" py={{ base: 14, md: 20 }} bg="brand.surfaceAlt">
+      <Container maxW="1200px">
+        <Stack spacing={3} mb={10} maxW="760px">
+          <Heading as="h2" size="xl" color="brand.ink">
+            Have a project in mind?
           </Heading>
-          <Text maxW="700px">
-            Have a project idea or need a website? Let&apos;s collaborate and build something great together. Reach out now!
+          <Text color="brand.muted">
+            If you are an agency, small business, or local Canadian company looking for reliable development support, let&apos;s talk.
           </Text>
-        </VStack>
+        </Stack>
 
-        <Flex
-          direction={{ base: "column", md: "row" }}
-          justify="center"
-          gap={12}
-          maxW="1100px"
-          mx="auto"
-        >
-          <VStack align="start" spacing={6} flex="1" w="100%">
-            {[
-              { icon: FaPhone, text: "+1 548 398 0233" },
-              {
-                icon: FaEnvelope,
-                text: "rushabh4478@gmail.com",
-                link: "mailto:rushabh4478@gmail.com",
-              },
-              {
-                icon: FaGlobe,
-                text: "rushabh-rajpara",
-                link: "https://rushabh-rajpara.github.io/Portfolio/",
-              },
-              { icon: FaMapMarkerAlt, text: "Waterloo, ON, CA" },
-            ].map(({ icon, text, link }, index) => (
-              <HStack key={index} spacing={4} w="100%">
-                <Icon as={icon} boxSize={6} color={headingColor} />
-                {link ? (
-                  <Text fontSize="md">
-                    <Link href={link} target="_blank">
-                      {text}
-                    </Link>
-                  </Text>
-                ) : (
-                  <Text fontSize="md">{text}</Text>
-                )}
-              </HStack>
-            ))}
-
-            <HStack spacing={6} mt={4}>
-              {[
-                { icon: FaGithub, link: "https://github.com", color: githubColor },
-                { icon: FaLinkedin, link: "https://linkedin.com", color: "#0077B5" },
-                { icon: FaTwitter, link: "https://twitter.com", color: "#1DA1F2" },
-              ].map(({ icon, link, color }, index) => (
-                <Link key={index} href={link} target="_blank">
-                  <Icon
-                    as={icon}
-                    boxSize={7}
-                    color={color}
-                    transition="transform 0.3s ease-in-out, color 0.3s ease-in-out"
-                    _hover={{
-                      transform: "scale(1.2) rotate(5deg)",
-                    }}
-                  />
-                </Link>
-              ))}
+        <Flex direction={{ base: "column", lg: "row" }} gap={8}>
+          <VStack
+            align="stretch"
+            spacing={4}
+            flex="1"
+            p={6}
+            border="1px solid"
+            borderColor="brand.border"
+            borderRadius="xl"
+            bg="white"
+          >
+            <Heading as="h3" size="md" color="brand.ink">
+              Contact Options
+            </Heading>
+            <Text color="brand.muted">
+              Email: <Link href={`mailto:${contactDetails.email}`}>{contactDetails.email}</Link>
+            </Text>
+            <Text color="brand.muted">
+              LinkedIn: <Link href={contactDetails.linkedin} isExternal rel="noopener noreferrer">{contactDetails.linkedin}</Link>
+            </Text>
+            <Text color="brand.muted">
+              GitHub: <Link href={contactDetails.github} isExternal rel="noopener noreferrer">{contactDetails.github}</Link>
+            </Text>
+            <Text color="brand.muted">Location: {contactDetails.location}</Text>
+            <HStack pt={2}>
+              <Button as="a" href={`mailto:${contactDetails.email}`} bg="brand.primary" color="white" _hover={{ bg: "brand.primaryHover" }}>
+                Let&apos;s Talk
+              </Button>
             </HStack>
           </VStack>
 
@@ -143,73 +89,30 @@ const Contact = () => {
             as="form"
             ref={formRef}
             onSubmit={sendEmail}
-            p={8}
             flex="1"
-            w="100%"
-            bg={inputBg}
-            borderRadius="lg"
-            boxShadow="lg"
+            p={6}
+            border="1px solid"
+            borderColor="brand.border"
+            borderRadius="xl"
+            bg="white"
           >
-            <VStack spacing={5} align="start" w="100%">
-              <Input
-                name="name"
-                placeholder="Your Name"
-                bg="transparent"
-                border="2px solid"
-                borderColor={inputBorder}
-                _placeholder={{ color: "gray.500" }}
-                size="lg"
-                w="100%"
-                color="white"
-                required
-              />
-              <Input
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                bg="transparent"
-                border="2px solid"
-                borderColor={inputBorder}
-                _placeholder={{ color: "gray.500" }}
-                size="lg"
-                w="100%"
-                color="white"
-                required
-              />
-              <Textarea
-                name="message"
-                placeholder="Project Description"
-                bg="transparent"
-                border="2px solid"
-                borderColor={inputBorder}
-                _placeholder={{ color: "gray.500" }}
-                size="lg"
-                rows={5}
-                w="100%"
-                color="white"
-                required
-              />
-              <Button
-                type="submit"
-                bg={buttonBg}
-                color="black"
-                size="lg"
-                w="100%"
-                _hover={{ bg: "yellow.600", transform: "scale(1.1)", transition: "0.3s" }}
-                isLoading={isSending}
-              >
-                {isSending ? "Sending..." : "Send Message"}
+            <VStack spacing={4} align="stretch">
+              <Input name="name" placeholder="Your Name" required bg="white" />
+              <Input name="email" type="email" placeholder="Email Address" required bg="white" />
+              <Textarea name="message" placeholder="Project details" rows={5} required bg="white" />
+              <Button type="submit" bg="brand.primary" color="white" _hover={{ bg: "brand.primaryHover" }} isLoading={isSending}>
+                {isSending ? "Sending..." : "Start a Project"}
               </Button>
-              {message && (
-                <Text fontSize="md" color="green.400">
-                  {message}
+              {status && (
+                <Text fontSize="sm" color={status.includes("successfully") ? "green.600" : "orange.600"}>
+                  {status}
                 </Text>
               )}
             </VStack>
           </Box>
         </Flex>
-      </Box>
-    </>
+      </Container>
+    </Box>
   );
 };
 

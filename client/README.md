@@ -1,8 +1,23 @@
-# React + Vite
+﻿# Rushabh Rajpara - Service Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Business-focused portfolio website for web application delivery, MVP builds, and automation systems.
 
-Currently, two official plugins are available:
+## Local Development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+```
+
+## Production Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Favicon Setup
+
+- Replace `public/favicon.svg` with your own logo favicon file.
+- Keep the filename as `favicon.svg` (or update `index.html` if you use a different filename).
+- `index.html` is already wired to load `/favicon.svg`.

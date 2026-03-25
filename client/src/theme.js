@@ -1,31 +1,40 @@
-import { extendTheme } from "@chakra-ui/react";
+﻿import { extendTheme } from "@chakra-ui/react";
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
     useSystemColorMode: false,
   },
   fonts: {
     heading: "'Montserrat', sans-serif",
     body: "'Montserrat', sans-serif",
   },
-  styles: {
-    global: (props) => ({
-      body: {
-        bg: props.colorMode === "dark" ? "black" : "#ffc800bd",
-        color: props.colorMode === "dark" ? "yellow.400" : "black",
-      },
-    }),
-  },
   colors: {
-    primary: {
-      dark: "#000000", // Black for dark mode
-      light: "#FFFFFF", // Soft white for light mode
+    brand: {
+      primary: "#1f4ed8",
+      primaryHover: "#1d43b8",
+      ink: "#0f172a",
+      muted: "#475569",
+      surface: "#f8fafc",
+      surfaceAlt: "#f1f5f9",
+      border: "#dbe3ee",
+      borderStrong: "#94a3b8",
     },
-    accent: {
-      dark: "#ffda00", // Yellow for dark mode
-      light: "#ffda00", // Yellow remains the same in both modes
-    },}
+  },
+  styles: {
+    global: {
+      body: {
+        bg: "brand.surface",
+        color: "brand.ink",
+      },
+      "*::placeholder": {
+        color: "gray.500",
+      },
+      a: {
+        color: "brand.primary",
+      },
+    },
+  },
 });
 
 export default theme;

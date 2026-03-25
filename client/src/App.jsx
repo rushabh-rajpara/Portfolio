@@ -1,40 +1,29 @@
-import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
-import theme from "./theme";
+﻿import { Box } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
-import About from "./components/About";
-import Services from "./components/Services";
 import Hero from "./components/Hero";
-import Contact from "./components/Contact";
-import InteractiveLines from "./components/InteractiveLines";
-import CustomCursor from "./components/CustomCursor";
-import CursorTrail from "./components/CursorTrail";
-import Resume from "./components/Resume";
+import Services from "./components/Services";
 import Projects from "./components/Projects";
-
-
-if (import.meta.env.PROD) {
-  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};
-  }
-}
-
+import HowIWork from "./components/HowIWork";
+import About from "./components/About";
+import Capabilities from "./components/Capabilities";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <ChakraProvider theme={theme}>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-    <InteractiveLines /> {/* Background Animation */}
-    <CustomCursor />
-    <CursorTrail />
-    <Navbar />
-    <Hero />
-    <About />
-    <Resume />
-    <Projects />
-    <Services />
-    <Contact />
-    
-  </ChakraProvider>
+    <>
+      <Navbar />
+      <Box as="main">
+        <Hero />
+        <Services />
+        <Projects />
+        <HowIWork />
+        <About />
+        <Capabilities />
+        <Contact />
+      </Box>
+      <Footer />
+    </>
   );
 }
 
