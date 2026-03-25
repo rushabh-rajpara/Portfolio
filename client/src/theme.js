@@ -2,37 +2,29 @@
 
 const theme = extendTheme({
   config: {
-    initialColorMode: "light",
+    initialColorMode: "dark",
     useSystemColorMode: false,
   },
   fonts: {
     heading: "'Montserrat', sans-serif",
     body: "'Montserrat', sans-serif",
   },
-  colors: {
-    brand: {
-      primary: "#1f4ed8",
-      primaryHover: "#1d43b8",
-      ink: "#0f172a",
-      muted: "#475569",
-      surface: "#f8fafc",
-      surfaceAlt: "#f1f5f9",
-      border: "#dbe3ee",
-      borderStrong: "#94a3b8",
-    },
-  },
   styles: {
-    global: {
+    global: (props) => ({
       body: {
-        bg: "brand.surface",
-        color: "brand.ink",
+        bg: props.colorMode === "dark" ? "black" : "#ffc800bd",
+        color: props.colorMode === "dark" ? "yellow.400" : "black",
       },
-      "*::placeholder": {
-        color: "gray.500",
-      },
-      a: {
-        color: "brand.primary",
-      },
+    }),
+  },
+  colors: {
+    primary: {
+      dark: "#000000",
+      light: "#FFFFFF",
+    },
+    accent: {
+      dark: "#ffda00",
+      light: "#ffda00",
     },
   },
 });
