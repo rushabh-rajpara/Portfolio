@@ -10,6 +10,7 @@
   useColorModeValue,
   Flex,
   Badge,
+  Button,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -86,12 +87,12 @@ const Projects = () => {
         <Heading fontSize="4xl" color={headingColor}>
           Case Studies
         </Heading>
-        <Text maxW="800px">
-          Real delivery examples focused on client problems, the solution built, and business outcomes.
+        <Text maxW="860px">
+          Selected projects framed around business context: the problem, what was built, and the delivery outcome.
         </Text>
       </VStack>
 
-      <HStack spacing={4} justify="center" mb={10}>
+      <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
         {categories.map((category, index) => (
           <Box
             as="button"
@@ -152,7 +153,7 @@ const Projects = () => {
                 width="100%"
                 height="100%"
                 bg="rgba(0, 0, 0, 0.78)"
-                opacity="0"
+                opacity={{ base: 1, md: 0 }}
                 transition="opacity 0.3s ease"
                 _hover={{ opacity: 1 }}
                 justify="center"
@@ -192,13 +193,18 @@ const Projects = () => {
         </AnimatePresence>
       </SimpleGrid>
 
+      <VStack mt={10} spacing={3}>
+        <Text textAlign="center" maxW="700px">Want a similar result for your business or client project?</Text>
+        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="md">Let&apos;s Talk</Button>
+      </VStack>
+
       <style>
         {`
             .project-card {
               transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             }
             .project-card:hover {
-              transform: scale(1.05);
+              transform: scale(1.03);
               box-shadow: 0px 0px 15px var(--accent-color);
             }
           `}

@@ -50,11 +50,11 @@ const Contact = () => {
       )
       .then(
         () => {
-          setMessage("Message sent successfully!");
+          setMessage("Message sent successfully! I will reply soon.");
           setIsSending(false);
         },
         () => {
-          setMessage("Failed to send message. Try again later.");
+          setMessage("Failed to send message. Please email me directly.");
           setIsSending(false);
         },
       );
@@ -66,8 +66,11 @@ const Contact = () => {
         <Heading fontSize="4xl" fontWeight="bold" color={headingColor}>
           Have a project in mind?
         </Heading>
-        <Text maxW="700px">
-          I work with agencies and businesses to deliver web applications, MVPs, SaaS products, and automation systems with reliable execution.
+        <Text maxW="760px">
+          If you need a reliable development partner for agency delivery, MVP execution, or business automation, let&apos;s discuss your scope and timeline.
+        </Text>
+        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>
+          Based in Canada. Working with clients locally and globally.
         </Text>
       </VStack>
 
@@ -119,9 +122,7 @@ const Contact = () => {
                   boxSize={7}
                   color={color}
                   transition="transform 0.3s ease-in-out, color 0.3s ease-in-out"
-                  _hover={{
-                    transform: "scale(1.2) rotate(5deg)",
-                  }}
+                  _hover={{ transform: "scale(1.15) rotate(3deg)" }}
                 />
               </Link>
             ))}
@@ -167,7 +168,7 @@ const Contact = () => {
             />
             <Textarea
               name="message"
-              placeholder="Project Description"
+              placeholder="Tell me about your project"
               bg="transparent"
               border="2px solid"
               borderColor={inputBorder}
@@ -184,7 +185,7 @@ const Contact = () => {
               color="black"
               size="lg"
               w="100%"
-              _hover={{ bg: "yellow.600", transform: "scale(1.05)", transition: "0.3s" }}
+              _hover={{ bg: "yellow.600", transform: "scale(1.03)", transition: "0.3s" }}
               isLoading={isSending}
             >
               {isSending ? "Sending..." : "Start a Project"}

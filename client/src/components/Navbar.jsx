@@ -15,6 +15,7 @@ import {
   DrawerBody,
   VStack,
   HStack,
+  Button,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/react";
 import { FaMoon, FaSun, FaBars } from "react-icons/fa";
@@ -27,7 +28,7 @@ const navLinks = [
   { name: "ABOUT", href: "#about" },
   { name: "PROCESS", href: "#resume" },
   { name: "CASE STUDIES", href: "#projects" },
-  { name: "SERVICE", href: "#services" },
+  { name: "SERVICES", href: "#services" },
   { name: "CONTACT", href: "#contact" },
 ];
 
@@ -101,7 +102,7 @@ const Navbar = () => {
             Rushabh
           </Text>
 
-          <Flex gap={7} display={{ base: "none", md: "flex" }}>
+          <Flex gap={7} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link, index) => (
               <Link
                 key={index}
@@ -116,6 +117,9 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <Button as="a" href="#contact" size="xs" colorScheme="yellow" background="#ffd700">
+              START PROJECT
+            </Button>
           </Flex>
 
           <IconButton
@@ -173,6 +177,10 @@ const Navbar = () => {
                     {link.name}
                   </Link>
                 ))}
+
+                <Button as="a" href="#contact" onClick={() => setIsOpen(false)} colorScheme="yellow" background="#ffd700" size="sm">
+                  Start Project
+                </Button>
 
                 <HStack spacing={4} mt={6}>
                   <Input

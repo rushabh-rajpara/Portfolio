@@ -1,4 +1,4 @@
-﻿import { Box, Heading, Text, Button, Image, VStack, HStack, useColorModeValue } from "@chakra-ui/react";
+﻿import { Box, Heading, Text, Button, Image, VStack, HStack, useColorModeValue, Wrap, WrapItem, Badge } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { useRef } from "react";
@@ -47,9 +47,9 @@ const Hero = () => {
       overflow="hidden"
       style={{ scale, opacity }}
       px={{ base: 4, md: 8 }}
-      py={{ base: 8, md: 12 }}
+      py={{ base: 10, md: 12 }}
     >
-      <VStack spacing={{ base: 5, md: 8 }} zIndex={1} width="100%" maxW="900px">
+      <VStack spacing={{ base: 5, md: 8 }} zIndex={1} width="100%" maxW="920px">
         <motion.div initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 1 }}>
           <Image
             borderRadius="full"
@@ -61,7 +61,7 @@ const Hero = () => {
           />
         </motion.div>
 
-        <Heading fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }} fontWeight="bold" color={textColor}>
+        <Heading fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }} fontWeight="bold" color={textColor} lineHeight="1.2">
           {headline.split("").map((char, i) => (
             <motion.span
               key={i}
@@ -76,11 +76,19 @@ const Hero = () => {
           ))}
         </Heading>
 
-        <Text fontSize={{ base: "md", sm: "lg", md: "xl" }} fontWeight="medium" color={useColorModeValue("gray.700", "gray.300")}>
-          Fast, reliable development - from idea to deployment.
+        <Text fontSize={{ base: "md", sm: "lg", md: "xl" }} fontWeight="medium" color={useColorModeValue("gray.700", "gray.300")} maxW="760px">
+          Fast, reliable development from idea to deployment, with clear communication at every stage.
         </Text>
 
-        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>Based in Canada, working globally with a skilled development team.</Text>
+        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>
+          Based in Canada, working globally with a skilled development team in India.
+        </Text>
+
+        <Wrap justify="center" spacing={3}>
+          <WrapItem><Badge colorScheme="yellow" px={3} py={1} borderRadius="full">Agency Collaboration</Badge></WrapItem>
+          <WrapItem><Badge colorScheme="yellow" px={3} py={1} borderRadius="full">End-to-End Delivery</Badge></WrapItem>
+          <WrapItem><Badge colorScheme="yellow" px={3} py={1} borderRadius="full">Business-Focused Builds</Badge></WrapItem>
+        </Wrap>
 
         <HStack spacing={5}>
           {[
@@ -94,7 +102,7 @@ const Hero = () => {
           ))}
         </HStack>
 
-        <HStack spacing={4} flexDirection={{ base: "column", sm: "row" }}>
+        <HStack spacing={4} flexDirection={{ base: "column", sm: "row" }} width={{ base: "100%", sm: "auto" }}>
           <Button colorScheme="yellow" background="#ffd700" size="lg" as="a" href="#contact" width={{ base: "100%", sm: "auto" }}>
             Start a Project
           </Button>
@@ -109,7 +117,7 @@ const Hero = () => {
             href="#projects"
             width={{ base: "100%", sm: "auto" }}
           >
-            View Case Studies
+            View My Work
           </MotionButton>
         </HStack>
       </VStack>

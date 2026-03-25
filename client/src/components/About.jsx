@@ -6,6 +6,7 @@ import {
   HStack,
   Button,
   useColorModeValue,
+  VStack,
 } from "@chakra-ui/react";
 import { motion, useInView } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
@@ -58,22 +59,29 @@ const About = () => {
           animate={aboutInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
-          <Heading fontSize="4xl" mb={4} color={headingColor}>
-            About
-          </Heading>
-          <Text fontSize="lg" maxW="620px" mb={6} lineHeight="1.8">
-            I help businesses and agencies turn ideas into reliable software through clear planning and dependable execution.
-            I focus on clean builds, practical architecture, and outcomes that support real operations.
-          </Text>
-
-          <HStack mt={6} spacing={6} justify={{ base: "center", md: "flex-start" }}>
-            <Text fontSize="3xl" fontFamily="cursive" fontWeight="bold">
-              Rushabh
+          <VStack align={{ base: "center", md: "start" }} spacing={4}>
+            <Heading fontSize="4xl" mb={2} color={headingColor}>
+              Trusted Execution Partner
+            </Heading>
+            <Text fontSize="lg" maxW="640px" lineHeight="1.8">
+              I help businesses and agencies turn ideas into dependable software with clear planning, practical architecture, and reliable delivery.
             </Text>
-            <Button colorScheme="yellow" background="#ffd700" size="lg" as="a" href="#contact">
-              Let&apos;s Talk
-            </Button>
-          </HStack>
+            <Text maxW="640px" lineHeight="1.8">
+              Based in Canada and supported by a skilled development team in India, I collaborate closely with clients to build web applications, MVPs, SaaS products, and internal tools that solve real business problems.
+            </Text>
+            <Text maxW="640px" lineHeight="1.8">
+              My focus is simple: clear communication, predictable execution, and software you can confidently run and grow.
+            </Text>
+
+            <HStack mt={4} spacing={6} justify={{ base: "center", md: "flex-start" }}>
+              <Text fontSize="3xl" fontFamily="cursive" fontWeight="bold">
+                Rushabh
+              </Text>
+              <Button colorScheme="yellow" background="#ffd700" size="lg" as="a" href="#contact">
+                Let&apos;s Talk
+              </Button>
+            </HStack>
+          </VStack>
         </motion.div>
       </HStack>
     </Box>
