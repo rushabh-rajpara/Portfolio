@@ -3,7 +3,6 @@ import {
   Box,
   Flex,
   Link,
-  Spacer,
   IconButton,
   useColorMode,
   useColorModeValue,

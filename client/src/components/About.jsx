@@ -1,8 +1,7 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import {
   Box,
   Heading,
-  VStack,
   Text,
   HStack,
   Button,
@@ -11,10 +10,6 @@ import {
 import { motion, useInView } from "framer-motion";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Helmet } from "react-helmet";
-
-// Motion Components
-const MotionBox = motion(Box);
-const MotionHeading = motion(Heading);
 
 const About = () => {
   const bg = useColorModeValue("white", "black");
@@ -76,8 +71,8 @@ const About = () => {
               About Me
             </Heading>
             <Text fontSize="lg" maxW="600px" mb={6} lineHeight="1.8">
-              I'm a passionate Full-Stack Developer specializing in **React, Node.js, and modern web technologies**.
-              I love crafting **interactive, high-performance applications** that provide a seamless UX.
+              I&apos;m a passionate Full-Stack Developer specializing in React, Node.js, and modern web technologies.
+              I love crafting interactive, high-performance applications that provide a seamless UX.
             </Text>
 
             {/* Resume Button */}

@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
 import Navbar from "./components/Navbar";
@@ -13,7 +12,7 @@ import Resume from "./components/Resume";
 import Projects from "./components/Projects";
 
 
-if (process.env.NODE_ENV === "production") {
+if (import.meta.env.PROD) {
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
     window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {};
   }

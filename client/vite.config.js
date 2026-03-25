@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite';
+﻿import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig({
+export default defineConfig(({ command }) => ({
   plugins: [react()],
-  base: "/Portfolio/",
+  // Use root path locally, GitHub Pages path for production build/deploy.
+  base: command === 'build' ? '/Portfolio/' : '/',
   build: {
-    chunkSizeWarningLimit: 1000, // Increase limit to 1000kB
-  }, // 🔹 Replace with your GitHub repository name
-});
-
+    chunkSizeWarningLimit: 1000,
+  },
+}));
