@@ -7,6 +7,7 @@ import Hero from "./components/Hero";
 import Contact from "./components/Contact";
 import Resume from "./components/Resume";
 import Projects from "./components/Projects";
+import TrustSignals from "./components/TrustSignals";
 import Footer from "./components/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
 
@@ -27,6 +28,7 @@ function App() {
         <Resume />
         <Projects />
         <Services />
+        <TrustSignals />
         <Contact />
         <Footer />
       </LanguageProvider>

@@ -47,6 +47,16 @@ const theme = extendTheme({
         fontWeight: "700",
         transition: "all 0.22s ease",
       },
+      sizes: {
+        md: {
+          h: "44px",
+          px: 6,
+        },
+        lg: {
+          h: "50px",
+          px: 8,
+        },
+      },
     },
     Link: {
       baseStyle: {

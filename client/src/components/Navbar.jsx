@@ -107,12 +107,12 @@ const Navbar = () => {
             Rushabh
           </Link>
 
-          <Flex gap={7} align="center" display={{ base: "none", md: "flex" }}>
+          <Flex gap={6} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
-                fontSize="xs"
+                fontSize="sm"
                 color={activeSection === link.href.substring(1) ? "var(--accent-color)" : navTextColor}
                 fontWeight={activeSection === link.href.substring(1) ? "700" : "500"}
                 _hover={{ color: "var(--accent-color)" }}
@@ -124,11 +124,11 @@ const Navbar = () => {
             <Button
               as="a"
               href="#contact"
-              size="sm"
+              size="md"
               colorScheme="yellow"
               background="#ffd700"
               color="black"
-              px={5}
+              px={7}
               _hover={{ bg: "#f0cb00", transform: "translateY(-1px)" }}
               onClick={(e) => handleSmoothScroll(e, "#contact")}
             >

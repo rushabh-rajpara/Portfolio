@@ -24,7 +24,7 @@ const Resume = () => {
   return (
     <MotionBox
       id="resume"
-      py={{ base: 16, md: 20 }}
+      py={{ base: 14, md: 20, lg: 24 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
@@ -37,10 +37,10 @@ const Resume = () => {
         <MotionHeading fontSize="4xl" color={headingColor} initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           {t("process.heading")}
         </MotionHeading>
-        <Text maxW="820px" fontSize={{ base: "md", md: "lg" }}>{t("process.subheading")}</Text>
+        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("process.subheading")}</Text>
       </VStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} maxW="1200px" mx="auto">
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
         <VStack align="start" spacing={6}>
           <Heading fontSize="2xl" color={headingColor} display="flex" alignItems="center">
             <FaSearch style={{ marginRight: "8px" }} /> {t("process.strategy")}

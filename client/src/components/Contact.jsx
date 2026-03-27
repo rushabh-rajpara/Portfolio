@@ -65,10 +65,10 @@ const Contact = () => {
   };
 
   return (
-    <Box id="contact" py={{ base: 16, md: 20 }} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
+    <Box id="contact" py={{ base: 14, md: 20, lg: 24 }} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
       <VStack spacing={4} textAlign="center" mb={12}>
         <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color={headingColor}>{t("contact.heading")}</Heading>
-        <Text maxW="760px" fontSize={{ base: "md", md: "lg" }}>{t("contact.subheading")}</Text>
+        <Text maxW="700px" fontSize={{ base: "md", md: "lg" }}>{t("contact.subheading")}</Text>
         <Text fontSize="sm" color={subtleColor}>{t("contact.trustLine")}</Text>
         <Badge colorScheme="yellow" px={3} py={1} borderRadius="full">{t("contact.responseTime")}</Badge>
       </VStack>
@@ -76,6 +76,7 @@ const Contact = () => {
       <Flex direction={{ base: "column", md: "row" }} justify="center" gap={10} maxW="1120px" mx="auto">
         <VStack align="start" spacing={6} flex="1" w="100%" bg={cardBg} p={6} borderRadius="lg" border="1px solid" borderColor={cardBorderColor} boxShadow="card">
           <Text fontWeight="700" fontSize="lg">{t("contact.directTitle")}</Text>
+          <Text fontSize="sm" color={subtleColor}>{t("contact.directSupport")}</Text>
           <HStack spacing={3} flexWrap="wrap">
             <Button as="a" href="mailto:rushabh4478@gmail.com" size="sm" variant="outline" borderColor={inputBorder}>{t("contact.emailNow")}</Button>
             <Button as="a" href="tel:+15483980233" size="sm" variant="outline" borderColor={inputBorder}>{t("contact.callNow")}</Button>
@@ -90,7 +91,7 @@ const Contact = () => {
             <HStack key={index} spacing={4} w="100%">
               <Icon as={icon} boxSize={5} color={headingColor} />
               {link ? (
-                <Text fontSize="md"><Link href={link} target={link.startsWith("http") ? "_blank" : undefined} rel={link.startsWith("http") ? "noopener noreferrer" : undefined}>{text}</Link></Text>
+                <Text fontSize="md" fontWeight={icon === FaEnvelope ? "700" : "500"}><Link href={link} target={link.startsWith("http") ? "_blank" : undefined} rel={link.startsWith("http") ? "noopener noreferrer" : undefined}>{text}</Link></Text>
               ) : (
                 <Text fontSize="md">{text}</Text>
               )}

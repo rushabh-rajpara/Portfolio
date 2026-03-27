@@ -7,7 +7,7 @@
       caseStudies: "SELECTED WORK",
       services: "SERVICES",
       contact: "CONTACT",
-      startProject: "START PROJECT",
+      startProject: "Start a Project",
     },
     hero: {
       eyebrow: "For Agencies, Startups, and Local Canadian Businesses",
@@ -19,6 +19,7 @@
       badge3: "Scalable Solutions",
       ctaPrimary: "Start a Project",
       ctaSecondary: "View My Work",
+      ctaSupport: "Open to select new projects",
     },
     services: {
       heading: "What I Help You Build",
@@ -26,7 +27,7 @@
       featured: "Most Requested",
       bestFor: "Best for",
       ctaText: "Have a project in mind? Let's talk",
-      ctaButton: "Discuss Your Idea",
+      ctaButton: "Start a Project",
       cards: [
         {
           title: "MVP Development",
@@ -113,38 +114,65 @@
         problem: "Problem",
         built: "Solution",
         outcome: "Outcome",
+        viewProject: "View Project ->",
         liveDemo: "Live Demo ->",
         github: "GitHub ->",
       },
       ctaText: "Need something similar for your business or client?",
-      ctaButton: "Let's Talk",
+      ctaButton: "Discuss Your Idea",
       items: [
         {
           title: "Finance Operations Dashboard",
+          context: "Internal operations web app",
           problem: "Needed a system to manage budgets and financial activity in one place.",
           built: "Built a web dashboard with budget tracking, reporting views, and account-level visibility.",
           outcome: "Streamlined financial workflows and improved day-to-day decision clarity.",
         },
         {
           title: "Artisan Marketplace Platform",
+          context: "Marketplace MVP for growing vendors",
           problem: "Needed a structured way to manage product approvals and marketplace operations.",
           built: "Built a marketplace platform with listing workflows, search, and admin controls.",
           outcome: "Reduced manual coordination and created a smoother buyer and seller experience.",
         },
         {
           title: "E-commerce Experience Rebuild",
+          context: "Commerce flow and backend reliability",
           problem: "Needed a more reliable purchase flow and stronger backend coordination.",
           built: "Built improved web application flows and integrated backend services for stability.",
           outcome: "Improved usability, reduced friction, and created a scalable foundation for growth.",
         },
       ],
     },
+    trust: {
+      heading: "What you can expect",
+      subheading: "A smooth, low-risk delivery process designed for business outcomes.",
+      items: [
+        {
+          title: "Clear communication",
+          description: "You always know what is happening, what is next, and what decisions are needed.",
+        },
+        {
+          title: "Regular updates",
+          description: "Progress is shared consistently so there are no surprises near delivery.",
+        },
+        {
+          title: "Reliable delivery",
+          description: "Work is shipped with accountability, practical timelines, and clean handoff.",
+        },
+        {
+          title: "Scalable solutions",
+          description: "Built to solve current needs while staying ready for future growth.",
+        },
+      ],
+    },
     contact: {
       heading: "Have a project in mind?",
-      subheading: "If you're building a product, improving an existing system, or need a reliable development partner, let's discuss how to make it happen.",
+      subheading: "If you need a reliable partner to build your product without delays or confusion, let's talk.",
       trustLine: "Clear communication, reliable delivery, and practical execution from start to launch.",
       responseTime: "Usually replies within 24 hours",
       directTitle: "Prefer a quick conversation?",
+      directSupport: "Pick the easiest option and I will respond promptly.",
       emailNow: "Email Now",
       callNow: "Call Now",
       namePlaceholder: "Your Name",
@@ -165,7 +193,7 @@
       caseStudies: "PROJETS",
       services: "SERVICES",
       contact: "CONTACT",
-      startProject: "DEMARRER UN PROJET",
+      startProject: "Demarrer un projet",
     },
     hero: {
       eyebrow: "Pour agences, startups et entreprises locales canadiennes",
@@ -177,6 +205,7 @@
       badge3: "Solutions evolutives",
       ctaPrimary: "Demarrer un projet",
       ctaSecondary: "Voir mes projets",
+      ctaSupport: "Ouvert a une selection de nouveaux projets",
     },
     services: {
       heading: "Ce que je vous aide a construire",
@@ -184,7 +213,7 @@
       featured: "Le plus demande",
       bestFor: "Ideal pour",
       ctaText: "Vous avez un projet en tete ? Parlons-en",
-      ctaButton: "Discuter de votre idee",
+      ctaButton: "Demarrer un projet",
       cards: [
         {
           title: "Developpement MVP",
@@ -271,38 +300,65 @@
         problem: "Probleme",
         built: "Solution",
         outcome: "Resultat",
+        viewProject: "Voir le projet ->",
         liveDemo: "Demo ->",
         github: "GitHub ->",
       },
       ctaText: "Vous voulez un resultat similaire pour votre entreprise ?",
-      ctaButton: "Parlons-en",
+      ctaButton: "Discuter de votre idee",
       items: [
         {
           title: "Dashboard Operations Finance",
+          context: "Application web pour operations internes",
           problem: "Besoin d'un systeme centralise pour suivre budgets et activites financieres.",
           built: "Creation d'un dashboard web avec suivi budgetaire et vues de reporting.",
           outcome: "Workflow simplifie et meilleure lisibilite pour les decisions quotidiennes.",
         },
         {
           title: "Plateforme Marketplace Artisanale",
+          context: "MVP marketplace pour vendeurs en croissance",
           problem: "Besoin d'un systeme fiable pour les validations produits et la gestion marketplace.",
           built: "Creation d'une plateforme avec workflows de listing, recherche et controles admin.",
           outcome: "Moins d'efforts manuels et meilleure experience utilisateur.",
         },
         {
           title: "Refonte Experience E-commerce",
+          context: "Fiabilisation des parcours d'achat",
           problem: "Besoin d'un parcours d'achat plus fiable et d'une meilleure coordination backend.",
           built: "Amelioration des flux web et integration des services backend.",
           outcome: "Meilleure utilisabilite et base evolutive pour la croissance.",
         },
       ],
     },
+    trust: {
+      heading: "Ce que vous pouvez attendre",
+      subheading: "Un processus de livraison fluide et fiable oriente resultats business.",
+      items: [
+        {
+          title: "Communication claire",
+          description: "Vous savez toujours ou en est le projet, les prochaines etapes et les decisions a prendre.",
+        },
+        {
+          title: "Mises a jour regulieres",
+          description: "Le suivi est constant pour eviter les surprises en fin de projet.",
+        },
+        {
+          title: "Livraison fiable",
+          description: "Execution responsable avec planning realiste et handover propre.",
+        },
+        {
+          title: "Solutions evolutives",
+          description: "Concu pour vos besoins actuels tout en restant pret pour la croissance.",
+        },
+      ],
+    },
     contact: {
       heading: "Un projet en tete ?",
-      subheading: "Si vous creez un produit, ameliorez un systeme existant, ou cherchez un partenaire fiable, discutons de la meilleure approche.",
+      subheading: "Si vous avez besoin d'un partenaire fiable pour construire votre produit sans retards ni confusion, parlons-en.",
       trustLine: "Communication claire, livraison fiable, execution pratique du debut a la mise en ligne.",
       responseTime: "Reponse generalement sous 24h",
       directTitle: "Besoin d'un echange rapide ?",
+      directSupport: "Choisissez l'option la plus simple et je vous reponds rapidement.",
       emailNow: "Envoyer un email",
       callNow: "Appeler",
       namePlaceholder: "Votre nom",

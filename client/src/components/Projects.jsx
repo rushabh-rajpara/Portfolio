@@ -72,13 +72,14 @@ const Projects = () => {
   const hoverBg = useColorModeValue("yellow.400", "yellow.500");
   const cardBg = useColorModeValue("#ffd84d24", "gray.900");
   const lineColor = useColorModeValue("gray.700", "gray.200");
+  const contextColor = useColorModeValue("gray.600", "gray.400");
   const cardBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
   const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
 
   return (
     <MotionBox
       id="projects"
-      py={{ base: 16, md: 20 }}
+      py={{ base: 14, md: 20, lg: 24 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
@@ -88,7 +89,7 @@ const Projects = () => {
     >
       <VStack spacing={6} textAlign="center" mb={8}>
         <Heading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("projects.heading")}</Heading>
-        <Text maxW="860px" fontSize={{ base: "md", md: "lg" }}>{t("projects.subheading")}</Text>
+        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("projects.subheading")}</Text>
       </VStack>
 
       <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
@@ -112,7 +113,7 @@ const Projects = () => {
         ))}
       </HStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} maxW="1200px" mx="auto">
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
         <AnimatePresence>
           {filteredProjects.map((project, index) => (
             <MotionBox
@@ -133,13 +134,16 @@ const Projects = () => {
                 src={project.image}
                 alt={project.title}
                 width="100%"
-                height="220px"
+                height="200px"
                 objectFit="cover"
                 loading="lazy"
               />
 
               <VStack align="start" spacing={3} p={5}>
                 <Heading fontSize="lg" color={headingColor}>{project.title}</Heading>
+                <Text fontSize="xs" fontWeight="700" textTransform="uppercase" letterSpacing="0.08em" color={contextColor}>
+                  {project.context}
+                </Text>
                 <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.problem")}:</strong> {project.problem}</Text>
                 <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.built")}:</strong> {project.built}</Text>
                 <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.outcome")}:</strong> {project.outcome}</Text>
@@ -151,6 +155,9 @@ const Projects = () => {
                 </HStack>
 
                 <HStack mt={2} spacing={4}>
+                  <Link href={project.liveDemo || project.github} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
+                    {t("projects.labels.viewProject")}
+                  </Link>
                   {project.liveDemo && (
                     <Link href={project.liveDemo} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
                       {t("projects.labels.liveDemo")}
@@ -168,7 +175,7 @@ const Projects = () => {
 
       <VStack mt={10} spacing={3}>
         <Text textAlign="center" maxW="700px">{t("projects.ctaText")}</Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" color="black" size="md" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" color="black" size="lg" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
           {t("projects.ctaButton")}
         </Button>
       </VStack>

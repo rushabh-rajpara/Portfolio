@@ -16,17 +16,9 @@ import {
 import { motion } from "framer-motion";
 import { FaGithub, FaEnvelope, FaGlobe } from "react-icons/fa";
 import { useRef } from "react";
-import { useScroll, useTransform, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import profile from "../images/profile.jpg";
 import { useLanguage } from "../context/LanguageContext";
-
-const textVariant = {
-  hidden: { opacity: 0 },
-  visible: (i) => ({
-    opacity: 1,
-    transition: { delay: i * 0.025 },
-  }),
-};
 
 const MotionBox = motion(Box);
 
@@ -37,10 +29,6 @@ const Hero = () => {
   const subtleColor = useColorModeValue("gray.600", "gray.400");
   const dividerColor = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
   const { t } = useLanguage();
-
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.98]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
 
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true });
@@ -67,10 +55,9 @@ const Hero = () => {
       animate={isInView ? "visible" : "hidden"}
       transition={{ duration: 0.3 }}
       overflow="hidden"
-      style={{ scale, opacity }}
       px={{ base: 4, md: 8 }}
       pt={{ base: 24, md: 28 }}
-      pb={{ base: 12, md: 14 }}
+      pb={{ base: 14, md: 20, lg: 24 }}
     >
       <VStack spacing={{ base: 5, md: 7 }} zIndex={1} width="100%" maxW="980px">
         <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6 }}>
@@ -88,22 +75,11 @@ const Hero = () => {
           {t("hero.eyebrow")}
         </Text>
 
-        <Heading fontSize={{ base: "2xl", sm: "3xl", md: "4xl" }} fontWeight="bold" color={textColor} lineHeight="1.2" maxW="900px">
-          {t("hero.headline").split("").map((char, i) => (
-            <motion.span
-              key={i}
-              custom={i}
-              variants={textVariant}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              style={{ display: "inline-block" }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </motion.span>
-          ))}
+        <Heading fontSize={{ base: "3xl", sm: "4xl", md: "5xl", lg: "6xl" }} fontWeight="800" color={textColor} lineHeight={{ base: "1.15", md: "1.08" }} maxW="920px">
+          {t("hero.headline")}
         </Heading>
 
-        <Text fontSize={{ base: "md", sm: "lg", md: "xl" }} fontWeight="medium" color={bodyColor} maxW="760px" lineHeight="1.8">
+        <Text fontSize={{ base: "md", sm: "lg", md: "xl" }} fontWeight="medium" color={bodyColor} maxW="680px" lineHeight="1.75">
           {t("hero.subheadline")}
         </Text>
 
@@ -115,13 +91,13 @@ const Hero = () => {
           <WrapItem><Badge colorScheme="yellow" px={3} py={1.5} borderRadius="full">{t("hero.badge3")}</Badge></WrapItem>
         </Wrap>
 
-        <HStack spacing={4} flexDirection={{ base: "column", sm: "row" }} width={{ base: "100%", sm: "auto" }}>
-          <Button colorScheme="yellow" background="#ffd700" color="black" size="lg" as="a" href="#contact" width={{ base: "100%", sm: "auto" }} px={8} _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+        <HStack mt={2} spacing={4} flexDirection={{ base: "column", sm: "row" }} width={{ base: "100%", sm: "auto" }}>
+          <Button colorScheme="yellow" background="#ffd700" color="black" size="lg" as="a" href="#contact" width={{ base: "100%", sm: "auto" }} px={{ base: 8, md: 10 }} _hover={{ ...ctaHover, bg: "#f0cb00" }}>
             {t("hero.ctaPrimary")}
           </Button>
           <Button
             colorScheme="yellow"
-            size="lg"
+            size="md"
             variant="outline"
             borderWidth="2px"
             as="a"
@@ -133,6 +109,10 @@ const Hero = () => {
             {t("hero.ctaSecondary")}
           </Button>
         </HStack>
+
+        <Text fontSize="xs" color={subtleColor} fontWeight="600">
+          {t("hero.ctaSupport")}
+        </Text>
 
         <Divider borderColor={dividerColor} maxW="360px" />
 

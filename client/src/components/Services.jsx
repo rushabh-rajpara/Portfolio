@@ -27,7 +27,7 @@ const Services = () => {
   return (
     <MotionBox
       id="services"
-      py={{ base: 16, md: 20 }}
+      py={{ base: 14, md: 20, lg: 24 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
@@ -39,12 +39,12 @@ const Services = () => {
     >
       <VStack spacing={6} textAlign="center" mb={12}>
         <MotionHeading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("services.heading")}</MotionHeading>
-        <Text maxW="820px" fontSize={{ base: "md", md: "lg" }}>{t("services.subheading")}</Text>
+        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("services.subheading")}</Text>
       </VStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={8} maxW="1200px" mx="auto">
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
         {cards.map((service, index) => {
-          const isFeatured = index < 2;
+          const isFeatured = index === 0 || index === 2;
           return (
             <MotionBox
               key={index}

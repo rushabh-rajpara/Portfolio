@@ -29,7 +29,7 @@ const About = () => {
   return (
     <Box
       id="about"
-      py={{ base: 16, md: 20 }}
+      py={{ base: 14, md: 20, lg: 24 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
