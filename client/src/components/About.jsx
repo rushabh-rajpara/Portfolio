@@ -66,7 +66,7 @@ const About = () => {
             <Heading fontSize="4xl" mb={2} color={headingColor}>{t("about.heading")}</Heading>
             <Text fontSize="lg" maxW="640px" lineHeight="1.8">{t("about.p1")}</Text>
             <Text maxW="640px" lineHeight="1.8">{t("about.p2")}</Text>
-            <Text maxW="640px" lineHeight="1.8">{t("about.p3")}</Text>
+            <Text maxW="640px" lineHeight="1.8">{t("about.p3")}</Text>`r`n            <Text maxW="640px" lineHeight="1.8">{t("about.p4")}</Text>
 
             <HStack mt={4} spacing={6} justify={{ base: "center", md: "flex-start" }}>
               <Text fontSize="3xl" fontFamily="cursive" fontWeight="bold">Rushabh</Text>
@@ -82,3 +82,4 @@ const About = () => {
 };
 
 export default About;
+

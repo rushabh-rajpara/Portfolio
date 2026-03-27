@@ -1,4 +1,5 @@
-﻿/* eslint-disable react/prop-types */
+﻿/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { createContext, useContext, useMemo, useState } from "react";
 import { translations } from "../i18n/translations";
 
