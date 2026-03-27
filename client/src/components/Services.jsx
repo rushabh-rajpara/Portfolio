@@ -10,19 +10,18 @@ const MotionHeading = motion(Heading);
 const serviceIcons = [FaRocket, FaLaptopCode, FaLayerGroup, FaCogs];
 
 const Services = () => {
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "white");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const cardBg = useColorModeValue("#ffd84d40", "gray.800");
-  const cardBorderColor = useColorModeValue("yellow.300", "yellow.600");
-  const mutedText = useColorModeValue("gray.700", "gray.300");
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const textColor = useColorModeValue("text.primary", "text.primary");
+  const headingColor = useColorModeValue("text.primary", "text.primary");
+  const cardBg = useColorModeValue("bg.surface", "bg.surface");
+  const cardBorderColor = useColorModeValue("border.soft", "border.soft");
+  const mutedText = useColorModeValue("text.secondary", "text.secondary");
   const { t } = useLanguage();
 
   const cards = t("services.cards");
 
   const servicesRef = useRef(null);
   const isInView = useInView(servicesRef, { once: true });
-  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
 
   return (
     <MotionBox
@@ -32,14 +31,14 @@ const Services = () => {
       bg={bg}
       color={textColor}
       ref={servicesRef}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75 }}
+      transition={{ duration: 0.6 }}
       overflow="hidden"
     >
       <VStack spacing={6} textAlign="center" mb={12}>
         <MotionHeading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("services.heading")}</MotionHeading>
-        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("services.subheading")}</Text>
+        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }} color={mutedText}>{t("services.subheading")}</Text>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
@@ -53,25 +52,25 @@ const Services = () => {
               borderRadius="lg"
               boxShadow="card"
               border="1px solid"
-              borderColor={isFeatured ? "yellow.400" : cardBorderColor}
+              borderColor={isFeatured ? "brand.400" : cardBorderColor}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.75, delay: index * 0.12 }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
               className="service-card"
             >
               <VStack spacing={4} textAlign="left" align="start">
                 <HStack justify="space-between" w="100%">
-                  <Box as={serviceIcons[index]} fontSize="40px" color={headingColor} className="service-icon" />
+                  <Box as={serviceIcons[index]} fontSize="36px" color="accent.primary" className="service-icon" />
                   {isFeatured && (
-                    <Badge colorScheme="yellow" borderRadius="full" px={2.5} py={1} fontSize="0.65rem">
+                    <Badge colorScheme="brand" borderRadius="full" px={2.5} py={1} fontSize="0.65rem">
                       {t("services.featured")}
                     </Badge>
                   )}
                 </HStack>
                 <Heading fontSize={{ base: "xl", md: "2xl" }}>{service.title}</Heading>
                 <Text fontSize="sm" color={mutedText}><strong>{t("services.bestFor")}:</strong> {service.audience}</Text>
-                <Text lineHeight="1.75">{service.description}</Text>
-                <Text fontWeight="700" lineHeight="1.65">{service.outcome}</Text>
+                <Text lineHeight="1.72">{service.description}</Text>
+                <Text fontWeight="700" lineHeight="1.65" color={mutedText}>{service.outcome}</Text>
               </VStack>
             </MotionBox>
           );
@@ -79,8 +78,8 @@ const Services = () => {
       </SimpleGrid>
 
       <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px">{t("services.ctaText")}</Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" color="black" size="lg" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+        <Text textAlign="center" maxW="700px" color={mutedText}>{t("services.ctaText")}</Text>
+        <Button as="a" href="#contact" bg="accent.primary" color="white" size="lg" _hover={{ bg: "accent.hover", transform: "translateY(-2px)", boxShadow: "cardHover" }}>
           {t("services.ctaButton")}
         </Button>
       </VStack>

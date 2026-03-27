@@ -16,15 +16,15 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const About = () => {
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "white");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const mutedColor = useColorModeValue("gray.700", "gray.300");
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const textColor = useColorModeValue("text.primary", "text.primary");
+  const headingColor = useColorModeValue("text.primary", "text.primary");
+  const mutedColor = useColorModeValue("text.secondary", "text.secondary");
   const { t } = useLanguage();
 
   const aboutRef = useRef(null);
   const aboutInView = useInView(aboutRef, { once: true });
-  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
+  const ctaHover = { transform: "translateY(-2px)", boxShadow: "cardHover" };
 
   return (
     <Box
@@ -74,13 +74,13 @@ const About = () => {
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p4")}</Text>
 
             <Wrap spacing={3} pt={1} justify={{ base: "center", md: "start" }}>
-              <WrapItem><Badge colorScheme="yellow" px={3} py={1} borderRadius="full">{t("about.badge1")}</Badge></WrapItem>
-              <WrapItem><Badge colorScheme="yellow" px={3} py={1} borderRadius="full">{t("about.badge2")}</Badge></WrapItem>
+              <WrapItem><Badge colorScheme="brand" px={3} py={1} borderRadius="full">{t("about.badge1")}</Badge></WrapItem>
+              <WrapItem><Badge colorScheme="brand" px={3} py={1} borderRadius="full">{t("about.badge2")}</Badge></WrapItem>
             </Wrap>
 
             <HStack mt={4} spacing={6} justify={{ base: "center", md: "flex-start" }}>
-              <Text fontSize="3xl" fontFamily="cursive" fontWeight="bold">Rushabh</Text>
-              <Button colorScheme="yellow" background="#ffd700" color="black" size="lg" as="a" href="#contact" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+              <Text fontSize="xl" fontWeight="700" letterSpacing="0.03em">Rushabh Rajpara</Text>
+              <Button bg="accent.primary" color="white" size="lg" as="a" href="#contact" _hover={{ ...ctaHover, bg: "accent.hover" }}>
                 {t("about.cta")}
               </Button>
             </HStack>

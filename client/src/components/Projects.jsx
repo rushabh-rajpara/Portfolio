@@ -66,15 +66,14 @@ const Projects = () => {
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "white");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const hoverBg = useColorModeValue("yellow.400", "yellow.500");
-  const cardBg = useColorModeValue("#ffd84d24", "gray.900");
-  const lineColor = useColorModeValue("gray.700", "gray.200");
-  const contextColor = useColorModeValue("gray.600", "gray.400");
-  const cardBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
-  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const textColor = useColorModeValue("text.primary", "text.primary");
+  const headingColor = useColorModeValue("text.primary", "text.primary");
+  const hoverBg = useColorModeValue("brand.100", "brand.700");
+  const cardBg = useColorModeValue("bg.surface", "bg.surface");
+  const lineColor = useColorModeValue("text.secondary", "text.secondary");
+  const contextColor = useColorModeValue("neutral.500", "neutral.300");
+  const cardBorderColor = useColorModeValue("border.soft", "border.soft");
 
   return (
     <MotionBox
@@ -83,28 +82,28 @@ const Projects = () => {
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      transition={{ duration: 0.6 }}
     >
       <VStack spacing={6} textAlign="center" mb={8}>
         <Heading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("projects.heading")}</Heading>
-        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("projects.subheading")}</Text>
+        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }} color={lineColor}>{t("projects.subheading")}</Text>
       </VStack>
 
       <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
-        {categories.map((category, index) => (
+        {categories.map((category) => (
           <Box
             as="button"
-            key={index}
+            key={category.id}
             onClick={() => setActiveCategory(category.id)}
             fontSize="sm"
             px={3}
             py={1.5}
             borderRadius="full"
             bg={activeCategory === category.id ? hoverBg : "transparent"}
-            color={activeCategory === category.id ? "black" : textColor}
-            _hover={{ color: activeCategory === category.id ? "black" : "var(--accent-color)" }}
+            color={activeCategory === category.id ? "accent.primary" : textColor}
+            _hover={{ color: "accent.primary" }}
             transition="0.22s"
             fontWeight="600"
           >
@@ -120,10 +119,9 @@ const Projects = () => {
               key={`${project.title}-${index}`}
               borderRadius="lg"
               overflow="hidden"
-              transition="0.3s"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              exit={{ opacity: 0, y: -18 }}
               className="project-card"
               bg={cardBg}
               border="1px solid"
@@ -150,20 +148,20 @@ const Projects = () => {
 
                 <HStack spacing={2} flexWrap="wrap">
                   {project.techStack.map((tech) => (
-                    <Badge key={tech} colorScheme="yellow">{tech}</Badge>
+                    <Badge key={tech} colorScheme="brand" variant="subtle">{tech}</Badge>
                   ))}
                 </HStack>
 
                 <HStack mt={2} spacing={4}>
-                  <Link href={project.liveDemo || project.github} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
+                  <Link href={project.liveDemo || project.github} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
                     {t("projects.labels.viewProject")}
                   </Link>
                   {project.liveDemo && (
-                    <Link href={project.liveDemo} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
+                    <Link href={project.liveDemo} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
                       {t("projects.labels.liveDemo")}
                     </Link>
                   )}
-                  <Link href={project.github} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
+                  <Link href={project.github} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
                     {t("projects.labels.github")}
                   </Link>
                 </HStack>
@@ -174,8 +172,8 @@ const Projects = () => {
       </SimpleGrid>
 
       <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px">{t("projects.ctaText")}</Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" color="black" size="lg" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+        <Text textAlign="center" maxW="700px" color={lineColor}>{t("projects.ctaText")}</Text>
+        <Button as="a" href="#contact" bg="accent.primary" color="white" size="lg" _hover={{ bg: "accent.hover", transform: "translateY(-2px)", boxShadow: "cardHover" }}>
           {t("projects.ctaButton")}
         </Button>
       </VStack>

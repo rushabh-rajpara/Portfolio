@@ -14,10 +14,11 @@ const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 
 const Resume = () => {
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "white");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const cardBg = useColorModeValue("gray.100", "gray.800");
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const textColor = useColorModeValue("text.primary", "text.primary");
+  const headingColor = useColorModeValue("text.primary", "text.primary");
+  const cardBg = useColorModeValue("bg.surface", "bg.surface");
+  const mutedText = useColorModeValue("text.secondary", "text.secondary");
   const { t } = useLanguage();
   const steps = t("process.steps");
 
@@ -58,7 +59,7 @@ const Resume = () => {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.75, delay: index * 0.12 }}
             >
-              <Text fontSize="sm" color="gray.400">{item.label}</Text>
+              <Text fontSize="sm" color={mutedText}>{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
               <Text fontWeight="bold">{item.meta}</Text>
               <Text>{item.description}</Text>
@@ -83,7 +84,7 @@ const Resume = () => {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.75, delay: index * 0.12 }}
             >
-              <Text fontSize="sm" color="gray.400">{item.label}</Text>
+              <Text fontSize="sm" color={mutedText}>{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
               <Text fontWeight="bold">{item.meta}</Text>
               <Text>{item.description}</Text>

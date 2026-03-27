@@ -5,11 +5,11 @@ import { useLanguage } from "../context/LanguageContext";
 const trustIcons = [FaComments, FaRegClock, FaCheckCircle, FaLayerGroup];
 
 const TrustSignals = () => {
-  const bg = useColorModeValue("white", "black");
-  const headingColor = useColorModeValue("black", "yellow.400");
-  const textColor = useColorModeValue("gray.700", "gray.300");
-  const cardBg = useColorModeValue("white", "gray.900");
-  const borderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const headingColor = useColorModeValue("text.primary", "text.primary");
+  const textColor = useColorModeValue("text.secondary", "text.secondary");
+  const cardBg = useColorModeValue("bg.surface", "bg.surface");
+  const borderColor = useColorModeValue("border.soft", "border.soft");
   const { t } = useLanguage();
 
   const items = t("trust.items");

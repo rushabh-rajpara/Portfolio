@@ -1,12 +1,12 @@
 ﻿export const translations = {
   en: {
     nav: {
-      home: "HOME",
-      about: "ABOUT",
-      process: "PROCESS",
-      caseStudies: "SELECTED WORK",
-      services: "SERVICES",
-      contact: "CONTACT",
+      home: "Home",
+      about: "About",
+      process: "Process",
+      caseStudies: "Selected Work",
+      services: "Services",
+      contact: "Contact",
       startProject: "Start a Project",
     },
     hero: {
@@ -175,6 +175,9 @@
       directSupport: "Pick the easiest option and I will respond promptly.",
       emailNow: "Email Now",
       callNow: "Call Now",
+      nameLabel: "Your Name",
+      emailLabel: "Email Address",
+      messageLabel: "Project Brief",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Email Address",
       messagePlaceholder: "Tell me about your project",
@@ -187,12 +190,12 @@
   },
   fr: {
     nav: {
-      home: "ACCUEIL",
-      about: "A PROPOS",
-      process: "PROCESSUS",
-      caseStudies: "PROJETS",
-      services: "SERVICES",
-      contact: "CONTACT",
+      home: "Accueil",
+      about: "A propos",
+      process: "Processus",
+      caseStudies: "Projets",
+      services: "Services",
+      contact: "Contact",
       startProject: "Demarrer un projet",
     },
     hero: {
@@ -361,6 +364,9 @@
       directSupport: "Choisissez l'option la plus simple et je vous reponds rapidement.",
       emailNow: "Envoyer un email",
       callNow: "Appeler",
+      nameLabel: "Votre nom",
+      emailLabel: "Adresse email",
+      messageLabel: "Resume du projet",
       namePlaceholder: "Votre nom",
       emailPlaceholder: "Adresse email",
       messagePlaceholder: "Parlez-moi de votre projet",

@@ -6,7 +6,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --accent-color: #ffd700;
+  --accent-color: #2e4860;
   --section-space: clamp(3.5rem, 8vw, 7rem);
   --container-space: clamp(1.2rem, 3vw, 2rem);
 }

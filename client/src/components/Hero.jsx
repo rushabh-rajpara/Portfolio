@@ -23,16 +23,16 @@ import { useLanguage } from "../context/LanguageContext";
 const MotionBox = motion(Box);
 
 const Hero = () => {
-  const bg = useColorModeValue("white", "black");
-  const textColor = useColorModeValue("black", "yellow.400");
-  const bodyColor = useColorModeValue("gray.700", "gray.200");
-  const subtleColor = useColorModeValue("gray.600", "gray.400");
-  const dividerColor = useColorModeValue("blackAlpha.300", "whiteAlpha.300");
+  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const textColor = useColorModeValue("text.primary", "text.primary");
+  const bodyColor = useColorModeValue("text.secondary", "text.secondary");
+  const subtleColor = useColorModeValue("neutral.500", "neutral.300");
+  const dividerColor = useColorModeValue("border.soft", "border.soft");
   const { t } = useLanguage();
 
   const heroRef = useRef(null);
   const isInView = useInView(heroRef, { once: true });
-  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
+  const ctaHover = { transform: "translateY(-2px)", boxShadow: "cardHover" };
 
   const quickLinks = [
     { icon: FaGithub, link: "https://github.com/rushabh-rajpara", label: "GitHub" },
@@ -51,22 +51,23 @@ const Hero = () => {
       bg={bg}
       color={textColor}
       ref={heroRef}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 16 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.45 }}
       overflow="hidden"
       px={{ base: 4, md: 8 }}
       pt={{ base: 24, md: 28 }}
       pb={{ base: 14, md: 20, lg: 24 }}
     >
       <VStack spacing={{ base: 5, md: 7 }} zIndex={1} width="100%" maxW="980px">
-        <motion.div initial={{ scale: 0.88, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.6 }}>
+        <motion.div initial={{ scale: 0.92, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5 }}>
           <Image
             borderRadius="full"
             boxSize={{ base: "100px", sm: "120px", md: "150px" }}
             src={profile}
             alt="Rushabh Rajpara Profile"
-            border="4px solid var(--accent-color)"
+            border="4px solid"
+            borderColor="accent.primary"
             loading="lazy"
           />
         </motion.div>
@@ -86,25 +87,26 @@ const Hero = () => {
         <Text fontSize="sm" color={subtleColor} fontWeight="600">{t("hero.trustLine")}</Text>
 
         <Wrap justify="center" spacing={3}>
-          <WrapItem><Badge colorScheme="yellow" px={3} py={1.5} borderRadius="full">{t("hero.badge1")}</Badge></WrapItem>
-          <WrapItem><Badge colorScheme="yellow" px={3} py={1.5} borderRadius="full">{t("hero.badge2")}</Badge></WrapItem>
-          <WrapItem><Badge colorScheme="yellow" px={3} py={1.5} borderRadius="full">{t("hero.badge3")}</Badge></WrapItem>
+          <WrapItem><Badge colorScheme="brand" px={3} py={1.5} borderRadius="full">{t("hero.badge1")}</Badge></WrapItem>
+          <WrapItem><Badge colorScheme="brand" px={3} py={1.5} borderRadius="full">{t("hero.badge2")}</Badge></WrapItem>
+          <WrapItem><Badge colorScheme="brand" px={3} py={1.5} borderRadius="full">{t("hero.badge3")}</Badge></WrapItem>
         </Wrap>
 
         <HStack mt={2} spacing={4} flexDirection={{ base: "column", sm: "row" }} width={{ base: "100%", sm: "auto" }}>
-          <Button colorScheme="yellow" background="#ffd700" color="black" size="lg" as="a" href="#contact" width={{ base: "100%", sm: "auto" }} px={{ base: 8, md: 10 }} _hover={{ ...ctaHover, bg: "#f0cb00" }}>
+          <Button bg="accent.primary" color="white" size="lg" as="a" href="#contact" width={{ base: "100%", sm: "auto" }} px={{ base: 8, md: 10 }} _hover={{ ...ctaHover, bg: "accent.hover" }}>
             {t("hero.ctaPrimary")}
           </Button>
           <Button
-            colorScheme="yellow"
             size="md"
             variant="outline"
             borderWidth="2px"
+            borderColor="accent.primary"
+            color="accent.primary"
             as="a"
             href="#projects"
             width={{ base: "100%", sm: "auto" }}
             px={8}
-            _hover={ctaHover}
+            _hover={{ ...ctaHover, bg: "brand.50" }}
           >
             {t("hero.ctaSecondary")}
           </Button>
@@ -119,8 +121,8 @@ const Hero = () => {
         <HStack spacing={5} justify="center">
           {quickLinks.map(({ icon, link, label }) => (
             <Link key={label} href={link} target={link.startsWith("mailto:") ? undefined : "_blank"} rel={link.startsWith("mailto:") ? undefined : "noopener noreferrer"}>
-              <motion.div whileHover={{ scale: 1.1 }} transition={{ duration: 0.2 }}>
-                <HStack spacing={2} color={subtleColor} _hover={{ color: "var(--accent-color)" }}>
+              <motion.div whileHover={{ scale: 1.06 }} transition={{ duration: 0.2 }}>
+                <HStack spacing={2} color={subtleColor} _hover={{ color: "accent.primary" }}>
                   {icon({ size: 18 })}
                   <Text fontSize="sm" fontWeight="600">{label}</Text>
                 </HStack>
