@@ -2,53 +2,26 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FaRocket, FaLaptopCode, FaLayerGroup, FaCogs } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 
-const services = [
-  {
-    title: "MVP Development",
-    icon: FaRocket,
-    audience: "For startups and teams validating a product idea",
-    description: "Launch a focused version of your product quickly with only the features that matter first.",
-    outcome: "Validate earlier, reduce wasted build time, and move faster with real user feedback.",
-    featured: true,
-  },
-  {
-    title: "Custom Web Applications",
-    icon: FaLaptopCode,
-    audience: "For businesses with specific workflows or operations",
-    description: "Build tailored web applications that match how your team and customers actually work.",
-    outcome: "Get scalable systems that improve day-to-day execution and long-term reliability.",
-    featured: false,
-  },
-  {
-    title: "White-Label Development for Agencies",
-    icon: FaLayerGroup,
-    audience: "For agencies needing reliable execution support",
-    description: "Extend your delivery capacity with dependable development that fits your standards and deadlines.",
-    outcome: "Take on more projects confidently without sacrificing quality or client experience.",
-    featured: true,
-  },
-  {
-    title: "Automation & Internal Tools",
-    icon: FaCogs,
-    audience: "For teams losing time to repetitive manual tasks",
-    description: "Design internal tools and automation workflows to reduce bottlenecks and repetitive work.",
-    outcome: "Improve team efficiency with faster operations and fewer avoidable errors.",
-    featured: false,
-  },
-];
+const serviceIcons = [FaRocket, FaLaptopCode, FaLayerGroup, FaCogs];
 
 const Services = () => {
   const bg = useColorModeValue("white", "black");
   const textColor = useColorModeValue("black", "white");
   const headingColor = useColorModeValue("black", "yellow.400");
   const cardBg = useColorModeValue("#ffc800ab", "gray.800");
+  const cardBorderColor = useColorModeValue("yellow.300", "yellow.600");
+  const { t } = useLanguage();
+
+  const cards = t("services.cards");
 
   const servicesRef = useRef(null);
   const isInView = useInView(servicesRef, { once: true });
+  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
 
   return (
     <MotionBox
@@ -64,16 +37,12 @@ const Services = () => {
       overflow="hidden"
     >
       <VStack spacing={6} textAlign="center" mb={12}>
-        <MotionHeading fontSize="4xl" color={headingColor}>
-          Services Built for Business Outcomes
-        </MotionHeading>
-        <Text maxW="820px">
-          Practical development support for agencies, small businesses, and local Canadian clients who need reliable execution and clear communication.
-        </Text>
+        <MotionHeading fontSize="4xl" color={headingColor}>{t("services.heading")}</MotionHeading>
+        <Text maxW="820px">{t("services.subheading")}</Text>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={10} maxW="1200px" mx="auto">
-        {services.map((service, index) => (
+        {cards.map((service, index) => (
           <MotionBox
             key={index}
             p={7}
@@ -81,16 +50,16 @@ const Services = () => {
             borderRadius="md"
             boxShadow="lg"
             className="service-card"
-            border={service.featured ? "1px solid" : "none"}
-            borderColor={service.featured ? "yellow.500" : "transparent"}
+            border="1px solid"
+            borderColor={cardBorderColor}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1, delay: index * 0.2 }}
           >
             <VStack spacing={4} textAlign="left" align="start">
-              <Box as={service.icon} size="40px" color={headingColor} className="service-icon" />
+              <Box as={serviceIcons[index]} size="40px" color={headingColor} className="service-icon" />
               <Heading fontSize="2xl">{service.title}</Heading>
-              <Text fontSize="sm" opacity={0.9}><strong>Best for:</strong> {service.audience}</Text>
+              <Text fontSize="sm" opacity={0.9}><strong>{t("services.bestFor")}:</strong> {service.audience}</Text>
               <Text>{service.description}</Text>
               <Text fontWeight="700">{service.outcome}</Text>
             </VStack>
@@ -99,11 +68,9 @@ const Services = () => {
       </SimpleGrid>
 
       <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px">
-          Need a dependable partner to execute your next build from planning to deployment?
-        </Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="lg">
-          Discuss Your Idea
+        <Text textAlign="center" maxW="700px">{t("services.ctaText")}</Text>
+        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="lg" _hover={{ ...ctaHover, bg: "#ffd700" }}>
+          {t("services.ctaButton")}
         </Button>
       </VStack>
 
@@ -130,3 +97,4 @@ const Services = () => {
 };
 
 export default Services;
+

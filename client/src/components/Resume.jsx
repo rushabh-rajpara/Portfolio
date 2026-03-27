@@ -8,45 +8,18 @@
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FaSearch, FaRocket } from "react-icons/fa";
+import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
-
-const processData = [
-  {
-    date: "Step 1",
-    title: "Understand",
-    institution: "Discovery and clarity",
-    description: "We define business goals, user needs, and constraints so the project starts with the right scope.",
-  },
-  {
-    date: "Step 2",
-    title: "Plan",
-    institution: "Delivery roadmap",
-    description: "I structure milestones, architecture, and delivery priorities to keep timelines predictable.",
-  },
-];
-
-const deliveryData = [
-  {
-    date: "Step 3",
-    title: "Build",
-    company: "Execution with updates",
-    description: "I develop in focused iterations with transparent communication and clean implementation standards.",
-  },
-  {
-    date: "Step 4",
-    title: "Deliver",
-    company: "Launch and support",
-    description: "You receive production-ready software, deployment support, and a foundation built to scale.",
-  },
-];
 
 const Resume = () => {
   const bg = useColorModeValue("white", "black");
   const textColor = useColorModeValue("black", "white");
   const headingColor = useColorModeValue("black", "yellow.400");
   const cardBg = useColorModeValue("gray.100", "gray.800");
+  const { t } = useLanguage();
+  const steps = t("process.steps");
 
   return (
     <MotionBox
@@ -62,19 +35,17 @@ const Resume = () => {
     >
       <VStack spacing={6} textAlign="center" mb={12}>
         <MotionHeading fontSize="4xl" color={headingColor} initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-          How I Work
+          {t("process.heading")}
         </MotionHeading>
-        <Text maxW="820px" fontSize="lg">
-          A clear 4-step process designed for speed, reliability, and business-ready delivery.
-        </Text>
+        <Text maxW="820px" fontSize="lg">{t("process.subheading")}</Text>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} maxW="1200px" mx="auto">
         <VStack align="start" spacing={6}>
           <Heading fontSize="2xl" color={headingColor} display="flex" alignItems="center">
-            <FaSearch style={{ marginRight: "8px" }} /> Strategy
+            <FaSearch style={{ marginRight: "8px" }} /> {t("process.strategy")}
           </Heading>
-          {processData.map((item, index) => (
+          {steps.slice(0, 2).map((item, index) => (
             <MotionBox
               key={index}
               p={6}
@@ -87,9 +58,9 @@ const Resume = () => {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 1, delay: index * 0.2 }}
             >
-              <Text fontSize="sm" color="gray.400">{item.date}</Text>
+              <Text fontSize="sm" color="gray.400">{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.institution}</Text><br />
+              <Text fontWeight="bold">{item.meta}</Text><br />
               <Text>{item.description}</Text>
             </MotionBox>
           ))}
@@ -97,9 +68,9 @@ const Resume = () => {
 
         <VStack align="start" spacing={6}>
           <Heading fontSize="2xl" color={headingColor} display="flex" alignItems="center">
-            <FaRocket style={{ marginRight: "8px" }} /> Delivery
+            <FaRocket style={{ marginRight: "8px" }} /> {t("process.delivery")}
           </Heading>
-          {deliveryData.map((item, index) => (
+          {steps.slice(2, 4).map((item, index) => (
             <MotionBox
               key={index}
               p={6}
@@ -112,9 +83,9 @@ const Resume = () => {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 1, delay: index * 0.2 }}
             >
-              <Text fontSize="sm" color="gray.400">{item.date}</Text>
+              <Text fontSize="sm" color="gray.400">{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.company}</Text><br />
+              <Text fontWeight="bold">{item.meta}</Text><br />
               <Text>{item.description}</Text>
             </MotionBox>
           ))}

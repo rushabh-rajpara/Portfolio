@@ -23,6 +23,7 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
+import { useLanguage } from "../context/LanguageContext";
 
 const Contact = () => {
   const bg = useColorModeValue("white", "black");
@@ -32,6 +33,7 @@ const Contact = () => {
   const inputBorder = useColorModeValue("yellow.400", "yellow.600");
   const buttonBg = useColorModeValue("yellow.400", "yellow.500");
   const githubColor = useColorModeValue("black", "white");
+  const { t } = useLanguage();
 
   const formRef = useRef();
   const [isSending, setIsSending] = useState(false);
@@ -50,11 +52,11 @@ const Contact = () => {
       )
       .then(
         () => {
-          setMessage("Message sent successfully! I will reply soon.");
+          setMessage(t("contact.success"));
           setIsSending(false);
         },
         () => {
-          setMessage("Failed to send message. Please email me directly.");
+          setMessage(t("contact.error"));
           setIsSending(false);
         },
       );
@@ -63,47 +65,23 @@ const Contact = () => {
   return (
     <Box id="contact" py={20} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
       <VStack spacing={4} textAlign="center" mb={12}>
-        <Heading fontSize="4xl" fontWeight="bold" color={headingColor}>
-          Have a project in mind?
-        </Heading>
-        <Text maxW="760px">
-          If you need a reliable development partner for agency delivery, MVP execution, or business automation, let&apos;s discuss your scope and timeline.
-        </Text>
-        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>
-          Based in Canada. Working with clients locally and globally.
-        </Text>
+        <Heading fontSize="4xl" fontWeight="bold" color={headingColor}>{t("contact.heading")}</Heading>
+        <Text maxW="760px">{t("contact.subheading")}</Text>
+        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>{t("contact.trustLine")}</Text>
       </VStack>
 
-      <Flex
-        direction={{ base: "column", md: "row" }}
-        justify="center"
-        gap={12}
-        maxW="1100px"
-        mx="auto"
-      >
+      <Flex direction={{ base: "column", md: "row" }} justify="center" gap={12} maxW="1100px" mx="auto">
         <VStack align="start" spacing={6} flex="1" w="100%">
           {[
             { icon: FaPhone, text: "+1 548 398 0233" },
-            {
-              icon: FaEnvelope,
-              text: "rushabh4478@gmail.com",
-              link: "mailto:rushabh4478@gmail.com",
-            },
-            {
-              icon: FaGlobe,
-              text: "rushabh-rajpara",
-              link: "https://rushabh-rajpara.github.io/Portfolio/",
-            },
+            { icon: FaEnvelope, text: "rushabh4478@gmail.com", link: "mailto:rushabh4478@gmail.com" },
+            { icon: FaGlobe, text: "rushabh-rajpara", link: "https://rushabh-rajpara.github.io/Portfolio/" },
             { icon: FaMapMarkerAlt, text: "Waterloo, ON, CA" },
           ].map(({ icon, text, link }, index) => (
             <HStack key={index} spacing={4} w="100%">
               <Icon as={icon} boxSize={6} color={headingColor} />
               {link ? (
-                <Text fontSize="md">
-                  <Link href={link} target="_blank" rel="noopener noreferrer">
-                    {text}
-                  </Link>
-                </Text>
+                <Text fontSize="md"><Link href={link} target="_blank" rel="noopener noreferrer">{text}</Link></Text>
               ) : (
                 <Text fontSize="md">{text}</Text>
               )}
@@ -129,72 +107,23 @@ const Contact = () => {
           </HStack>
         </VStack>
 
-        <Box
-          as="form"
-          ref={formRef}
-          onSubmit={sendEmail}
-          p={8}
-          flex="1"
-          w="100%"
-          bg={inputBg}
-          borderRadius="lg"
-          boxShadow="lg"
-        >
+        <Box as="form" ref={formRef} onSubmit={sendEmail} p={8} flex="1" w="100%" bg={inputBg} borderRadius="lg" boxShadow="lg">
           <VStack spacing={5} align="start" w="100%">
-            <Input
-              name="name"
-              placeholder="Your Name"
-              bg="transparent"
-              border="2px solid"
-              borderColor={inputBorder}
-              _placeholder={{ color: "gray.500" }}
-              size="lg"
-              w="100%"
-              color="white"
-              required
-            />
-            <Input
-              name="email"
-              type="email"
-              placeholder="Email Address"
-              bg="transparent"
-              border="2px solid"
-              borderColor={inputBorder}
-              _placeholder={{ color: "gray.500" }}
-              size="lg"
-              w="100%"
-              color="white"
-              required
-            />
-            <Textarea
-              name="message"
-              placeholder="Tell me about your project"
-              bg="transparent"
-              border="2px solid"
-              borderColor={inputBorder}
-              _placeholder={{ color: "gray.500" }}
-              size="lg"
-              rows={5}
-              w="100%"
-              color="white"
-              required
-            />
+            <Input name="name" placeholder={t("contact.namePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color="white" required />
+            <Input name="email" type="email" placeholder={t("contact.emailPlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color="white" required />
+            <Textarea name="message" placeholder={t("contact.messagePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" rows={5} w="100%" color="white" required />
             <Button
               type="submit"
               bg={buttonBg}
               color="black"
               size="lg"
               w="100%"
-              _hover={{ bg: "yellow.600", transform: "scale(1.03)", transition: "0.3s" }}
+              _hover={{ bg: "yellow.600", transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)", transition: "0.3s" }}
               isLoading={isSending}
             >
-              {isSending ? "Sending..." : "Start a Project"}
+              {isSending ? t("contact.sending") : t("contact.button")}
             </Button>
-            {message && (
-              <Text fontSize="md" color="green.400">
-                {message}
-              </Text>
-            )}
+            {message && <Text fontSize="md" color="green.400">{message}</Text>}
           </VStack>
         </Box>
       </Flex>

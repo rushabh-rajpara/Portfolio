@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useMemo, useState, useEffect } from "react";
 import {
   Box,
   Flex,
@@ -20,24 +20,30 @@ import {
 import { Icon } from "@chakra-ui/react";
 import { FaMoon, FaSun, FaBars } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
-
-const navLinks = [
-  { name: "HOME", href: "#home" },
-  { name: "ABOUT", href: "#about" },
-  { name: "PROCESS", href: "#resume" },
-  { name: "CASE STUDIES", href: "#projects" },
-  { name: "SERVICES", href: "#services" },
-  { name: "CONTACT", href: "#contact" },
-];
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const navBg = useColorModeValue("white", "rgba(10, 10, 10, 0.9)");
   const navTextColor = useColorModeValue("black", "white");
+  const colorPickerBorder = useColorModeValue("gray.300", "gray.600");
+  const { language, setLanguage, t } = useLanguage();
 
   const defaultAccentColor = useColorModeValue("#007bff", "#ffcc00");
+
+  const navLinks = useMemo(
+    () => [
+      { name: t("nav.home"), href: "#home" },
+      { name: t("nav.about"), href: "#about" },
+      { name: t("nav.process"), href: "#resume" },
+      { name: t("nav.caseStudies"), href: "#projects" },
+      { name: t("nav.services"), href: "#services" },
+      { name: t("nav.contact"), href: "#contact" },
+    ],
+    [t],
+  );
 
   const [activeSection, setActiveSection] = useState("home");
   const [accentColor, setAccentColor] = useState(
@@ -68,7 +74,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navLinks]);
 
   const handleSmoothScroll = (event, href) => {
     event.preventDefault();
@@ -98,9 +104,16 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
       >
         <Flex align="center" maxW="1200px" mx="auto" justify="space-between">
-          <Text fontSize="2xl" fontWeight="bold" color={navTextColor}>
+          <Link
+            href="#home"
+            fontSize="2xl"
+            fontWeight="bold"
+            color={navTextColor}
+            _hover={{ color: "var(--accent-color)", textDecoration: "none" }}
+            onClick={(e) => handleSmoothScroll(e, "#home")}
+          >
             Rushabh
-          </Text>
+          </Link>
 
           <Flex gap={7} align="center" display={{ base: "none", md: "flex" }}>
             {navLinks.map((link, index) => (
@@ -117,34 +130,28 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
-            <Button as="a" href="#contact" size="xs" colorScheme="yellow" background="#ffd700">
-              START PROJECT
+            <Button
+              as="a"
+              href="#contact"
+              size="xs"
+              colorScheme="yellow"
+              background="#ffd700"
+              color={navTextColor}
+              _hover={{ color: "var(--accent-color)", bg: "#ffd700" }}
+              onClick={(e) => handleSmoothScroll(e, "#contact")}
+            >
+              {t("nav.startProject")}
             </Button>
           </Flex>
 
-          <IconButton
-            aria-label="Open Menu"
-            icon={<FaBars />}
-            display={{ base: "flex", md: "none" }}
-            onClick={() => setIsOpen(true)}
-          />
+          <IconButton aria-label="Open Menu" icon={<FaBars />} display={{ base: "flex", md: "none" }} onClick={() => setIsOpen(true)} />
 
           <Flex align="center" gap={4} display={{ base: "none", md: "flex" }}>
-            <Text fontSize="lg" fontWeight="bold" color={navTextColor}>
-              ENG
-            </Text>
-
-            <Input
-              type="color"
-              value={accentColor}
-              onChange={(e) => setAccentColor(e.target.value)}
-              w="10"
-              h="10"
-              cursor="pointer"
-              border="none"
-              p="1"
-              bg="transparent"
-            />
+            <HStack spacing={2}>
+              <Button size="xs" variant="ghost" color={language === "en" ? "var(--accent-color)" : navTextColor} onClick={() => setLanguage("en")}>EN</Button>
+              <Text fontSize="xs" color={navTextColor}>|</Text>
+              <Button size="xs" variant="ghost" color={language === "fr" ? "var(--accent-color)" : navTextColor} onClick={() => setLanguage("fr")}>FR</Button>
+            </HStack>
 
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} transition={{ duration: 0.3 }}>
               <IconButton
@@ -156,6 +163,25 @@ const Navbar = () => {
                 _hover={{ color: "var(--accent-color)" }}
               />
             </motion.div>
+
+            <Input
+              type="color"
+              value={accentColor}
+              onChange={(e) => setAccentColor(e.target.value)}
+              w="9"
+              h="9"
+              cursor="pointer"
+              border="1px solid"
+              borderColor={colorPickerBorder}
+              borderRadius="full"
+              p="0"
+              bg="transparent"
+              sx={{
+                "::-webkit-color-swatch-wrapper": { padding: 0, borderRadius: "9999px" },
+                "::-webkit-color-swatch": { border: "none", borderRadius: "9999px" },
+                "::-moz-color-swatch": { border: "none", borderRadius: "9999px" },
+              }}
+            />
           </Flex>
         </Flex>
 
@@ -166,35 +192,22 @@ const Navbar = () => {
             <DrawerBody>
               <VStack spacing={6} mt={10} align="center">
                 {navLinks.map((link, index) => (
-                  <Link
-                    key={index}
-                    href={link.href}
-                    fontSize="lg"
-                    color={navTextColor}
-                    _hover={{ color: "var(--accent-color)" }}
-                    onClick={(e) => handleSmoothScroll(e, link.href)}
-                  >
+                  <Link key={index} href={link.href} fontSize="lg" color={navTextColor} _hover={{ color: "var(--accent-color)" }} onClick={(e) => handleSmoothScroll(e, link.href)}>
                     {link.name}
                   </Link>
                 ))}
 
-                <Button as="a" href="#contact" onClick={() => setIsOpen(false)} colorScheme="yellow" background="#ffd700" size="sm">
-                  Start Project
+                <Button as="a" href="#contact" onClick={(e) => handleSmoothScroll(e, "#contact")} colorScheme="yellow" background="#ffd700" size="sm" _hover={{ color: "var(--accent-color)", bg: "#ffd700" }}>
+                  {t("nav.startProject")}
                 </Button>
 
-                <HStack spacing={4} mt={6}>
-                  <Input
-                    type="color"
-                    value={accentColor}
-                    onChange={(e) => setAccentColor(e.target.value)}
-                    w="10"
-                    h="10"
-                    cursor="pointer"
-                    border="none"
-                    p="1"
-                    bg="transparent"
-                  />
+                <HStack spacing={2}>
+                  <Button size="sm" variant="ghost" color={language === "en" ? "var(--accent-color)" : navTextColor} onClick={() => setLanguage("en")}>EN</Button>
+                  <Text fontSize="sm" color={navTextColor}>|</Text>
+                  <Button size="sm" variant="ghost" color={language === "fr" ? "var(--accent-color)" : navTextColor} onClick={() => setLanguage("fr")}>FR</Button>
+                </HStack>
 
+                <HStack spacing={4} mt={6}>
                   <IconButton
                     onClick={toggleColorMode}
                     icon={<Icon as={colorMode === "light" ? FaMoon : FaSun} />}
@@ -202,6 +215,25 @@ const Navbar = () => {
                     color={navTextColor}
                     bg="transparent"
                     _hover={{ color: "var(--accent-color)" }}
+                  />
+
+                  <Input
+                    type="color"
+                    value={accentColor}
+                    onChange={(e) => setAccentColor(e.target.value)}
+                    w="10"
+                    h="10"
+                    cursor="pointer"
+                    border="1px solid"
+                    borderColor={colorPickerBorder}
+                    borderRadius="full"
+                    p="0"
+                    bg="transparent"
+                    sx={{
+                      "::-webkit-color-swatch-wrapper": { padding: 0, borderRadius: "9999px" },
+                      "::-webkit-color-swatch": { border: "none", borderRadius: "9999px" },
+                      "::-moz-color-swatch": { border: "none", borderRadius: "9999px" },
+                    }}
                   />
                 </HStack>
               </VStack>

@@ -10,6 +10,7 @@ import CustomCursor from "./components/CustomCursor";
 import CursorTrail from "./components/CursorTrail";
 import Resume from "./components/Resume";
 import Projects from "./components/Projects";
+import { LanguageProvider } from "./context/LanguageContext";
 
 if (import.meta.env.PROD) {
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
@@ -20,17 +21,19 @@ if (import.meta.env.PROD) {
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-      <InteractiveLines />
-      <CustomCursor />
-      <CursorTrail />
-      <Navbar />
-      <Hero />
-      <About />
-      <Resume />
-      <Projects />
-      <Services />
-      <Contact />
+      <LanguageProvider>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+        <InteractiveLines />
+        <CustomCursor />
+        <CursorTrail />
+        <Navbar />
+        <Hero />
+        <About />
+        <Resume />
+        <Projects />
+        <Services />
+        <Contact />
+      </LanguageProvider>
     </ChakraProvider>
   );
 }

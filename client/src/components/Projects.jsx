@@ -12,46 +12,33 @@
   Badge,
   Button,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Personal_finance_dashboard from "../images/Personal_Finance_Dashboard.jpeg";
 import Artisan_Marketplace from "../images/Marketplace.jpeg";
 import Ecommerce from "../images/Ecommerce.jpg";
+import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
 const MotionImage = motion(Image);
 
-const categories = ["All", "MVP", "Web Application", "Automation"];
-
-const projects = [
+const baseProjects = [
   {
-    title: "Finance Operations Dashboard",
-    category: "Web Application",
-    clientProblem: "A business team needed better visibility into budgets and financial activity.",
-    built: "Built a centralized web dashboard for budget tracking, reporting, and account-level insights.",
-    outcome: "Improved decision confidence and made recurring reporting workflows more reliable.",
+    category: "webapp",
     techStack: ["React", "Node", "MongoDB", "Tailwind"],
     image: Personal_finance_dashboard,
     liveDemo: "",
     github: "https://github.com/rushabh-rajpara/personal-finance-dashboard",
   },
   {
-    title: "Artisan Marketplace Platform",
-    category: "MVP",
-    clientProblem: "An artisan-focused business needed a functional marketplace with admin control.",
-    built: "Delivered marketplace workflows for product approvals, listing management, and search.",
-    outcome: "Streamlined product publishing and improved the buyer journey across the platform.",
+    category: "mvp",
     techStack: ["PHP", "AWS RDS", "Bootstrap", "Amazon S3"],
     image: Artisan_Marketplace,
     liveDemo: "http://172.105.22.192/index.php",
     github: "https://github.com/rushabh-rajpara/Artisan_Marketplace",
   },
   {
-    title: "E-commerce Experience Rebuild",
-    category: "Automation",
-    clientProblem: "A commerce team needed a cleaner, more reliable purchase flow and backend support.",
-    built: "Reworked web application flows and connected backend services for a stronger delivery baseline.",
-    outcome: "Reduced operational friction and created a more dependable foundation for scaling.",
+    category: "automation",
     techStack: ["React", "Node", "MongoDB", "Tailwind"],
     image: Ecommerce,
     liveDemo: "",
@@ -60,10 +47,24 @@ const projects = [
 ];
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const { t } = useLanguage();
+
+  const categories = [
+    { id: "all", label: t("projects.categories.all") },
+    { id: "mvp", label: t("projects.categories.mvp") },
+    { id: "webapp", label: t("projects.categories.webapp") },
+    { id: "automation", label: t("projects.categories.automation") },
+  ];
+
+  const localizedItems = t("projects.items");
+  const projects = useMemo(
+    () => baseProjects.map((item, index) => ({ ...item, ...localizedItems[index] })),
+    [localizedItems],
+  );
 
   const filteredProjects =
-    activeCategory === "All"
+    activeCategory === "all"
       ? projects
       : projects.filter((project) => project.category === activeCategory);
 
@@ -71,6 +72,7 @@ const Projects = () => {
   const textColor = useColorModeValue("black", "white");
   const headingColor = useColorModeValue("black", "yellow.400");
   const hoverBg = useColorModeValue("yellow.400", "yellow.500");
+  const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
 
   return (
     <MotionBox
@@ -84,12 +86,8 @@ const Projects = () => {
       transition={{ duration: 1 }}
     >
       <VStack spacing={6} textAlign="center" mb={8}>
-        <Heading fontSize="4xl" color={headingColor}>
-          Case Studies
-        </Heading>
-        <Text maxW="860px">
-          Selected projects framed around business context: the problem, what was built, and the delivery outcome.
-        </Text>
+        <Heading fontSize="4xl" color={headingColor}>{t("projects.heading")}</Heading>
+        <Text maxW="860px">{t("projects.subheading")}</Text>
       </VStack>
 
       <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
@@ -97,16 +95,16 @@ const Projects = () => {
           <Box
             as="button"
             key={index}
-            onClick={() => setActiveCategory(category)}
+            onClick={() => setActiveCategory(category.id)}
             fontSize="sm"
             bg="transparent"
-            color={activeCategory === category ? "var(--accent-color)" : textColor}
+            color={activeCategory === category.id ? "var(--accent-color)" : textColor}
             _hover={{ color: "var(--accent-color)" }}
             transition="0.3s"
             position="relative"
           >
-            {category}
-            {activeCategory === category && (
+            {category.label}
+            {activeCategory === category.id && (
               <Box
                 position="absolute"
                 bottom="-5px"
@@ -125,7 +123,7 @@ const Projects = () => {
         <AnimatePresence>
           {filteredProjects.map((project, index) => (
             <MotionBox
-              key={index}
+              key={`${project.title}-${index}`}
               position="relative"
               borderRadius="lg"
               overflow="hidden"
@@ -164,12 +162,10 @@ const Projects = () => {
                 borderRadius="md"
                 className="overlay"
               >
-                <Heading fontSize="lg" color="yellow.400" mb={2}>
-                  {project.title}
-                </Heading>
-                <Text fontSize="xs" color="gray.200" mb={2}><strong>Client/Problem:</strong> {project.clientProblem}</Text>
-                <Text fontSize="xs" color="gray.200" mb={2}><strong>Built:</strong> {project.built}</Text>
-                <Text fontSize="xs" color="gray.200" mb={3}><strong>Outcome:</strong> {project.outcome}</Text>
+                <Heading fontSize="lg" color="yellow.400" mb={2}>{project.title}</Heading>
+                <Text fontSize="xs" color="gray.200" mb={2}><strong>{t("projects.labels.problem")}:</strong> {project.problem}</Text>
+                <Text fontSize="xs" color="gray.200" mb={2}><strong>{t("projects.labels.built")}:</strong> {project.built}</Text>
+                <Text fontSize="xs" color="gray.200" mb={3}><strong>{t("projects.labels.outcome")}:</strong> {project.outcome}</Text>
 
                 <HStack mb={3} spacing={2} flexWrap="wrap">
                   {project.techStack.map((tech) => (
@@ -180,11 +176,11 @@ const Projects = () => {
                 <HStack mt={2} spacing={4}>
                   {project.liveDemo && (
                     <Link href={project.liveDemo} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
-                      Live Demo -&gt;
+                      {t("projects.labels.liveDemo")}
                     </Link>
                   )}
                   <Link href={project.github} isExternal fontSize="sm" color="yellow.300" _hover={{ textDecoration: "underline" }}>
-                    GitHub -&gt;
+                    {t("projects.labels.github")}
                   </Link>
                 </HStack>
               </Flex>
@@ -194,8 +190,10 @@ const Projects = () => {
       </SimpleGrid>
 
       <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px">Want a similar result for your business or client project?</Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="md">Let&apos;s Talk</Button>
+        <Text textAlign="center" maxW="700px">{t("projects.ctaText")}</Text>
+        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="md" _hover={{ ...ctaHover, bg: "#ffd700" }}>
+          {t("projects.ctaButton")}
+        </Button>
       </VStack>
 
       <style>
