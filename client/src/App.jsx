@@ -5,11 +5,9 @@ import About from "./components/About";
 import Services from "./components/Services";
 import Hero from "./components/Hero";
 import Contact from "./components/Contact";
-import InteractiveLines from "./components/InteractiveLines";
-import CustomCursor from "./components/CustomCursor";
-import CursorTrail from "./components/CursorTrail";
 import Resume from "./components/Resume";
 import Projects from "./components/Projects";
+import Footer from "./components/Footer";
 import { LanguageProvider } from "./context/LanguageContext";
 
 if (import.meta.env.PROD) {
@@ -23,9 +21,6 @@ function App() {
     <ChakraProvider theme={theme}>
       <LanguageProvider>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
-        <InteractiveLines />
-        <CustomCursor />
-        <CursorTrail />
         <Navbar />
         <Hero />
         <About />
@@ -33,6 +28,7 @@ function App() {
         <Projects />
         <Services />
         <Contact />
+        <Footer />
       </LanguageProvider>
     </ChakraProvider>
   );

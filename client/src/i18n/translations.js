@@ -10,6 +10,7 @@
       startProject: "START PROJECT",
     },
     hero: {
+      eyebrow: "For Agencies, Startups, and Local Canadian Businesses",
       headline: "Turn your idea into a working product - without delays or complexity",
       subheadline: "From idea to working product - built fast, delivered reliably, and designed to scale.",
       trustLine: "Based in Canada • Working globally with a skilled development team",
@@ -22,6 +23,7 @@
     services: {
       heading: "What I Help You Build",
       subheading: "Helping agencies and businesses turn ideas into reliable, scalable products.",
+      featured: "Most Requested",
       bestFor: "Best for",
       ctaText: "Have a project in mind? Let's talk",
       ctaButton: "Discuss Your Idea",
@@ -62,6 +64,8 @@
       p2: "Instead of overcomplicating things, I focus on building solutions that are practical, scalable, and aligned with real business needs.",
       p3: "Based in Canada and supported by a skilled development team, I'm able to handle projects efficiently while maintaining quality and consistency.",
       p4: "Why clients choose to work with me: clear communication, reliable delivery, practical scalable solutions, and no unnecessary complexity.",
+      badge1: "Based in Canada",
+      badge2: "Working Globally",
       cta: "Let's Talk",
     },
     process: {
@@ -139,6 +143,10 @@
       heading: "Have a project in mind?",
       subheading: "If you're building a product, improving an existing system, or need a reliable development partner, let's discuss how to make it happen.",
       trustLine: "Clear communication, reliable delivery, and practical execution from start to launch.",
+      responseTime: "Usually replies within 24 hours",
+      directTitle: "Prefer a quick conversation?",
+      emailNow: "Email Now",
+      callNow: "Call Now",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Email Address",
       messagePlaceholder: "Tell me about your project",
@@ -160,6 +168,7 @@
       startProject: "DEMARRER UN PROJET",
     },
     hero: {
+      eyebrow: "Pour agences, startups et entreprises locales canadiennes",
       headline: "Transformez votre idee en produit fonctionnel - sans delais ni complexite",
       subheadline: "De l'idee au produit fonctionnel : rapide, fiable et concu pour evoluer.",
       trustLine: "Base au Canada • Collaboration internationale avec une equipe qualifiee",
@@ -172,6 +181,7 @@
     services: {
       heading: "Ce que je vous aide a construire",
       subheading: "J'aide les agences et entreprises a transformer leurs idees en produits fiables et evolutifs.",
+      featured: "Le plus demande",
       bestFor: "Ideal pour",
       ctaText: "Vous avez un projet en tete ? Parlons-en",
       ctaButton: "Discuter de votre idee",
@@ -212,6 +222,8 @@
       p2: "Je me concentre sur des solutions pratiques, evolutives et alignees avec de vrais objectifs business.",
       p3: "Base au Canada et soutenu par une equipe qualifiee, je livre efficacement sans compromis sur la qualite.",
       p4: "Pourquoi mes clients collaborent avec moi : communication claire, livraison fiable, solutions pratiques et sans complexite inutile.",
+      badge1: "Base au Canada",
+      badge2: "Collaboration mondiale",
       cta: "Parlons-en",
     },
     process: {
@@ -289,6 +301,10 @@
       heading: "Un projet en tete ?",
       subheading: "Si vous creez un produit, ameliorez un systeme existant, ou cherchez un partenaire fiable, discutons de la meilleure approche.",
       trustLine: "Communication claire, livraison fiable, execution pratique du debut a la mise en ligne.",
+      responseTime: "Reponse generalement sous 24h",
+      directTitle: "Besoin d'un echange rapide ?",
+      emailNow: "Envoyer un email",
+      callNow: "Appeler",
       namePlaceholder: "Votre nom",
       emailPlaceholder: "Adresse email",
       messagePlaceholder: "Parlez-moi de votre projet",

@@ -1,4 +1,4 @@
-﻿import {
+import {
   Box,
   Heading,
   SimpleGrid,
@@ -8,7 +8,6 @@
   Link,
   HStack,
   useColorModeValue,
-  Flex,
   Badge,
   Button,
 } from "@chakra-ui/react";
@@ -20,7 +19,6 @@ import Ecommerce from "../images/Ecommerce.jpg";
 import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
-const MotionImage = motion(Image);
 
 const baseProjects = [
   {
@@ -42,7 +40,7 @@ const baseProjects = [
     techStack: ["React", "Node", "MongoDB", "Tailwind"],
     image: Ecommerce,
     liveDemo: "",
-    github: "git@github.com:rushabh-rajpara/HappyBox_Php",
+    github: "https://github.com/rushabh-rajpara/HappyBox_Php",
   },
 ];
 
@@ -72,22 +70,25 @@ const Projects = () => {
   const textColor = useColorModeValue("black", "white");
   const headingColor = useColorModeValue("black", "yellow.400");
   const hoverBg = useColorModeValue("yellow.400", "yellow.500");
+  const cardBg = useColorModeValue("#ffd84d24", "gray.900");
+  const lineColor = useColorModeValue("gray.700", "gray.200");
+  const cardBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
   const ctaHover = { transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)" };
 
   return (
     <MotionBox
       id="projects"
-      py={20}
+      py={{ base: 16, md: 20 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.8 }}
     >
       <VStack spacing={6} textAlign="center" mb={8}>
-        <Heading fontSize="4xl" color={headingColor}>{t("projects.heading")}</Heading>
-        <Text maxW="860px">{t("projects.subheading")}</Text>
+        <Heading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("projects.heading")}</Heading>
+        <Text maxW="860px" fontSize={{ base: "md", md: "lg" }}>{t("projects.subheading")}</Text>
       </VStack>
 
       <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
@@ -97,34 +98,25 @@ const Projects = () => {
             key={index}
             onClick={() => setActiveCategory(category.id)}
             fontSize="sm"
-            bg="transparent"
-            color={activeCategory === category.id ? "var(--accent-color)" : textColor}
-            _hover={{ color: "var(--accent-color)" }}
-            transition="0.3s"
-            position="relative"
+            px={3}
+            py={1.5}
+            borderRadius="full"
+            bg={activeCategory === category.id ? hoverBg : "transparent"}
+            color={activeCategory === category.id ? "black" : textColor}
+            _hover={{ color: activeCategory === category.id ? "black" : "var(--accent-color)" }}
+            transition="0.22s"
+            fontWeight="600"
           >
             {category.label}
-            {activeCategory === category.id && (
-              <Box
-                position="absolute"
-                bottom="-5px"
-                left="0"
-                width="100%"
-                height="3px"
-                bg={hoverBg}
-                transition="width 0.3s ease"
-              />
-            )}
           </Box>
         ))}
       </HStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10} maxW="1200px" mx="auto">
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={8} maxW="1200px" mx="auto">
         <AnimatePresence>
           {filteredProjects.map((project, index) => (
             <MotionBox
               key={`${project.title}-${index}`}
-              position="relative"
               borderRadius="lg"
               overflow="hidden"
               transition="0.3s"
@@ -132,42 +124,27 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               className="project-card"
+              bg={cardBg}
+              border="1px solid"
+              borderColor={cardBorderColor}
+              boxShadow="card"
             >
-              <MotionImage
+              <Image
                 src={project.image}
                 alt={project.title}
-                borderRadius="md"
                 width="100%"
-                height="300px"
+                height="220px"
                 objectFit="cover"
-                transition="0.3s"
                 loading="lazy"
               />
 
-              <Flex
-                position="absolute"
-                top="0"
-                left="0"
-                width="100%"
-                height="100%"
-                bg="rgba(0, 0, 0, 0.78)"
-                opacity={{ base: 1, md: 0 }}
-                transition="opacity 0.3s ease"
-                _hover={{ opacity: 1 }}
-                justify="center"
-                align="center"
-                flexDirection="column"
-                textAlign="left"
-                p={5}
-                borderRadius="md"
-                className="overlay"
-              >
-                <Heading fontSize="lg" color="yellow.400" mb={2}>{project.title}</Heading>
-                <Text fontSize="xs" color="gray.200" mb={2}><strong>{t("projects.labels.problem")}:</strong> {project.problem}</Text>
-                <Text fontSize="xs" color="gray.200" mb={2}><strong>{t("projects.labels.built")}:</strong> {project.built}</Text>
-                <Text fontSize="xs" color="gray.200" mb={3}><strong>{t("projects.labels.outcome")}:</strong> {project.outcome}</Text>
+              <VStack align="start" spacing={3} p={5}>
+                <Heading fontSize="lg" color={headingColor}>{project.title}</Heading>
+                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.problem")}:</strong> {project.problem}</Text>
+                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.built")}:</strong> {project.built}</Text>
+                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.outcome")}:</strong> {project.outcome}</Text>
 
-                <HStack mb={3} spacing={2} flexWrap="wrap">
+                <HStack spacing={2} flexWrap="wrap">
                   {project.techStack.map((tech) => (
                     <Badge key={tech} colorScheme="yellow">{tech}</Badge>
                   ))}
@@ -183,7 +160,7 @@ const Projects = () => {
                     {t("projects.labels.github")}
                   </Link>
                 </HStack>
-              </Flex>
+              </VStack>
             </MotionBox>
           ))}
         </AnimatePresence>
@@ -191,21 +168,22 @@ const Projects = () => {
 
       <VStack mt={10} spacing={3}>
         <Text textAlign="center" maxW="700px">{t("projects.ctaText")}</Text>
-        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" size="md" _hover={{ ...ctaHover, bg: "#ffd700" }}>
+        <Button as="a" href="#contact" colorScheme="yellow" background="#ffd700" color="black" size="md" _hover={{ ...ctaHover, bg: "#f0cb00" }}>
           {t("projects.ctaButton")}
         </Button>
       </VStack>
 
       <style>
         {`
-            .project-card {
-              transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            }
-            .project-card:hover {
-              transform: scale(1.03);
-              box-shadow: 0px 0px 15px var(--accent-color);
-            }
-          `}
+          .project-card {
+            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+          }
+          .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--chakra-shadows-cardHover);
+            border-color: var(--accent-color);
+          }
+        `}
       </style>
     </MotionBox>
   );

@@ -1,4 +1,4 @@
-﻿import {
+import {
   Box,
   Heading,
   VStack,
@@ -11,14 +11,13 @@
   Link,
   Icon,
   Flex,
+  Badge,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
 import {
   FaEnvelope,
   FaPhone,
   FaGithub,
-  FaLinkedin,
-  FaTwitter,
   FaMapMarkerAlt,
   FaGlobe,
 } from "react-icons/fa";
@@ -29,10 +28,13 @@ const Contact = () => {
   const bg = useColorModeValue("white", "black");
   const textColor = useColorModeValue("black", "white");
   const headingColor = useColorModeValue("black", "yellow.400");
-  const inputBg = useColorModeValue("gray.900", "gray.800");
-  const inputBorder = useColorModeValue("yellow.400", "yellow.600");
+  const inputBg = useColorModeValue("gray.50", "gray.800");
+  const cardBg = useColorModeValue("#ffd84d24", "gray.900");
+  const inputBorder = useColorModeValue("yellow.500", "yellow.600");
   const buttonBg = useColorModeValue("yellow.400", "yellow.500");
   const githubColor = useColorModeValue("black", "white");
+  const subtleColor = useColorModeValue("gray.600", "gray.400");
+  const cardBorderColor = useColorModeValue("blackAlpha.200", "whiteAlpha.300");
   const { t } = useLanguage();
 
   const formRef = useRef();
@@ -63,62 +65,68 @@ const Contact = () => {
   };
 
   return (
-    <Box id="contact" py={20} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
+    <Box id="contact" py={{ base: 16, md: 20 }} px={{ base: 6, md: 20 }} bg={bg} color={textColor}>
       <VStack spacing={4} textAlign="center" mb={12}>
-        <Heading fontSize="4xl" fontWeight="bold" color={headingColor}>{t("contact.heading")}</Heading>
-        <Text maxW="760px">{t("contact.subheading")}</Text>
-        <Text fontSize="sm" color={useColorModeValue("gray.600", "gray.400")}>{t("contact.trustLine")}</Text>
+        <Heading fontSize={{ base: "3xl", md: "4xl" }} fontWeight="bold" color={headingColor}>{t("contact.heading")}</Heading>
+        <Text maxW="760px" fontSize={{ base: "md", md: "lg" }}>{t("contact.subheading")}</Text>
+        <Text fontSize="sm" color={subtleColor}>{t("contact.trustLine")}</Text>
+        <Badge colorScheme="yellow" px={3} py={1} borderRadius="full">{t("contact.responseTime")}</Badge>
       </VStack>
 
-      <Flex direction={{ base: "column", md: "row" }} justify="center" gap={12} maxW="1100px" mx="auto">
-        <VStack align="start" spacing={6} flex="1" w="100%">
+      <Flex direction={{ base: "column", md: "row" }} justify="center" gap={10} maxW="1120px" mx="auto">
+        <VStack align="start" spacing={6} flex="1" w="100%" bg={cardBg} p={6} borderRadius="lg" border="1px solid" borderColor={cardBorderColor} boxShadow="card">
+          <Text fontWeight="700" fontSize="lg">{t("contact.directTitle")}</Text>
+          <HStack spacing={3} flexWrap="wrap">
+            <Button as="a" href="mailto:rushabh4478@gmail.com" size="sm" variant="outline" borderColor={inputBorder}>{t("contact.emailNow")}</Button>
+            <Button as="a" href="tel:+15483980233" size="sm" variant="outline" borderColor={inputBorder}>{t("contact.callNow")}</Button>
+          </HStack>
+
           {[
-            { icon: FaPhone, text: "+1 548 398 0233" },
+            { icon: FaPhone, text: "+1 548 398 0233", link: "tel:+15483980233" },
             { icon: FaEnvelope, text: "rushabh4478@gmail.com", link: "mailto:rushabh4478@gmail.com" },
-            { icon: FaGlobe, text: "rushabh-rajpara", link: "https://rushabh-rajpara.github.io/Portfolio/" },
+            { icon: FaGlobe, text: "rushabh-rajpara.github.io/Portfolio", link: "https://rushabh-rajpara.github.io/Portfolio/" },
             { icon: FaMapMarkerAlt, text: "Waterloo, ON, CA" },
           ].map(({ icon, text, link }, index) => (
             <HStack key={index} spacing={4} w="100%">
-              <Icon as={icon} boxSize={6} color={headingColor} />
+              <Icon as={icon} boxSize={5} color={headingColor} />
               {link ? (
-                <Text fontSize="md"><Link href={link} target="_blank" rel="noopener noreferrer">{text}</Link></Text>
+                <Text fontSize="md"><Link href={link} target={link.startsWith("http") ? "_blank" : undefined} rel={link.startsWith("http") ? "noopener noreferrer" : undefined}>{text}</Link></Text>
               ) : (
                 <Text fontSize="md">{text}</Text>
               )}
             </HStack>
           ))}
 
-          <HStack spacing={6} mt={4}>
+          <HStack spacing={6} mt={2}>
             {[
-              { icon: FaGithub, link: "https://github.com", color: githubColor },
-              { icon: FaLinkedin, link: "https://linkedin.com", color: "#0077B5" },
-              { icon: FaTwitter, link: "https://twitter.com", color: "#1DA1F2" },
+              { icon: FaGithub, link: "https://github.com/rushabh-rajpara", color: githubColor },
+              { icon: FaGlobe, link: "https://rushabh-rajpara.github.io/Portfolio/", color: headingColor },
             ].map(({ icon, link, color }, index) => (
               <Link key={index} href={link} target="_blank" rel="noopener noreferrer">
                 <Icon
                   as={icon}
                   boxSize={7}
                   color={color}
-                  transition="transform 0.3s ease-in-out, color 0.3s ease-in-out"
-                  _hover={{ transform: "scale(1.15) rotate(3deg)" }}
+                  transition="transform 0.22s ease, color 0.22s ease"
+                  _hover={{ transform: "translateY(-2px) scale(1.06)" }}
                 />
               </Link>
             ))}
           </HStack>
         </VStack>
 
-        <Box as="form" ref={formRef} onSubmit={sendEmail} p={8} flex="1" w="100%" bg={inputBg} borderRadius="lg" boxShadow="lg">
+        <Box as="form" ref={formRef} onSubmit={sendEmail} p={{ base: 6, md: 8 }} flex="1" w="100%" bg={inputBg} borderRadius="lg" boxShadow="card" border="1px solid" borderColor={cardBorderColor}>
           <VStack spacing={5} align="start" w="100%">
-            <Input name="name" placeholder={t("contact.namePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color="white" required />
-            <Input name="email" type="email" placeholder={t("contact.emailPlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color="white" required />
-            <Textarea name="message" placeholder={t("contact.messagePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" rows={5} w="100%" color="white" required />
+            <Input name="name" placeholder={t("contact.namePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color={textColor} required />
+            <Input name="email" type="email" placeholder={t("contact.emailPlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" w="100%" color={textColor} required />
+            <Textarea name="message" placeholder={t("contact.messagePlaceholder")} bg="transparent" border="2px solid" borderColor={inputBorder} _placeholder={{ color: "gray.500" }} size="lg" rows={5} w="100%" color={textColor} required />
             <Button
               type="submit"
               bg={buttonBg}
               color="black"
               size="lg"
               w="100%"
-              _hover={{ bg: "yellow.600", transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)", transition: "0.3s" }}
+              _hover={{ bg: "yellow.600", transform: "translateY(-2px)", boxShadow: "0 0 16px var(--accent-color)", transition: "0.22s" }}
               isLoading={isSending}
             >
               {isSending ? t("contact.sending") : t("contact.button")}

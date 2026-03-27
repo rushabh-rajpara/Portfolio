@@ -76,7 +76,7 @@ export const caseStudies = [
     outcome:
       "Reduced friction in the purchase journey and created a stronger foundation for scaling features.",
     techStack: ["React", "Node.js", "MongoDB"],
-    repoUrl: "git@github.com:rushabh-rajpara/HappyBox_Php",
+    repoUrl: "https://github.com/rushabh-rajpara/HappyBox_Php",
     image: ecommerceImage,
   },
 ];

@@ -14,6 +14,11 @@ const theme = extendTheme({
       body: {
         bg: props.colorMode === "dark" ? "black" : "#ffc800bd",
         color: props.colorMode === "dark" ? "yellow.400" : "black",
+        letterSpacing: "0.01em",
+      },
+      "::selection": {
+        background: "var(--accent-color)",
+        color: "#111",
       },
     }),
   },
@@ -25,6 +30,40 @@ const theme = extendTheme({
     accent: {
       dark: "#ffda00",
       light: "#ffda00",
+    },
+  },
+  radii: {
+    md: "12px",
+    lg: "16px",
+  },
+  shadows: {
+    card: "0 12px 35px rgba(0, 0, 0, 0.2)",
+    cardHover: "0 14px 40px rgba(0, 0, 0, 0.26)",
+  },
+  components: {
+    Button: {
+      baseStyle: {
+        borderRadius: "12px",
+        fontWeight: "700",
+        transition: "all 0.22s ease",
+      },
+    },
+    Link: {
+      baseStyle: {
+        transition: "color 0.22s ease",
+      },
+    },
+    Input: {
+      baseStyle: {
+        field: {
+          borderRadius: "12px",
+        },
+      },
+    },
+    Textarea: {
+      baseStyle: {
+        borderRadius: "12px",
+      },
     },
   },
 });

@@ -24,20 +24,20 @@ const Resume = () => {
   return (
     <MotionBox
       id="resume"
-      py={20}
+      py={{ base: 16, md: 20 }}
       px={{ base: 6, md: 20 }}
       bg={bg}
       color={textColor}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.8 }}
       overflow="hidden"
     >
       <VStack spacing={6} textAlign="center" mb={12}>
         <MotionHeading fontSize="4xl" color={headingColor} initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
           {t("process.heading")}
         </MotionHeading>
-        <Text maxW="820px" fontSize="lg">{t("process.subheading")}</Text>
+        <Text maxW="820px" fontSize={{ base: "md", md: "lg" }}>{t("process.subheading")}</Text>
       </VStack>
 
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} maxW="1200px" mx="auto">
@@ -51,16 +51,16 @@ const Resume = () => {
               p={6}
               bg={cardBg}
               borderRadius="md"
-              boxShadow="lg"
+              boxShadow="card"
               className="resume-card"
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               whileTap={{ scale: 0.97 }}
-              transition={{ duration: 1, delay: index * 0.2 }}
+              transition={{ duration: 0.75, delay: index * 0.12 }}
             >
               <Text fontSize="sm" color="gray.400">{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.meta}</Text><br />
+              <Text fontWeight="bold">{item.meta}</Text>
               <Text>{item.description}</Text>
             </MotionBox>
           ))}
@@ -76,16 +76,16 @@ const Resume = () => {
               p={6}
               bg={cardBg}
               borderRadius="md"
-              boxShadow="lg"
+              boxShadow="card"
               className="resume-card"
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               whileTap={{ scale: 0.97 }}
-              transition={{ duration: 1, delay: index * 0.2 }}
+              transition={{ duration: 0.75, delay: index * 0.12 }}
             >
               <Text fontSize="sm" color="gray.400">{item.label}</Text>
               <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.meta}</Text><br />
+              <Text fontWeight="bold">{item.meta}</Text>
               <Text>{item.description}</Text>
             </MotionBox>
           ))}
@@ -95,12 +95,14 @@ const Resume = () => {
       <style>
         {`
             .resume-card {
-              transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+              transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+              border: 1px solid rgba(255, 215, 0, 0.2);
             }
             @media (min-width: 768px) {
               .resume-card:hover {
-                transform: scale(1.04);
-                box-shadow: 0px 0px 15px var(--accent-color);
+                transform: translateY(-4px);
+                box-shadow: var(--chakra-shadows-cardHover);
+                border-color: var(--accent-color);
               }
             }
           `}
