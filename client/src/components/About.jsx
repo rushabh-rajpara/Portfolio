@@ -16,7 +16,7 @@ import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const About = () => {
-  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const bg = useColorModeValue("bg.alt", "bg.alt");
   const textColor = useColorModeValue("text.primary", "text.primary");
   const headingColor = useColorModeValue("text.primary", "text.primary");
   const mutedColor = useColorModeValue("text.secondary", "text.secondary");
@@ -67,7 +67,8 @@ const About = () => {
           transition={{ duration: 0.7 }}
         >
           <VStack align={{ base: "center", md: "start" }} spacing={4}>
-            <Heading fontSize={{ base: "3xl", md: "4xl" }} mb={2} color={headingColor}>{t("about.heading")}</Heading>
+            <Heading fontFamily="heading" fontSize={{ base: "2.5rem", md: "3rem" }} lineHeight="1.02" mb={2} color={headingColor}>{t("about.heading")}</Heading>
+            <Box w="56px" h="2px" bg="accent.primary" borderRadius="full" />
             <Text fontSize="lg" maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p1")}</Text>
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p2")}</Text>
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p3")}</Text>

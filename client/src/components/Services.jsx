@@ -1,21 +1,22 @@
-import { Box, Heading, SimpleGrid, VStack, Text, useColorModeValue, Button, HStack, Badge } from "@chakra-ui/react";
+import { Box, Heading, SimpleGrid, VStack, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaRocket, FaLaptopCode, FaLayerGroup, FaCogs } from "react-icons/fa";
+import { FaRocket, FaLaptopCode, FaRegWindowMaximize, FaSlidersH } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
 const MotionHeading = motion(Heading);
 
-const serviceIcons = [FaRocket, FaLaptopCode, FaLayerGroup, FaCogs];
+const serviceIcons = [FaRocket, FaLaptopCode, FaRegWindowMaximize, FaSlidersH];
 
 const Services = () => {
-  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const bg = useColorModeValue("bg.canvas", "bg.surfaceMuted");
   const textColor = useColorModeValue("text.primary", "text.primary");
   const headingColor = useColorModeValue("text.primary", "text.primary");
-  const cardBg = useColorModeValue("bg.surface", "bg.surface");
-  const cardBorderColor = useColorModeValue("border.soft", "border.soft");
+  const cardBg = useColorModeValue("rgba(255,255,255,0.18)", "bg.surface");
+  const cardBorderColor = useColorModeValue("rgba(255,255,255,0.36)", "border.soft");
   const mutedText = useColorModeValue("text.secondary", "text.secondary");
+  const eyebrowColor = useColorModeValue("brand.300", "brand.300");
   const { t } = useLanguage();
 
   const cards = t("services.cards");
@@ -26,8 +27,8 @@ const Services = () => {
   return (
     <MotionBox
       id="services"
-      py={{ base: 14, md: 20, lg: 24 }}
-      px={{ base: 6, md: 20 }}
+      py={{ base: 16, md: 20, lg: 24 }}
+      px={{ base: 5, md: 10 }}
       bg={bg}
       color={textColor}
       ref={servicesRef}
@@ -36,70 +37,77 @@ const Services = () => {
       transition={{ duration: 0.6 }}
       overflow="hidden"
     >
-      <VStack spacing={6} textAlign="center" mb={12}>
-        <MotionHeading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("services.heading")}</MotionHeading>
-        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }} color={mutedText}>{t("services.subheading")}</Text>
-      </VStack>
+      <Box maxW="1840px" mx="auto">
+        <VStack align="start" spacing={5} mb={{ base: 10, md: 14 }}>
+          <Text
+            fontSize="0.72rem"
+            textTransform="uppercase"
+            letterSpacing="0.38em"
+            color={eyebrowColor}
+            fontWeight="600"
+          >
+            {t("services.eyebrow")}
+          </Text>
+          <MotionHeading
+            fontFamily="heading"
+            fontSize={{ base: "2.35rem", md: "3.3rem", lg: "3.8rem" }}
+            lineHeight="1"
+            letterSpacing="-0.06em"
+            color={headingColor}
+            maxW="760px"
+          >
+            {t("services.heading")}
+          </MotionHeading>
+        </VStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 2 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
-        {cards.map((service, index) => {
-          const isFeatured = index === 0 || index === 2;
-          return (
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={0}>
+          {cards.map((service, index) => (
             <MotionBox
-              key={index}
-              p={{ base: 6, md: 7 }}
+              key={service.title}
+              minH={{ base: "250px", md: "300px" }}
+              p={{ base: 6, md: 7, lg: 8 }}
               bg={cardBg}
-              borderRadius="lg"
-              boxShadow="card"
               border="1px solid"
-              borderColor={isFeatured ? "brand.400" : cardBorderColor}
+              borderColor={cardBorderColor}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              className="service-card"
+              transition={{ duration: 0.65, delay: index * 0.08 }}
+              className="service-card-grid"
             >
-              <VStack spacing={4} textAlign="left" align="start">
-                <HStack justify="space-between" w="100%">
-                  <Box as={serviceIcons[index]} fontSize="36px" color="accent.primary" className="service-icon" />
-                  {isFeatured && (
-                    <Badge colorScheme="brand" borderRadius="full" px={2.5} py={1} fontSize="0.65rem">
-                      {t("services.featured")}
-                    </Badge>
-                  )}
-                </HStack>
-                <Heading fontSize={{ base: "xl", md: "2xl" }}>{service.title}</Heading>
-                <Text fontSize="sm" color={mutedText}><strong>{t("services.bestFor")}:</strong> {service.audience}</Text>
-                <Text lineHeight="1.72">{service.description}</Text>
-                <Text fontWeight="700" lineHeight="1.65" color={mutedText}>{service.outcome}</Text>
+              <VStack align="start" spacing={{ base: 6, md: 8 }} h="100%">
+                <Box as={serviceIcons[index]} fontSize={{ base: "28px", md: "32px" }} color="accent.primary" />
+                <Heading
+                  fontFamily="body"
+                  fontSize={{ base: "1.35rem", md: "1.55rem" }}
+                  lineHeight="1.08"
+                  letterSpacing="-0.04em"
+                  fontWeight="800"
+                  maxW="14ch"
+                >
+                  {service.title}
+                </Heading>
+                <Text
+                  fontSize={{ base: "md", md: "lg" }}
+                  lineHeight="1.65"
+                  color={mutedText}
+                  maxW="22ch"
+                >
+                  {service.description}
+                </Text>
               </VStack>
             </MotionBox>
-          );
-        })}
-      </SimpleGrid>
-
-      <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px" color={mutedText}>{t("services.ctaText")}</Text>
-        <Button as="a" href="#contact" bg="accent.primary" color="white" size="lg" _hover={{ bg: "accent.hover", transform: "translateY(-2px)", boxShadow: "cardHover" }}>
-          {t("services.ctaButton")}
-        </Button>
-      </VStack>
+          ))}
+        </SimpleGrid>
+      </Box>
 
       <style>
         {`
-          .service-card {
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-            min-height: 290px;
+          .service-card-grid {
+            transition: background-color 0.22s ease, transform 0.22s ease;
           }
-          .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--chakra-shadows-cardHover);
-            border-color: var(--accent-color);
-          }
-          .service-icon {
-            transition: transform 0.22s ease;
-          }
-          .service-card:hover .service-icon {
-            transform: translateY(-2px) scale(1.04);
+          .service-card-grid:hover {
+            transform: translateY(-2px);
+            background-color: rgba(255, 255, 255, 0.28);
           }
         `}
       </style>

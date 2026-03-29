@@ -5,23 +5,24 @@ import { useLanguage } from "../context/LanguageContext";
 const trustIcons = [FaComments, FaRegClock, FaCheckCircle, FaLayerGroup];
 
 const TrustSignals = () => {
-  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const bg = useColorModeValue("#f7f8fb", "bg.alt");
   const headingColor = useColorModeValue("text.primary", "text.primary");
   const textColor = useColorModeValue("text.secondary", "text.secondary");
-  const cardBg = useColorModeValue("bg.surface", "bg.surface");
-  const borderColor = useColorModeValue("border.soft", "border.soft");
+  const cardBg = useColorModeValue("rgba(255,255,255,0.74)", "bg.surface");
+  const borderColor = useColorModeValue("#dde3ec", "border.soft");
   const { t } = useLanguage();
 
   const items = t("trust.items");
 
   return (
-    <Box id="trust" py={{ base: 14, md: 20, lg: 24 }} px={{ base: 6, md: 20 }} bg={bg}>
+    <Box id="trust" py={{ base: 14, md: 20, lg: 24 }} px={{ base: 5, md: 10 }} bg={bg}>
       <VStack spacing={6} textAlign="center" mb={12}>
-        <Heading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("trust.heading")}</Heading>
+        <Heading fontFamily="heading" fontSize={{ base: "2.5rem", md: "3rem" }} lineHeight="1.02" color={headingColor}>{t("trust.heading")}</Heading>
+        <Box w="56px" h="2px" bg="accent.primary" borderRadius="full" />
         <Text maxW="700px" fontSize={{ base: "md", md: "lg" }} color={textColor}>{t("trust.subheading")}</Text>
       </VStack>
 
-      <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={{ base: 5, md: 6, lg: 7 }} maxW="1200px" mx="auto">
+      <SimpleGrid columns={{ base: 1, sm: 2, lg: 4 }} spacing={{ base: 5, md: 6, lg: 7 }} maxW="1840px" mx="auto">
         {items.map((item, index) => (
           <VStack
             key={item.title}
@@ -34,6 +35,7 @@ const TrustSignals = () => {
             borderColor={borderColor}
             boxShadow="card"
             className="trust-card"
+            backdropFilter="blur(6px)"
           >
             <HStack spacing={3}>
               <Icon as={trustIcons[index]} color={headingColor} boxSize={5} />

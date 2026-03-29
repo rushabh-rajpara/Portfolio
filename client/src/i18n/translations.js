@@ -1,4 +1,4 @@
-﻿export const translations = {
+export const translations = {
   en: {
     nav: {
       home: "Home",
@@ -10,18 +10,23 @@
       startProject: "Start a Project",
     },
     hero: {
-      eyebrow: "For Agencies, Startups, and Local Canadian Businesses",
-      headline: "Turn your idea into a working product - without delays or complexity",
-      subheadline: "From idea to working product - built fast, delivered reliably, and designed to scale.",
-      trustLine: "Based in Canada • Working globally with a skilled development team",
+      eyebrow: "A trusted software partner",
+      headlineTop: "Turning Ideas",
+      headlineMiddle: "into",
+      headlineAccent: "Performant",
+      headlineBottom: "Products.",
+      subheadline: "Full-stack development with a focus on structure, simplicity, and performance. You bring the vision. I craft thoughtful execution.",
+      trustLine: "Based in Canada - Working globally with a skilled development team",
       badge1: "Reliable Execution",
       badge2: "Clear Communication",
       badge3: "Scalable Solutions",
-      ctaPrimary: "Start a Project",
-      ctaSecondary: "View My Work",
+      ctaPrimary: "Get in Touch",
+      ctaSecondary: "Explore Archive",
       ctaSupport: "Open to select new projects",
+      imageLabel: "Studio portrait",
     },
     services: {
+      eyebrow: "Capabilities",
       heading: "What I Help You Build",
       subheading: "Helping agencies and businesses turn ideas into reliable, scalable products.",
       featured: "Most Requested",
@@ -31,31 +36,23 @@
       cards: [
         {
           title: "MVP Development",
-          audience: "Startups and businesses testing new ideas",
           description:
-            "Launch a focused version of your product quickly, validate faster, and avoid wasting time on unnecessary features.",
-          outcome: "Move from concept to proof with less risk and clearer product direction.",
+            "Rapidly transform your vision into a production-ready product to test market viability.",
         },
         {
           title: "Custom Web Applications",
-          audience: "Businesses that need systems beyond basic websites",
           description:
-            "Build systems that reduce manual work, improve workflows, and scale with your business.",
-          outcome: "Ideal for dashboards, admin panels, portals, and internal tools.",
+            "Bespoke software solutions tailored to your unique operational requirements and user needs.",
         },
         {
           title: "White-Label Development for Agencies",
-          audience: "Agencies outsourcing execution",
           description:
-            "Reliable development support so you can deliver projects to your clients without stress or delays.",
-          outcome: "Clean code, clear communication, and dependable execution from start to finish.",
+            "High-quality, invisible development support for agencies looking to scale their output.",
         },
         {
           title: "Automation & Internal Tools",
-          audience: "Growing teams and operations",
           description:
-            "Automate repetitive processes and build tools that save time, reduce errors, and improve efficiency.",
-          outcome: "Create smoother operations and a stronger foundation for scale.",
+            "Streamline workflows and eliminate manual tasks through intelligent system integration.",
         },
       ],
     },
@@ -70,8 +67,9 @@
       cta: "Let's Talk",
     },
     process: {
-      heading: "Simple, structured execution",
-      subheading: "A practical process designed for reliable delivery and clear outcomes.",
+      eyebrow: "Method.dev",
+      heading: "Execution Process",
+      subheading: "A structured, intentional approach to digital delivery.",
       strategy: "Plan",
       delivery: "Execution",
       steps: [
@@ -102,8 +100,9 @@
       ],
     },
     projects: {
+      eyebrow: "Portfolio 2024",
       heading: "Selected Work",
-      subheading: "Projects presented as outcomes: the problem, the solution delivered, and the value created.",
+      subheading: "A selection of high-impact product and platform work.",
       categories: {
         all: "All",
         mvp: "MVP",
@@ -167,8 +166,9 @@
       ],
     },
     contact: {
-      heading: "Have a project in mind?",
-      subheading: "If you need a reliable partner to build your product without delays or confusion, let's talk.",
+      headingTop: "Have a project",
+      headingBottom: "in mind?",
+      subheading: "Let's discuss how intentional engineering can elevate your next digital product.",
       trustLine: "Clear communication, reliable delivery, and practical execution from start to launch.",
       responseTime: "Usually replies within 24 hours",
       directTitle: "Prefer a quick conversation?",
@@ -177,15 +177,16 @@
       callNow: "Call Now",
       nameLabel: "Your Name",
       emailLabel: "Email Address",
-      messageLabel: "Project Brief",
+      messageLabel: "Project Vision",
       namePlaceholder: "Your Name",
       emailPlaceholder: "Email Address",
-      messagePlaceholder: "Tell me about your project",
-      button: "Start a Project",
+      messagePlaceholder: "Describe the product you need...",
+      button: "Send Inquiry",
       secondaryCta: "Let's Talk",
       sending: "Sending...",
       success: "Message sent successfully! I will reply soon.",
       error: "Failed to send message. Please email me directly.",
+      locationLabel: "Remote / Global",
     },
   },
   fr: {
@@ -199,18 +200,23 @@
       startProject: "Demarrer un projet",
     },
     hero: {
-      eyebrow: "Pour agences, startups et entreprises locales canadiennes",
-      headline: "Transformez votre idee en produit fonctionnel - sans delais ni complexite",
-      subheadline: "De l'idee au produit fonctionnel : rapide, fiable et concu pour evoluer.",
-      trustLine: "Base au Canada • Collaboration internationale avec une equipe qualifiee",
+      eyebrow: "Un partenaire logiciel de confiance",
+      headlineTop: "Transformer les idees",
+      headlineMiddle: "en",
+      headlineAccent: "produits",
+      headlineBottom: "performants.",
+      subheadline: "Developpement full-stack axe sur la structure, la simplicite et la performance. Vous apportez la vision. Je construis une execution soignee.",
+      trustLine: "Base au Canada - Collaboration internationale avec une equipe qualifiee",
       badge1: "Execution fiable",
       badge2: "Communication claire",
       badge3: "Solutions evolutives",
-      ctaPrimary: "Demarrer un projet",
-      ctaSecondary: "Voir mes projets",
+      ctaPrimary: "Me contacter",
+      ctaSecondary: "Voir l'archive",
       ctaSupport: "Ouvert a une selection de nouveaux projets",
+      imageLabel: "Portrait studio",
     },
     services: {
+      eyebrow: "Capacites",
       heading: "Ce que je vous aide a construire",
       subheading: "J'aide les agences et entreprises a transformer leurs idees en produits fiables et evolutifs.",
       featured: "Le plus demande",
@@ -220,31 +226,23 @@
       cards: [
         {
           title: "Developpement MVP",
-          audience: "Startups et entreprises qui testent une nouvelle idee",
           description:
-            "Lancez rapidement une version ciblee de votre produit pour valider plus vite et eviter les fonctions inutiles.",
-          outcome: "Passez de l'idee a un produit testable avec moins de risque.",
+            "Transformez rapidement votre vision en produit pret a tester sur le marche.",
         },
         {
           title: "Applications Web sur mesure",
-          audience: "Entreprises qui ont besoin de plus qu'un simple site",
           description:
-            "Construisez des systemes qui reduisent les taches manuelles, ameliorent les workflows et evoluent avec votre activite.",
-          outcome: "Ideal pour dashboards, panneaux admin, portails et outils internes.",
+            "Des solutions logicielles sur mesure adaptees a vos besoins operationnels et utilisateurs.",
         },
         {
           title: "Developpement White-Label pour agences",
-          audience: "Agences qui externalisent le developpement",
           description:
-            "Un support de developpement fiable pour livrer vos projets clients sans stress ni retard.",
-          outcome: "Code propre, communication claire et execution fiable.",
+            "Un support de developpement discret et fiable pour les agences qui veulent produire davantage.",
         },
         {
           title: "Automatisation et outils internes",
-          audience: "Equipes en croissance",
           description:
-            "Automatisez les taches repetitives et creez des outils qui font gagner du temps et reduisent les erreurs.",
-          outcome: "Operations plus fluides et meilleure efficacite au quotidien.",
+            "Fluidifiez les operations et reduisez les taches manuelles via une integration intelligente.",
         },
       ],
     },
@@ -259,8 +257,9 @@
       cta: "Parlons-en",
     },
     process: {
-      heading: "Execution simple et structuree",
-      subheading: "Un processus clair pour livrer rapidement et de maniere fiable.",
+      eyebrow: "Method.dev",
+      heading: "Execution Process",
+      subheading: "Une approche structuree et intentionnelle de la livraison digitale.",
       strategy: "Plan",
       delivery: "Execution",
       steps: [
@@ -291,8 +290,9 @@
       ],
     },
     projects: {
+      eyebrow: "Portfolio 2024",
       heading: "Projets selectionnes",
-      subheading: "Des projets presentes par valeur business : probleme, solution et resultat.",
+      subheading: "Une selection de projets digitaux et produits a fort impact.",
       categories: {
         all: "Tous",
         mvp: "MVP",
@@ -356,8 +356,9 @@
       ],
     },
     contact: {
-      heading: "Un projet en tete ?",
-      subheading: "Si vous avez besoin d'un partenaire fiable pour construire votre produit sans retards ni confusion, parlons-en.",
+      headingTop: "Un projet",
+      headingBottom: "en tete ?",
+      subheading: "Parlons de la maniere dont une execution intentionnelle peut elever votre prochain produit numerique.",
       trustLine: "Communication claire, livraison fiable, execution pratique du debut a la mise en ligne.",
       responseTime: "Reponse generalement sous 24h",
       directTitle: "Besoin d'un echange rapide ?",
@@ -366,15 +367,16 @@
       callNow: "Appeler",
       nameLabel: "Votre nom",
       emailLabel: "Adresse email",
-      messageLabel: "Resume du projet",
+      messageLabel: "Vision du projet",
       namePlaceholder: "Votre nom",
       emailPlaceholder: "Adresse email",
-      messagePlaceholder: "Parlez-moi de votre projet",
-      button: "Demarrer un projet",
+      messagePlaceholder: "Decrivez le produit dont vous avez besoin...",
+      button: "Envoyer la demande",
       secondaryCta: "Parlons-en",
       sending: "Envoi...",
       success: "Message envoye avec succes ! Je vous reponds rapidement.",
       error: "Echec de l'envoi. Merci de m'ecrire directement par email.",
+      locationLabel: "Remote / Global",
     },
   },
 };

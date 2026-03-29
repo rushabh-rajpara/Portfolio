@@ -1,12 +1,12 @@
 :root {
-  font-family: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
   line-height: 1.6;
   font-weight: 400;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --accent-color: #2e4860;
+  --accent-color: #2448a9;
   --section-space: clamp(3.5rem, 8vw, 7rem);
   --container-space: clamp(1.2rem, 3vw, 2rem);
 }
@@ -38,6 +38,15 @@ body {
 
 p {
   text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  letter-spacing: -0.04em;
 }
 
 img {

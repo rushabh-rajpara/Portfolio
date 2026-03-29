@@ -5,14 +5,11 @@ import {
   Text,
   Image,
   VStack,
-  Link,
   HStack,
   useColorModeValue,
-  Badge,
-  Button,
 } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useMemo } from "react";
+import { motion } from "framer-motion";
 import Personal_finance_dashboard from "../images/Personal_Finance_Dashboard.jpeg";
 import Artisan_Marketplace from "../images/Marketplace.jpeg";
 import Ecommerce from "../images/Ecommerce.jpg";
@@ -22,38 +19,21 @@ const MotionBox = motion(Box);
 
 const baseProjects = [
   {
-    category: "webapp",
-    techStack: ["React", "Node", "MongoDB", "Tailwind"],
+    techStack: ["React", "Node", "MongoDB"],
     image: Personal_finance_dashboard,
-    liveDemo: "",
-    github: "https://github.com/rushabh-rajpara/personal-finance-dashboard",
   },
   {
-    category: "mvp",
-    techStack: ["PHP", "AWS RDS", "Bootstrap", "Amazon S3"],
+    techStack: ["PHP", "AWS RDS", "Bootstrap"],
     image: Artisan_Marketplace,
-    liveDemo: "http://172.105.22.192/index.php",
-    github: "https://github.com/rushabh-rajpara/Artisan_Marketplace",
   },
   {
-    category: "automation",
-    techStack: ["React", "Node", "MongoDB", "Tailwind"],
+    techStack: ["React", "Node", "MongoDB"],
     image: Ecommerce,
-    liveDemo: "",
-    github: "https://github.com/rushabh-rajpara/HappyBox_Php",
   },
 ];
 
 const Projects = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
   const { t } = useLanguage();
-
-  const categories = [
-    { id: "all", label: t("projects.categories.all") },
-    { id: "mvp", label: t("projects.categories.mvp") },
-    { id: "webapp", label: t("projects.categories.webapp") },
-    { id: "automation", label: t("projects.categories.automation") },
-  ];
 
   const localizedItems = t("projects.items");
   const projects = useMemo(
@@ -61,135 +41,118 @@ const Projects = () => {
     [localizedItems],
   );
 
-  const filteredProjects =
-    activeCategory === "all"
-      ? projects
-      : projects.filter((project) => project.category === activeCategory);
-
-  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const bg = useColorModeValue("bg.alt", "bg.surfaceMuted");
   const textColor = useColorModeValue("text.primary", "text.primary");
   const headingColor = useColorModeValue("text.primary", "text.primary");
-  const hoverBg = useColorModeValue("brand.100", "brand.700");
-  const cardBg = useColorModeValue("bg.surface", "bg.surface");
   const lineColor = useColorModeValue("text.secondary", "text.secondary");
-  const contextColor = useColorModeValue("neutral.500", "neutral.300");
-  const cardBorderColor = useColorModeValue("border.soft", "border.soft");
+  const subtleColor = useColorModeValue("brand.400", "brand.200");
+  const overlayBg = useColorModeValue("rgba(255, 255, 255, 0.96)", "rgba(15, 23, 42, 0.92)");
+  const overlayTitle = useColorModeValue("text.primary", "white");
 
   return (
     <MotionBox
       id="projects"
-      py={{ base: 14, md: 20, lg: 24 }}
-      px={{ base: 6, md: 20 }}
+      py={{ base: 16, md: 20, lg: 24 }}
+      px={{ base: 5, md: 10 }}
       bg={bg}
       color={textColor}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <VStack spacing={6} textAlign="center" mb={8}>
-        <Heading fontSize={{ base: "3xl", md: "4xl" }} color={headingColor}>{t("projects.heading")}</Heading>
-        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }} color={lineColor}>{t("projects.subheading")}</Text>
-      </VStack>
-
-      <HStack spacing={4} justify="center" mb={10} flexWrap="wrap">
-        {categories.map((category) => (
-          <Box
-            as="button"
-            key={category.id}
-            onClick={() => setActiveCategory(category.id)}
-            fontSize="sm"
-            px={3}
-            py={1.5}
-            borderRadius="full"
-            bg={activeCategory === category.id ? hoverBg : "transparent"}
-            color={activeCategory === category.id ? "accent.primary" : textColor}
-            _hover={{ color: "accent.primary" }}
-            transition="0.22s"
+      <Box maxW="1840px" mx="auto">
+        <VStack align="start" spacing={4} mb={{ base: 10, md: 12 }}>
+          <Text
+            fontSize="0.68rem"
+            textTransform="uppercase"
+            letterSpacing="0.28em"
+            color={subtleColor}
             fontWeight="600"
           >
-            {category.label}
-          </Box>
-        ))}
-      </HStack>
+            {t("projects.eyebrow")}
+          </Text>
+          <Heading
+            fontFamily="heading"
+            fontSize={{ base: "2.6rem", md: "4rem" }}
+            lineHeight="0.92"
+            letterSpacing="-0.08em"
+            color={headingColor}
+            maxW="360px"
+          >
+            {t("projects.heading")}
+          </Heading>
+        </VStack>
 
-      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
-        <AnimatePresence>
-          {filteredProjects.map((project, index) => (
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 3 }} spacing={{ base: 8, md: 6, lg: 7 }}>
+          {projects.map((project, index) => (
             <MotionBox
-              key={`${project.title}-${index}`}
-              borderRadius="lg"
-              overflow="hidden"
+              key={project.title}
               initial={{ opacity: 0, y: 18 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -18 }}
-              className="project-card"
-              bg={cardBg}
-              border="1px solid"
-              borderColor={cardBorderColor}
-              boxShadow="card"
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
             >
-              <Image
-                src={project.image}
-                alt={project.title}
-                width="100%"
-                height="200px"
-                objectFit="cover"
-                loading="lazy"
-              />
+              <Box position="relative" mb={5}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width="100%"
+                  height={{ base: "240px", md: "280px" }}
+                  objectFit="cover"
+                  loading="lazy"
+                />
+                <Box
+                  position="absolute"
+                  left="14px"
+                  bottom="14px"
+                  bg={overlayBg}
+                  px={4}
+                  py={3}
+                  maxW="72%"
+                  borderRadius="md"
+                >
+                  <Text fontSize="0.6rem" textTransform="uppercase" letterSpacing="0.22em" color={subtleColor} mb={1}>
+                    {project.context}
+                  </Text>
+                  <Heading fontSize={{ base: "lg", md: "xl" }} lineHeight="1.05" letterSpacing="-0.04em" color={overlayTitle}>
+                    {project.title}
+                  </Heading>
+                </Box>
+              </Box>
 
-              <VStack align="start" spacing={3} p={5}>
-                <Heading fontSize="lg" color={headingColor}>{project.title}</Heading>
-                <Text fontSize="xs" fontWeight="700" textTransform="uppercase" letterSpacing="0.08em" color={contextColor}>
-                  {project.context}
-                </Text>
-                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.problem")}:</strong> {project.problem}</Text>
-                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.built")}:</strong> {project.built}</Text>
-                <Text fontSize="sm" color={lineColor}><strong>{t("projects.labels.outcome")}:</strong> {project.outcome}</Text>
+              <VStack align="start" spacing={3}>
+                <Box>
+                  <Text fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.22em" color={subtleColor} fontWeight="700" mb={1}>
+                    {t("projects.labels.problem")}
+                  </Text>
+                  <Text fontSize="sm" color={lineColor} lineHeight="1.7">{project.problem}</Text>
+                </Box>
 
-                <HStack spacing={2} flexWrap="wrap">
+                <Box>
+                  <Text fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.22em" color={subtleColor} fontWeight="700" mb={1}>
+                    {t("projects.labels.built")}
+                  </Text>
+                  <Text fontSize="sm" color={lineColor} lineHeight="1.7">{project.built}</Text>
+                </Box>
+
+                <Box>
+                  <Text fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.22em" color={subtleColor} fontWeight="700" mb={1}>
+                    {t("projects.labels.outcome")}
+                  </Text>
+                  <Text fontSize="sm" color={lineColor} lineHeight="1.7">{project.outcome}</Text>
+                </Box>
+
+                <HStack spacing={3} pt={1} flexWrap="wrap">
                   {project.techStack.map((tech) => (
-                    <Badge key={tech} colorScheme="brand" variant="subtle">{tech}</Badge>
+                    <Text key={tech} fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.2em" color={subtleColor}>
+                      {tech}
+                    </Text>
                   ))}
-                </HStack>
-
-                <HStack mt={2} spacing={4}>
-                  <Link href={project.liveDemo || project.github} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
-                    {t("projects.labels.viewProject")}
-                  </Link>
-                  {project.liveDemo && (
-                    <Link href={project.liveDemo} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
-                      {t("projects.labels.liveDemo")}
-                    </Link>
-                  )}
-                  <Link href={project.github} isExternal fontSize="sm" color="accent.primary" _hover={{ textDecoration: "underline" }}>
-                    {t("projects.labels.github")}
-                  </Link>
                 </HStack>
               </VStack>
             </MotionBox>
           ))}
-        </AnimatePresence>
-      </SimpleGrid>
-
-      <VStack mt={10} spacing={3}>
-        <Text textAlign="center" maxW="700px" color={lineColor}>{t("projects.ctaText")}</Text>
-        <Button as="a" href="#contact" bg="accent.primary" color="white" size="lg" _hover={{ bg: "accent.hover", transform: "translateY(-2px)", boxShadow: "cardHover" }}>
-          {t("projects.ctaButton")}
-        </Button>
-      </VStack>
-
-      <style>
-        {`
-          .project-card {
-            transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-          }
-          .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--chakra-shadows-cardHover);
-            border-color: var(--accent-color);
-          }
-        `}
-      </style>
+        </SimpleGrid>
+      </Box>
     </MotionBox>
   );
 };

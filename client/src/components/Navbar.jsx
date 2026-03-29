@@ -25,17 +25,19 @@ const MotionBox = motion(Box);
 
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const navBg = useColorModeValue("rgba(247, 248, 250, 0.96)", "rgba(22, 28, 36, 0.92)");
+  const navBg = useColorModeValue("rgba(238, 240, 244, 0.96)", "rgba(22, 28, 36, 0.92)");
   const navTextColor = useColorModeValue("neutral.900", "neutral.50");
-  const linkMuted = useColorModeValue("neutral.700", "neutral.300");
+  const linkMuted = useColorModeValue("neutral.500", "neutral.300");
   const { language, setLanguage, t } = useLanguage();
 
   const navLinks = useMemo(
     () => [
-      { name: t("nav.services"), href: "#services" },
-      { name: t("nav.caseStudies"), href: "#projects" },
+      
       { name: t("nav.about"), href: "#about" },
-      { name: t("nav.contact"), href: "#contact" },
+      { name: t("nav.caseStudies"), href: "#projects" },
+      { name: t("nav.services"), href: "#services" },
+      { name: t("nav.contact"), href: "#contact" }
+      
     ],
     [t],
   );
@@ -44,26 +46,53 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    document.documentElement.style.setProperty("--accent-color", "#2e4860");
+    document.documentElement.style.setProperty("--accent-color", "#1f4294");
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      let currentSection = "home";
-      navLinks.forEach((link) => {
-        const section = document.querySelector(link.href);
-        if (section) {
-          const sectionTop = section.offsetTop - 120;
-          if (window.scrollY >= sectionTop) {
-            currentSection = link.href.substring(1);
-          }
+    const sectionIds = ["home", ...navLinks.map((link) => link.href.substring(1))];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    const pickActiveSection = () => {
+      const viewportAnchor = window.innerHeight * 0.32;
+      let bestId = "home";
+      let bestDistance = Number.POSITIVE_INFINITY;
+
+      sections.forEach((section) => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - viewportAnchor);
+        if (distance < bestDistance) {
+          bestDistance = distance;
+          bestId = section.id;
         }
       });
-      setActiveSection(currentSection);
+
+      setActiveSection(bestId);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const observer = new IntersectionObserver(
+      () => {
+        pickActiveSection();
+      },
+      {
+        root: null,
+        rootMargin: "-25% 0px -55% 0px",
+        threshold: [0, 0.1, 0.25, 0.5, 1],
+      },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    window.addEventListener("scroll", pickActiveSection, { passive: true });
+    window.addEventListener("resize", pickActiveSection);
+    pickActiveSection();
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", pickActiveSection);
+      window.removeEventListener("resize", pickActiveSection);
+    };
   }, [navLinks]);
 
   const handleSmoothScroll = (event, href) => {
@@ -85,7 +114,7 @@ const Navbar = () => {
         left="0"
         w="100%"
         bg={navBg}
-        boxShadow="sm"
+        boxShadow="none"
         backdropFilter="blur(10px)"
         px={4}
         py={3}
@@ -98,8 +127,10 @@ const Navbar = () => {
         <Flex align="center" maxW="1200px" mx="auto" justify="space-between">
           <Link
             href="#home"
-            fontSize="2xl"
-            fontWeight="bold"
+            fontSize={{ base: "md", md: "lg" }}
+            fontWeight="800"
+            letterSpacing="0.08em"
+            textTransform="uppercase"
             color={navTextColor}
             _hover={{ color: "accent.primary", textDecoration: "none" }}
             onClick={(e) => handleSmoothScroll(e, "#home")}
@@ -112,7 +143,9 @@ const Navbar = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                fontSize="sm"
+                fontSize="xs"
+                letterSpacing="0.1em"
+                textTransform="uppercase"
                 color={activeSection === link.href.substring(1) ? "accent.primary" : linkMuted}
                 fontWeight={activeSection === link.href.substring(1) ? "700" : "600"}
                 _hover={{ color: "accent.primary" }}
@@ -128,6 +161,7 @@ const Navbar = () => {
               bg="accent.primary"
               color="white"
               px={7}
+              borderRadius="8px"
               _hover={{ bg: "accent.hover", transform: "translateY(-1px)" }}
               onClick={(e) => handleSmoothScroll(e, "#contact")}
             >

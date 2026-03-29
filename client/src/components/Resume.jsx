@@ -1,32 +1,34 @@
-﻿import {
+import {
   Box,
   Heading,
   VStack,
   Text,
   SimpleGrid,
+  HStack,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { FaSearch, FaRocket } from "react-icons/fa";
+import { FaSearch, FaMapMarkedAlt, FaTools, FaRocket } from "react-icons/fa";
 import { useLanguage } from "../context/LanguageContext";
 
 const MotionBox = motion(Box);
-const MotionHeading = motion(Heading);
+const stepIcons = [FaSearch, FaMapMarkedAlt, FaTools, FaRocket];
 
 const Resume = () => {
-  const bg = useColorModeValue("bg.canvas", "bg.canvas");
+  const bg = useColorModeValue("bg.canvas", "bg.tint");
   const textColor = useColorModeValue("text.primary", "text.primary");
   const headingColor = useColorModeValue("text.primary", "text.primary");
-  const cardBg = useColorModeValue("bg.surface", "bg.surface");
   const mutedText = useColorModeValue("text.secondary", "text.secondary");
+  const subtleColor = useColorModeValue("brand.300", "brand.300");
+  const paleNumber = useColorModeValue("rgba(16, 43, 117, 0.12)", "rgba(120, 153, 239, 0.48)");
   const { t } = useLanguage();
   const steps = t("process.steps");
 
   return (
     <MotionBox
       id="resume"
-      py={{ base: 14, md: 20, lg: 24 }}
-      px={{ base: 6, md: 20 }}
+      py={{ base: 16, md: 20, lg: 24 }}
+      px={{ base: 5, md: 10 }}
       bg={bg}
       color={textColor}
       initial={{ opacity: 0, y: 30 }}
@@ -34,80 +36,81 @@ const Resume = () => {
       transition={{ duration: 0.8 }}
       overflow="hidden"
     >
-      <VStack spacing={6} textAlign="center" mb={12}>
-        <MotionHeading fontSize="4xl" color={headingColor} initial={{ y: -20, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} transition={{ duration: 1 }}>
-          {t("process.heading")}
-        </MotionHeading>
-        <Text maxW="740px" fontSize={{ base: "md", md: "lg" }}>{t("process.subheading")}</Text>
-      </VStack>
-
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={{ base: 5, md: 6, lg: 8 }} maxW="1200px" mx="auto">
-        <VStack align="start" spacing={6}>
-          <Heading fontSize="2xl" color={headingColor} display="flex" alignItems="center">
-            <FaSearch style={{ marginRight: "8px" }} /> {t("process.strategy")}
-          </Heading>
-          {steps.slice(0, 2).map((item, index) => (
-            <MotionBox
-              key={index}
-              p={6}
-              bg={cardBg}
-              borderRadius="md"
-              boxShadow="card"
-              className="resume-card"
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.75, delay: index * 0.12 }}
+      <Box maxW="1840px" mx="auto">
+        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 6, lg: 12 }} mb={{ base: 10, md: 12 }}>
+          <VStack align="start" spacing={3}>
+            <Text
+              fontSize="0.68rem"
+              textTransform="uppercase"
+              letterSpacing="0.22em"
+              color={subtleColor}
+              fontWeight="600"
             >
-              <Text fontSize="sm" color={mutedText}>{item.label}</Text>
-              <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.meta}</Text>
-              <Text>{item.description}</Text>
-            </MotionBox>
-          ))}
-        </VStack>
-
-        <VStack align="start" spacing={6}>
-          <Heading fontSize="2xl" color={headingColor} display="flex" alignItems="center">
-            <FaRocket style={{ marginRight: "8px" }} /> {t("process.delivery")}
-          </Heading>
-          {steps.slice(2, 4).map((item, index) => (
-            <MotionBox
-              key={index}
-              p={6}
-              bg={cardBg}
-              borderRadius="md"
-              boxShadow="card"
-              className="resume-card"
-              initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ duration: 0.75, delay: index * 0.12 }}
+              {t("process.eyebrow")}
+            </Text>
+            <Heading
+              fontFamily="heading"
+              fontSize={{ base: "2.2rem", md: "3rem" }}
+              lineHeight="0.96"
+              letterSpacing="-0.06em"
+              color={headingColor}
             >
-              <Text fontSize="sm" color={mutedText}>{item.label}</Text>
-              <Heading fontSize="lg" color={headingColor}>{item.title}</Heading>
-              <Text fontWeight="bold">{item.meta}</Text>
-              <Text>{item.description}</Text>
-            </MotionBox>
-          ))}
-        </VStack>
-      </SimpleGrid>
+              {t("process.heading")}
+            </Heading>
+          </VStack>
 
-      <style>
-        {`
-            .resume-card {
-              transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-              border: 1px solid rgba(255, 215, 0, 0.2);
-            }
-            @media (min-width: 768px) {
-              .resume-card:hover {
-                transform: translateY(-4px);
-                box-shadow: var(--chakra-shadows-cardHover);
-                border-color: var(--accent-color);
-              }
-            }
-          `}
-      </style>
+          <Text
+            alignSelf={{ base: "start", lg: "center" }}
+            justifySelf={{ base: "start", lg: "end" }}
+            maxW="360px"
+            fontSize={{ base: "sm", md: "md" }}
+            lineHeight="1.7"
+            textTransform="uppercase"
+            letterSpacing="0.08em"
+            color={mutedText}
+          >
+            {t("process.subheading")}
+          </Text>
+        </SimpleGrid>
+
+        <SimpleGrid columns={{ base: 1, md: 2, xl: 4 }} spacing={{ base: 8, md: 7, xl: 6 }}>
+          {steps.map((item, index) => {
+            const IconComp = stepIcons[index];
+            return (
+              <MotionBox
+                key={item.title}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+              >
+                <Text fontFamily="heading" fontSize={{ base: "2rem", md: "2.4rem" }} color={paleNumber} mb={4}>
+                  {`0${index + 1}`}
+                </Text>
+                <Heading fontSize={{ base: "lg", md: "xl" }} mb={3} lineHeight="1.05">
+                  {item.title}
+                </Heading>
+                <Text fontSize="sm" color={mutedText} lineHeight="1.7" mb={5}>
+                  {item.description}
+                </Text>
+                <VStack align="start" spacing={2}>
+                  <HStack spacing={2} color={subtleColor}>
+                    <Box as={IconComp} boxSize={3.5} />
+                    <Text fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.2em">
+                      {item.meta}
+                    </Text>
+                  </HStack>
+                  <HStack spacing={2} color={subtleColor}>
+                    <Box w="10px" h="1px" bg="currentColor" />
+                    <Text fontSize="0.58rem" textTransform="uppercase" letterSpacing="0.2em">
+                      {item.label}
+                    </Text>
+                  </HStack>
+                </VStack>
+              </MotionBox>
+            );
+          })}
+        </SimpleGrid>
+      </Box>
     </MotionBox>
   );
 };
