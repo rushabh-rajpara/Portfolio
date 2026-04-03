@@ -18,7 +18,7 @@ const normalizePath = (pathname) => {
 
 const resolveRoute = (pathname) => {
   const normalizedPath = normalizePath(pathname);
-  return normalizedPath === "/hire-me" ? "/hire-me" : "/";
+  return normalizedPath === "/dev" || normalizedPath === "/hire-me" ? "/dev" : "/";
 };
 
 function App() {
@@ -42,7 +42,7 @@ function App() {
   }, []);
 
   const PageComponent = useMemo(
-    () => (route === "/hire-me" ? HireMePage : HomePage),
+    () => (route === "/dev" ? HireMePage : HomePage),
     [route],
   );
 

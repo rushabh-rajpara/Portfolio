@@ -1,0 +1,122 @@
+import {
+  Box,
+  Button,
+  HStack,
+  Link,
+  List,
+  ListIcon,
+  ListItem,
+  SimpleGrid,
+  Text,
+  VStack,
+} from "@chakra-ui/react";
+import { useState } from "react";
+import { HiArrowRight, HiCheckCircle, HiX } from "react-icons/hi";
+import HireMeSection from "./HireMeSection";
+import { hireMeAbout, hireMeResume } from "../../content/hireMeContent";
+
+const HireMeAboutResume = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  return (
+    <>
+      <HireMeSection
+        id="about"
+        eyebrow="Profile"
+        title="About"
+        bg="linear-gradient(180deg, rgba(240, 244, 250, 0.9) 0%, rgba(247, 249, 252, 0.55) 100%)"
+      >
+        <SimpleGrid columns={{ base: 1, xl: 2 }} spacing={6}>
+          <Box bg="white" borderRadius="24px" border="1px solid rgba(211, 218, 228, 0.96)" p={{ base: 6, md: 8 }} boxShadow="0 16px 36px rgba(20, 33, 58, 0.06)">
+            <VStack align="start" spacing={5}>
+              {hireMeAbout.map((paragraph) => (
+                <Text key={paragraph} fontSize={{ base: "md", md: "lg" }} lineHeight="1.9" color="#445368">
+                  {paragraph}
+                </Text>
+              ))}
+            </VStack>
+          </Box>
+
+          <Box id="resume" bg="linear-gradient(160deg, #0f1d46 0%, #16337f 100%)" color="white" borderRadius="28px" p={{ base: 6, md: 8 }} boxShadow="0 24px 48px rgba(18, 38, 86, 0.22)">
+            <VStack align="start" spacing={5}>
+              <Text fontSize="0.72rem" textTransform="uppercase" letterSpacing="0.24em" fontWeight="800" color="rgba(255,255,255,0.74)">
+                Resume
+              </Text>
+              <Text fontSize={{ base: "xl", md: "2xl" }} lineHeight="1.55" fontWeight="600">
+                {hireMeResume.description}
+              </Text>
+              <List spacing={3}>
+                {hireMeResume.highlights.map((highlight) => (
+                  <ListItem key={highlight} color="rgba(255,255,255,0.86)">
+                    <ListIcon as={HiCheckCircle} color="#8cb4ff" />
+                    {highlight}
+                  </ListItem>
+                ))}
+              </List>
+              <HStack pt={2} spacing={4} flexWrap="wrap">
+                <Button
+                  as={Link}
+                  href={hireMeResume.cta.href}
+                  target={hireMeResume.cta.isExternal ? "_blank" : undefined}
+                  rel={hireMeResume.cta.isExternal ? "noopener noreferrer" : undefined}
+                  bg="white"
+                  color="#16337f"
+                  rightIcon={<HiArrowRight />}
+                  _hover={{ bg: "#edf3ff", textDecoration: "none" }}
+                >
+                  {hireMeResume.cta.label}
+                </Button>
+                <Button variant="ghost" color="white" border="1px solid rgba(255,255,255,0.28)" onClick={() => setIsDrawerOpen(true)} _hover={{ bg: "rgba(255,255,255,0.08)" }}>
+                  Quick Resume
+                </Button>
+              </HStack>
+            </VStack>
+          </Box>
+        </SimpleGrid>
+      </HireMeSection>
+
+      {isDrawerOpen ? (
+        <Box position="fixed" inset="0" zIndex="40" bg="rgba(15, 23, 42, 0.38)">
+          <Box position="absolute" inset="0" onClick={() => setIsDrawerOpen(false)} />
+          <Box position="absolute" top="0" right="0" h="100vh" w={{ base: "100%", sm: "460px" }} bg="white" boxShadow="-24px 0 48px rgba(15, 23, 42, 0.18)" p={{ base: 6, md: 7 }} overflowY="auto">
+            <VStack align="stretch" spacing={6}>
+              <HStack justify="space-between" align="start">
+                <VStack align="start" spacing={1}>
+                  <Text fontSize="0.72rem" textTransform="uppercase" letterSpacing="0.22em" color="brand.500" fontWeight="800">
+                    Quick Resume
+                  </Text>
+                  <Text fontSize={{ base: "2xl", md: "3xl" }} fontWeight="800" color="#171c27" letterSpacing="-0.04em">
+                    Rushabh.dev
+                  </Text>
+                </VStack>
+                <Button size="sm" variant="ghost" onClick={() => setIsDrawerOpen(false)} leftIcon={<HiX />}>
+                  Close
+                </Button>
+              </HStack>
+
+              <Text fontSize="md" lineHeight="1.85" color="#556173">
+                {hireMeResume.description}
+              </Text>
+
+              <VStack align="stretch" spacing={4}>
+                {hireMeResume.quickFacts.map((fact) => (
+                  <Box key={fact} p={4} borderRadius="16px" bg="#f7f9fc" border="1px solid rgba(219, 224, 232, 0.92)">
+                    <Text fontSize="sm" lineHeight="1.8" color="#445368">
+                      {fact}
+                    </Text>
+                  </Box>
+                ))}
+              </VStack>
+
+              <Button as={Link} href="#contact" bg="brand.600" color="white" _hover={{ bg: "brand.500", textDecoration: "none" }}>
+                Contact Me
+              </Button>
+            </VStack>
+          </Box>
+        </Box>
+      ) : null}
+    </>
+  );
+};
+
+export default HireMeAboutResume;
