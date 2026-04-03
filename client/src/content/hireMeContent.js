@@ -257,114 +257,27 @@ export const hireMeTechGroups = [
   },
 ];
 
-export const hireMePhilosophy = {
-  eyebrow: "Philosophy",
-  title: "The philosphy of intent",
-  description:
-    "I believe code is not just a tool for execution, but the foundation of a product's digital presence. My process favors strong technical decisions, structured systems, and calm iteration that holds up in real use.",
-  principles: [
-    {
-      title: "Technical Precision",
-      text: "Clear, type-safe code built for maintainability, performance, and long-term product scale.",
-    },
-    {
-      title: "Editorial Aesthetic",
-      text: "Design-minded engineering that respects whitespace, hierarchy, and clean user experience.",
-    },
-  ],
-  intentPanel: {
-    title: "Intent Framework",
-    centerLabel: "Intent",
-    activeLabel: "Active Principle",
-    decisionLabel: "Decision Map",
-    principles: [
-      {
-        id: "clarity",
-        name: "Clarity",
-        shortLabel: "Clarity First",
-        description: "Intent removes confusion by making systems easier to read, use, and move through.",
-        decisionMapItems: ["hierarchy", "readable flow", "spacing rhythm", "reduced friction"],
-        position: { desktop: { x: 50, y: 14 }, mobile: { x: 50, y: 12 } },
-      },
-      {
-        id: "technical-precision",
-        name: "Technical Precision",
-        shortLabel: "Technical Precision",
-        description: "Intent turns engineering choices into stable systems with fewer surprises and stronger long-term quality.",
-        decisionMapItems: ["stable logic", "maintainable structure", "performance discipline", "reliable implementation"],
-        position: { desktop: { x: 80, y: 28 }, mobile: { x: 84, y: 30 } },
-      },
-      {
-        id: "editorial-aesthetic",
-        name: "Editorial Aesthetic",
-        shortLabel: "Editorial Aesthetic",
-        description: "Intent shapes interfaces through restraint, composition, and visual hierarchy rather than decoration.",
-        decisionMapItems: ["whitespace", "composition", "hierarchy", "visual restraint"],
-        position: { desktop: { x: 80, y: 68 }, mobile: { x: 84, y: 68 } },
-      },
-      {
-        id: "structure",
-        name: "Structure",
-        shortLabel: "Structure",
-        description: "Intent gives products a reusable architecture that scales with less friction and less rework.",
-        decisionMapItems: ["reusable systems", "modular thinking", "scalable patterns", "clear architecture"],
-        position: { desktop: { x: 50, y: 82 }, mobile: { x: 50, y: 86 } },
-      },
-      {
-        id: "real-use",
-        name: "Real Use",
-        shortLabel: "Real Use",
-        description: "Intent keeps products grounded in actual workflows, edge cases, and implementation reality.",
-        decisionMapItems: ["practical flows", "durable UX", "implementation realism", "product readiness"],
-        position: { desktop: { x: 20, y: 68 }, mobile: { x: 16, y: 68 } },
-      },
-      {
-        id: "restraint",
-        name: "Restraint",
-        shortLabel: "Restraint",
-        description: "Intent often means knowing what not to add, so the important parts can carry more weight.",
-        decisionMapItems: ["fewer distractions", "cleaner surfaces", "focused attention", "calm interaction"],
-        position: { desktop: { x: 20, y: 28 }, mobile: { x: 16, y: 30 } },
-      },
-    ],
-  },
-  flow: [
-    {
-      id: "discover",
-      label: "Discover",
-      title: "Understand the system before changing it",
-      text: "I map the user journey, business goal, existing constraints, and technical risks before making implementation decisions.",
-    },
-    {
-      id: "structure",
-      label: "Structure",
-      title: "Design flows that stay coherent as features grow",
-      text: "I think through component boundaries, API shape, data flow, and failure cases so the product scales with fewer rewrites.",
-    },
-    {
-      id: "refine",
-      label: "Refine",
-      title: "Polish the interaction until it feels dependable",
-      text: "Once the core works, I tighten clarity, performance, and usability so the interface feels intentional instead of merely functional.",
-    },
-    {
-      id: "ship",
-      label: "Ship",
-      title: "Deliver something stable and production-minded",
-      text: "I aim for practical release quality: tested flows, understandable logic, and enough discipline that future work is easier, not harder.",
-    },
-  ],
-};
-
 export const hireMeAbout = [
   "I'm a web developer focused on building practical, scalable applications - not just polished demos.",
   "I work across the full stack, from frontend interfaces to backend systems and database design.",
   "My focus is on building software that is structured, maintainable, and reliable in real-world use.",
 ];
 
+export const hireMeAboutBlocks = [
+  {
+    title: "Approach",
+    items: [
+      "Clear system thinking over quick fixes",
+      "API-first backend design",
+      "Debugging across frontend, backend, and data",
+      "Built for real usage, not demos",
+    ],
+  },
+];
+
 export const hireMeResume = {
   description:
-    "Looking for a developer who can build beyond static demos?\n\nI build real application systems - including authentication, APIs, backend logic, and database design - with a focus on production-ready architecture.",
+    "Looking for a developer who can build beyond static demos?",
   highlights: [
     "Builds complete full-stack systems - from frontend UI to backend logic and deployment",
     "Strong with authentication, REST APIs, and database design (MongoDB & SQL)",

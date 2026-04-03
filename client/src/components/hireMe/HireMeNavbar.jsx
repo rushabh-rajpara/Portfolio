@@ -13,14 +13,20 @@ const HireMeNavbar = () => (
   >
     <Container maxW="1220px" px={{ base: 5, md: 8 }}>
       <Flex minH="80px" align="center" justify="space-between" gap={6}>
-        <Text
-          fontWeight="800"
-          fontSize={{ base: "lg", md: "xl" }}
-          color="#171c27"
-          letterSpacing="-0.04em"
+        <Link
+          href="#top"
+          _hover={{ textDecoration: "none" }}
+          _focusVisible={{ boxShadow: "none" }}
         >
-          Rushabh.dev
-        </Text>
+          <Text
+            fontWeight="800"
+            fontSize={{ base: "lg", md: "xl" }}
+            color="#171c27"
+            letterSpacing="-0.04em"
+          >
+            Rushabh.dev
+          </Text>
+        </Link>
 
         <HStack spacing={7} display={{ base: "none", lg: "flex" }}>
           {hireMeNavigation.map((item) => (

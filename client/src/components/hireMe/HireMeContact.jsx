@@ -116,13 +116,13 @@ const HireMeContact = () => {
             {hireMeContact.description}
           </Text>
 
-          <Link href="mailto:rushabh4478@gmail.com" fontSize={{ base: "2xl", md: "3xl" }} fontWeight="800" color="brand.600" letterSpacing="-0.04em" _hover={{ textDecoration: "none", color: "brand.500" }}>
+          <Link href="mailto:rushabh4478@gmail.com" fontSize={{ base: "2xl", md: "3xl" }} fontWeight="800" color="brand.600" letterSpacing="-0.04em" wordBreak="break-word" _hover={{ textDecoration: "none", color: "brand.500" }}>
             rushabh4478@gmail.com
           </Link>
 
-          <SimpleGrid columns={{ base: 2, sm: 3 }} spacing={4} pt={1}>
+          <SimpleGrid columns={{ base: 2, sm: 3 }} spacing={{ base: 3, sm: 4 }} pt={1} w="100%">
             {socialLinks.map((item) => (
-              <Link key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" fontSize="xs" textTransform="uppercase" letterSpacing="0.18em" color="#8a96a8" _hover={{ textDecoration: "none", color: "brand.600" }}>
+              <Link key={item.label} href={item.href} target="_blank" rel="noopener noreferrer" fontSize="xs" textTransform="uppercase" letterSpacing="0.18em" color="#8a96a8" wordBreak="break-word" _hover={{ textDecoration: "none", color: "brand.600" }}>
                 {item.label}
               </Link>
             ))}

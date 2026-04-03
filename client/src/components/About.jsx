@@ -38,7 +38,7 @@ const About = () => {
     >
       <HStack
         align="center"
-        spacing={12}
+        spacing={{ base: 8, md: 12 }}
         flexWrap="wrap"
         justify="center"
         maxW="1200px"
@@ -56,7 +56,7 @@ const About = () => {
               src="https://lottie.host/c1c6a87e-8b37-4e2b-b6f5-fc51469e037c/yOCTgija8O.lottie"
               loop
               autoplay
-              style={{ width: "280px", height: "280px", opacity: 0.9 }}
+              style={{ width: "240px", height: "240px", opacity: 0.9 }}
             />
           </motion.div>
         </Box>
@@ -66,10 +66,10 @@ const About = () => {
           animate={aboutInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <VStack align={{ base: "center", md: "start" }} spacing={4}>
+          <VStack align={{ base: "center", md: "start" }} spacing={{ base: 3, md: 4 }} maxW="680px">
             <Heading fontFamily="heading" fontSize={{ base: "2.5rem", md: "3rem" }} lineHeight="1.02" mb={2} color={headingColor}>{t("about.heading")}</Heading>
             <Box w="56px" h="2px" bg="accent.primary" borderRadius="full" />
-            <Text fontSize="lg" maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p1")}</Text>
+            <Text fontSize={{ base: "md", md: "lg" }} maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p1")}</Text>
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p2")}</Text>
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p3")}</Text>
             <Text maxW="650px" lineHeight="1.8" color={mutedColor}>{t("about.p4")}</Text>
@@ -79,7 +79,7 @@ const About = () => {
               <WrapItem><Badge colorScheme="brand" px={3} py={1} borderRadius="full">{t("about.badge2")}</Badge></WrapItem>
             </Wrap>
 
-            <HStack mt={4} spacing={6} justify={{ base: "center", md: "flex-start" }}>
+            <HStack mt={4} spacing={{ base: 4, md: 6 }} flexWrap="wrap" justify={{ base: "center", md: "flex-start" }}>
               <Text fontSize="xl" fontWeight="700" letterSpacing="0.03em">~ Rushabh</Text>
               <Button bg="accent.primary" color="white" size="lg" as="a" href="#contact" _hover={{ ...ctaHover, bg: "accent.hover" }}>
                 {t("about.cta")}

@@ -93,19 +93,19 @@ const Contact = () => {
             </Text>
           </VStack>
 
-          <HStack spacing={4} flexWrap="wrap">
-            <Button as="a" href="mailto:rushabh4478@gmail.com" size="md" variant="outline" borderColor={inputBorder} bg="transparent">
+          <HStack spacing={4} flexWrap="wrap" w="100%">
+            <Button as="a" href="mailto:rushabh4478@gmail.com" size="md" variant="outline" borderColor={inputBorder} bg="transparent" minW={{ base: "100%", sm: "unset" }}>
               {t("contact.emailNow")}
             </Button>
-            <Button as="a" href="tel:+15483980233" size="md" variant="outline" borderColor={inputBorder} bg="transparent">
+            <Button as="a" href="tel:+15483980233" size="md" variant="outline" borderColor={inputBorder} bg="transparent" minW={{ base: "100%", sm: "unset" }}>
               {t("contact.callNow")}
             </Button>
           </HStack>
 
           <VStack align="start" spacing={5} pt={1}>
             {contactItems.map(({ icon, text, link }) => (
-              <HStack key={text} spacing={5} align="center">
-                <Icon as={icon} boxSize={6} color={iconColor} />
+              <HStack key={text} spacing={{ base: 3, md: 5 }} align="center" w="100%">
+                <Icon as={icon} boxSize={{ base: 4, md: 6 }} color={iconColor} flexShrink={0} />
                 {link ? (
                   <Link
                     href={link}
@@ -113,12 +113,13 @@ const Contact = () => {
                     rel={link.startsWith("http") ? "noopener noreferrer" : undefined}
                     fontSize={{ base: "md", md: "xl" }}
                     letterSpacing="-0.03em"
+                    wordBreak="break-word"
                     _hover={{ textDecoration: "none", color: "accent.primary" }}
                   >
                     {text}
                   </Link>
                 ) : (
-                  <Text fontSize={{ base: "md", md: "xl" }} letterSpacing="-0.03em">
+                  <Text fontSize={{ base: "md", md: "xl" }} letterSpacing="-0.03em" wordBreak="break-word">
                     {text}
                   </Text>
                 )}
@@ -151,7 +152,7 @@ const Contact = () => {
           borderRadius="2xl"
           p={{ base: 7, md: 9 }}
           boxShadow="0 8px 28px rgba(15, 23, 42, 0.05)"
-          maxW="580px"
+          maxW={{ base: "100%", xl: "580px" }}
           w="100%"
           ml={{ base: 0, xl: "auto" }}
         >

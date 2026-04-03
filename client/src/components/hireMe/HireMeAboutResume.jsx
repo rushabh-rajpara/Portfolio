@@ -14,7 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { HiArrowRight, HiCheckCircle, HiX } from "react-icons/hi";
 import HireMeSection from "./HireMeSection";
-import { hireMeAbout, hireMeResume } from "../../content/hireMeContent";
+import { hireMeAbout, hireMeAboutBlocks, hireMeResume } from "../../content/hireMeContent";
 
 const MotionBox = motion(Box);
 
@@ -38,6 +38,22 @@ const HireMeAboutResume = () => {
                 <Text key={paragraph} fontSize={{ base: "md", md: "lg" }} lineHeight="1.68" color="#445368">
                   {paragraph}
                 </Text>
+              ))}
+
+              {hireMeAboutBlocks.map((block) => (
+                <VStack key={block.title} align="start" spacing={1.5} pt={1}>
+                  <Text fontSize={{ base: "md", md: "lg" }} fontWeight="700" color="#171c27">
+                    {block.title}
+                  </Text>
+                  <List spacing={1.5}>
+                    {block.items.map((item) => (
+                      <ListItem key={item} fontSize={{ base: "sm", md: "md" }} lineHeight="1.6" color="#445368">
+                        <ListIcon as={HiCheckCircle} color="brand.500" mt="-2px" />
+                        {item}
+                      </ListItem>
+                    ))}
+                  </List>
+                </VStack>
               ))}
             </VStack>
           </Box>

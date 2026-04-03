@@ -70,8 +70,8 @@ const HireMeProjects = () => {
                 )}
               </Box>
 
-              <Box position="relative" flex="1" minH="420px">
-                <VStack align="start" spacing={5} p={6} h="100%">
+              <Box position="relative" flex="1" minH={{ base: "auto", md: "420px" }}>
+                <VStack align="start" spacing={5} p={{ base: 5, md: 6 }} h="100%">
                   <VStack align="start" spacing={3}>
                     <Heading
                       fontFamily="'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif"
@@ -120,7 +120,15 @@ const HireMeProjects = () => {
                     ))}
                   </List>
 
-                  <HStack w="100%" justify="space-between" align="center" pt={1} mt="auto">
+                  <HStack
+                    w="100%"
+                    justify="space-between"
+                    align={{ base: "flex-start", sm: "center" }}
+                    flexDirection={{ base: "column", sm: "row" }}
+                    spacing={{ base: 1, sm: 0 }}
+                    pt={1}
+                    mt="auto"
+                  >
                     <Button
                       type="button"
                       variant="ghost"
@@ -170,8 +178,14 @@ const HireMeProjects = () => {
                   display="flex"
                   flexDirection="column"
                 >
-                  <VStack align="start" spacing={4} p={6} flex="1" overflowY="auto">
-                    <HStack w="100%" justify="space-between" align="center">
+                  <VStack align="start" spacing={4} p={{ base: 5, md: 6 }} flex="1" overflowY="auto">
+                    <HStack
+                      w="100%"
+                      justify="space-between"
+                      align={{ base: "flex-start", sm: "center" }}
+                      flexDirection={{ base: "column", sm: "row" }}
+                      spacing={{ base: 2, sm: 0 }}
+                    >
                       <Text
                         fontSize="0.72rem"
                         textTransform="uppercase"

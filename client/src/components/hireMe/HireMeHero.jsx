@@ -82,6 +82,7 @@ const HireMeHero = () => {
   return (
     <Box
       as="section"
+      id="top"
       bg="linear-gradient(180deg, #f7f8fb 0%, #f2f4f8 62%, #eef1f5 100%)"
       borderBottom="1px solid rgba(209, 216, 226, 0.72)"
       overflow="hidden"
@@ -139,13 +140,14 @@ const HireMeHero = () => {
             </MotionVStack>
 
             <MotionBox variants={fadeUp} custom={0.16}>
-              <HStack spacing={4} flexWrap="wrap" pt={1}>
+              <HStack spacing={4} flexWrap="wrap" pt={1} w="100%">
                 <Button
                   as="a"
                   href={hireMeHero.primaryCta.href}
                   target={hireMeHero.primaryCta.isExternal ? "_blank" : undefined}
                   rel={hireMeHero.primaryCta.isExternal ? "noopener noreferrer" : undefined}
                   size="lg"
+                  minW={{ base: "100%", sm: "unset" }}
                   bg="brand.600"
                   color="white"
                   rightIcon={<HiArrowRight />}
@@ -158,6 +160,7 @@ const HireMeHero = () => {
                   as="a"
                   href={hireMeHero.secondaryCta.href}
                   size="lg"
+                  minW={{ base: "100%", sm: "unset" }}
                   variant="ghost"
                   bg="whiteAlpha.900"
                   color="#1d4aa8"
@@ -199,6 +202,7 @@ const HireMeHero = () => {
           </MotionVStack>
 
           <MotionBox
+            display={{ base: "none", md: "block" }}
             initial={{ opacity: 0, y: 32, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.18, ease: "easeOut" }}
@@ -261,6 +265,7 @@ const HireMeHero = () => {
                     fontWeight="600"
                     color="#737b8b"
                     fontFamily="'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace"
+                    display={{ base: "none", md: "block" }}
                   >
                     {hireMeHero.codeWindowTitle}
                   </Text>

@@ -122,7 +122,6 @@ const Hero = () => {
   return (
     <MotionBox
       id="home"
-      minH="100vh"
       display="flex"
       alignItems="center"
       bg={bg}
@@ -135,6 +134,7 @@ const Hero = () => {
       position="relative"
       pt={{ base: 24, md: 28 }}
       pb={{ base: 16, md: 20 }}
+      minH={{ base: "auto", md: "100vh" }}
     >
       <Box
         position="absolute"
@@ -146,7 +146,7 @@ const Hero = () => {
       />
 
       <Container maxW="1280px" px={{ base: 5, md: 8 }} position="relative" zIndex={1}>
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 12, lg: 10 }} alignItems="center">
+        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 10, md: 12, lg: 10 }} alignItems="center">
           <VStack align={{ base: "start", md: "start" }} spacing={{ base: 5, md: 7 }} maxW="620px">
             <Text
               fontSize="0.68rem"
@@ -167,9 +167,9 @@ const Hero = () => {
             <Heading
               as="h1"
               fontFamily="heading"
-              fontSize={{ base: "3.2rem", sm: "4rem", md: "5.2rem", xl: "5.8rem" }}
+              fontSize={{ base: "2.7rem", sm: "3.45rem", md: "5.2rem", xl: "5.8rem" }}
               fontWeight="700"
-              lineHeight={{ base: "0.96", md: "0.9" }}
+              lineHeight={{ base: "0.98", md: "0.9" }}
               letterSpacing="-0.08em"
             >
               <Box as="span" display="block">{t("hero.headlineTop")}</Box>
@@ -182,14 +182,14 @@ const Hero = () => {
               {t("hero.subheadline")}
             </Text>
 
-            <HStack spacing={4} flexWrap="wrap">
+            <HStack spacing={4} flexWrap="wrap" w="100%">
               <Button
                 as="a"
                 href="#contact"
                 bg="accent.primary"
                 color="white"
                 size="lg"
-                minW="148px"
+                minW={{ base: "100%", sm: "148px" }}
                 boxShadow="card"
                 _hover={{ bg: "accent.hover", transform: "translateY(-2px)", boxShadow: "cardHover" }}
               >
@@ -200,7 +200,7 @@ const Hero = () => {
                 href="#projects"
                 variant="outline"
                 size="lg"
-                minW="160px"
+                minW={{ base: "100%", sm: "160px" }}
                 color={secondaryButtonColor}
                 borderColor="border.soft"
                 bg={secondaryButtonBg}
@@ -211,7 +211,12 @@ const Hero = () => {
             </HStack>
           </VStack>
 
-          <Box position="relative" maxW={{ base: "100%", lg: "560px" }} ml={{ base: 0, lg: "auto" }}>
+          <Box
+            position="relative"
+            maxW={{ base: "100%", lg: "560px" }}
+            ml={{ base: 0, lg: "auto" }}
+            display={{ base: "none", md: "block" }}
+          >
             <MotionBox
               bg={editorBg}
               borderRadius="xl"

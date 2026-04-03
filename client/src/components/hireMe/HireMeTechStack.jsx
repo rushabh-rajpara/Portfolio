@@ -65,6 +65,7 @@ const HireMeTechStack = () => {
               key={`${activeGroup.title}-${activeItem.name}`}
               w="100%"
               maxW="360px"
+              display={{ base: "none", md: "block" }}
               justifySelf={{ base: "stretch", lg: "end" }}
               bg="white"
               border="1px solid rgba(211, 218, 228, 0.96)"
