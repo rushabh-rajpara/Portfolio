@@ -13,7 +13,8 @@ if (import.meta.env.PROD) {
 
 const normalizePath = (pathname) => {
   if (!pathname || pathname === "/") return "/";
-  return pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  const trimmedPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  return trimmedPath.startsWith("/portfolio") ? trimmedPath.replace("/portfolio", "") || "/" : trimmedPath;
 };
 
 const resolveRoute = (pathname) => {
