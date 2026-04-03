@@ -11,14 +11,14 @@ export const hireMeNavigation = [
 ];
 
 export const hireMeHero = {
-  eyebrow: "Available for senior roles",
+  eyebrow: "Available for developer roles",
   supportingHeadline:
-    "Building digital legibility into complex technical systems.",
+    "Building scalable web applications from idea to production",
   description:
-    "Focused on React, Node.js, and full-stack systems with real authentication, APIs, and data handling. I care about structure, performance, and shipping things that actually work.",
+    "Focused on React, Node.js, and full-stack systems with authentication, APIs, and real data handling. I care about structure, performance, and building things that hold up in real use.",
   primaryCta: {
     label: "View Resume",
-    href: "/Rushabh-Rajpara-Resume.pdf",
+    href: "resume.html",
     isExternal: true,
   },
   secondaryCta: { label: "View Projects", href: "#projects" },
@@ -39,14 +39,14 @@ export const hireMeHero = {
       title: "Interface Systems",
       metricLabel: "98 Lighthouse",
       metricSubtext: "Performance Score",
-      proofChips: ["Readable UI", "Responsive layout", "Polished states"],
+      proofChips: ["Scalable architecture", "Clean state management", "Production-ready UI"],
       lines: [
         { accent: "const", line: "Experience = () => {" },
         { accent: "//", line: "Compose responsive product surfaces" },
         { accent: "const", line: "layout = createInterface({" },
-        { accent: "  ", line: "readability: 'high'," },
-        { accent: "  ", line: "motion: 'subtle'," },
-        { accent: "  ", line: "stateFlow: 'clear'," },
+        { accent: "  ", line: "architecture: 'scalable'," },
+        { accent: "  ", line: "stateFlow: 'predictable'," },
+        { accent: "  ", line: "performance: 'optimized'," },
         { accent: "});", line: "" },
         { accent: "return", line: "(" },
         { accent: "  <", line: "Hero density=\"balanced\" />" },
@@ -231,7 +231,7 @@ export const hireMeTechGroups = [
     items: [
       {
         name: "Git",
-        detail: "Essential for version control, safer iteration, and keeping project changes organized.",
+        detail: "Building complete systems - from frontend UI to backend logic, APIs, and deployment - with a focus on maintainability and real-world usage.",
       },
       {
         name: "GitHub",
@@ -357,22 +357,23 @@ export const hireMePhilosophy = {
 };
 
 export const hireMeAbout = [
-  "I'm a web developer focused on building practical, scalable applications.",
-  "I enjoy working across the full stack - from frontend UI to backend logic and database design.",
-  "I care about solving real problems, not just writing code.",
+  "I'm a web developer focused on building practical, scalable applications - not just polished demos.",
+  "I work across the full stack, from frontend interfaces to backend systems and database design.",
+  "My focus is on building software that is structured, maintainable, and reliable in real-world use.",
 ];
 
 export const hireMeResume = {
   description:
-    "Looking for a developer who can build beyond static demos? My work focuses on real application flows, backend logic, authentication, databases, and shipping complete products.",
+    "Looking for a developer who can build beyond static demos?\n\nI build real application systems - including authentication, APIs, backend logic, and database design - with a focus on production-ready architecture.",
   highlights: [
-    "Full-stack application development",
-    "Authentication, APIs, and database design",
-    "Practical product thinking and debugging mindset",
+    "Builds complete full-stack systems - from frontend UI to backend logic and deployment",
+    "Strong with authentication, REST APIs, and database design (MongoDB & SQL)",
+    "Debugs issues across the full application stack - frontend, backend, and data layer",
+    "Writes structured, maintainable code designed for real-world usage and scaling",
   ],
   cta: {
     label: "View Resume",
-    href: "/Rushabh-Rajpara-Resume.pdf",
+    href: "resume.html",
     isExternal: true,
   },
   quickFacts: [

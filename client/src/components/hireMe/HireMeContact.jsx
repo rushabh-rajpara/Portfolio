@@ -11,6 +11,7 @@ import {
   Textarea,
   VStack,
 } from "@chakra-ui/react";
+import emailjs from "@emailjs/browser";
 import { useMemo, useState } from "react";
 import HireMeSection from "./HireMeSection";
 import { hireMeContact } from "../../content/hireMeContent";
@@ -20,7 +21,9 @@ const socialLinks = hireMeContact.items.filter((item) => item.label !== "Email")
 const HireMeContact = () => {
   const [values, setValues] = useState({ name: "", email: "", inquiry: "" });
   const [touched, setTouched] = useState({});
+  const [isSending, setIsSending] = useState(false);
   const [status, setStatus] = useState("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const errors = useMemo(
     () => ({
@@ -36,6 +39,7 @@ const HireMeContact = () => {
   const handleChange = (field) => (event) => {
     setValues((current) => ({ ...current, [field]: event.target.value }));
     setStatus("idle");
+    setStatusMessage("");
   };
 
   const handleBlur = (field) => () => {
@@ -48,25 +52,46 @@ const HireMeContact = () => {
 
     if (hasError) {
       setStatus("error");
+      setStatusMessage("A few fields still need attention before sending.");
       return;
     }
 
-    const emailTarget =
-      hireMeContact.items.find((item) => item.label === "Email")?.value ?? "rushabh4478@gmail.com";
-    const subject = `Portfolio inquiry from ${values.name.trim()}`;
-    const body = [
-      `Name: ${values.name.trim()}`,
-      `Email: ${values.email.trim()}`,
-      "",
-      "Project brief:",
-      values.inquiry.trim(),
-    ].join("\n");
-    const mailtoUrl = `mailto:${emailTarget}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsSending(true);
+    setStatus("idle");
+    setStatusMessage("");
 
-    window.location.href = mailtoUrl;
-    setStatus("success");
-    setValues({ name: "", email: "", inquiry: "" });
-    setTouched({});
+    emailjs
+      .send(
+        "service_a01ix4l",
+        "template_t252a75",
+        {
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: [
+            "Developer portfolio inquiry",
+            "",
+            `Name: ${values.name.trim()}`,
+            `Email: ${values.email.trim()}`,
+            "",
+            "Project brief:",
+            values.inquiry.trim(),
+          ].join("\n"),
+        },
+        "JEfOG-4XHbVzPJHbe",
+      )
+      .then(() => {
+        setStatus("success");
+        setStatusMessage("Your brief was sent successfully.");
+        setValues({ name: "", email: "", inquiry: "" });
+        setTouched({});
+      })
+      .catch(() => {
+        setStatus("error");
+        setStatusMessage("Couldn't send the brief right now. Please try again in a moment.");
+      })
+      .finally(() => {
+        setIsSending(false);
+      });
   };
 
   return (
@@ -110,7 +135,7 @@ const HireMeContact = () => {
               <FormLabel mb={2} fontSize="xs" fontWeight="800" textTransform="uppercase" letterSpacing="0.14em" color="#29364a">
                 Name
               </FormLabel>
-              <Input value={values.name} onChange={handleChange("name")} onBlur={handleBlur("name")} placeholder="Jane Cooper" bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" h="56px" px={4} color="#233146" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
+              <Input name="name" autoComplete="name" value={values.name} onChange={handleChange("name")} onBlur={handleBlur("name")} placeholder="Jane Cooper" bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" h="56px" px={4} color="#233146" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
               <FormErrorMessage>{errors.name}</FormErrorMessage>
             </FormControl>
 
@@ -118,7 +143,7 @@ const HireMeContact = () => {
               <FormLabel mb={2} fontSize="xs" fontWeight="800" textTransform="uppercase" letterSpacing="0.14em" color="#29364a">
                 Email
               </FormLabel>
-              <Input value={values.email} onChange={handleChange("email")} onBlur={handleBlur("email")} placeholder="jane@company.com" bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" h="56px" px={4} color="#233146" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
+              <Input name="email" type="email" autoComplete="email" inputMode="email" value={values.email} onChange={handleChange("email")} onBlur={handleBlur("email")} placeholder="jane@company.com" bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" h="56px" px={4} color="#233146" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
               <FormErrorMessage>{errors.email}</FormErrorMessage>
             </FormControl>
 
@@ -126,22 +151,22 @@ const HireMeContact = () => {
               <FormLabel mb={2} fontSize="xs" fontWeight="800" textTransform="uppercase" letterSpacing="0.14em" color="#29364a">
                 Inquiry
               </FormLabel>
-              <Textarea value={values.inquiry} onChange={handleChange("inquiry")} onBlur={handleBlur("inquiry")} placeholder="Tell me about your project..." bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" minH="132px" px={4} py={3} color="#233146" resize="vertical" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
+              <Textarea name="inquiry" autoComplete="off" value={values.inquiry} onChange={handleChange("inquiry")} onBlur={handleBlur("inquiry")} placeholder="Tell me about your project..." bg="white" border="1px solid rgba(224, 228, 235, 0.95)" borderRadius="4px" minH="132px" px={4} py={3} color="#233146" resize="vertical" _placeholder={{ color: "#8b97aa" }} _hover={{ borderColor: "#d8dfe8" }} _focusVisible={{ borderColor: "brand.500", boxShadow: "none" }} />
               <FormErrorMessage>{errors.inquiry}</FormErrorMessage>
             </FormControl>
 
-            <Button bg="brand.600" color="white" h="56px" borderRadius="10px" fontSize="md" fontWeight="800" type="submit" _hover={{ bg: "brand.500" }}>
+            <Button bg="brand.600" color="white" h="56px" borderRadius="10px" fontSize="md" fontWeight="800" type="submit" isLoading={isSending} loadingText="Sending..." _hover={{ bg: "brand.500" }}>
               Send Brief
             </Button>
 
-            {status === "success" ? (
-              <Text fontSize="sm" color="green.600" fontWeight="600">
-                Your email draft is ready to send.
-              </Text>
-            ) : null}
-            {status === "error" ? (
-              <Text fontSize="sm" color="red.500" fontWeight="600">
-                A few fields still need attention before sending.
+            {status !== "idle" && statusMessage ? (
+              <Text
+                fontSize="sm"
+                color={status === "success" ? "green.600" : "red.500"}
+                fontWeight="600"
+                aria-live="polite"
+              >
+                {statusMessage}
               </Text>
             ) : null}
           </VStack>

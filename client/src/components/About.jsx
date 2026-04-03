@@ -1,4 +1,4 @@
-import { useRef } from "react";
+﻿import { useRef } from "react";
 import {
   Box,
   Heading,
@@ -80,7 +80,7 @@ const About = () => {
             </Wrap>
 
             <HStack mt={4} spacing={6} justify={{ base: "center", md: "flex-start" }}>
-              <Text fontSize="xl" fontWeight="700" letterSpacing="0.03em">Rushabh Rajpara</Text>
+              <Text fontSize="xl" fontWeight="700" letterSpacing="0.03em">~ Rushabh</Text>
               <Button bg="accent.primary" color="white" size="lg" as="a" href="#contact" _hover={{ ...ctaHover, bg: "accent.hover" }}>
                 {t("about.cta")}
               </Button>

@@ -57,8 +57,7 @@ const HireMeTechStack = () => {
                 Tech Stack
               </Text>
               <Text fontSize={{ base: "md", md: "lg" }} lineHeight="1.8" color="#556173">
-                A curated selection of tools and languages I use to build resilient products, reliable
-                APIs, and scalable application flows.
+                Technologies I use to build scalable applications, APIs, and production-ready systems.
               </Text>
             </VStack>
 

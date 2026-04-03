@@ -122,12 +122,19 @@ const HireMeProjects = () => {
 
                   <HStack w="100%" justify="space-between" align="center" pt={1} mt="auto">
                     <Button
+                      type="button"
                       variant="ghost"
                       size="sm"
                       px={0}
                       leftIcon={<HiOutlinePlusSm />}
                       color="#506176"
-                      onClick={() => setActiveCardTitle(project.title)}
+                      aria-expanded={isOpen}
+                      aria-controls={`project-notes-${project.title}`}
+                      onClick={() =>
+                        setActiveCardTitle((current) =>
+                          current === project.title ? "" : project.title,
+                        )
+                      }
                       _hover={{ bg: "transparent", color: "#1f4294" }}
                     >
                       Project Notes
@@ -152,6 +159,7 @@ const HireMeProjects = () => {
                 </VStack>
 
                 <Box
+                  id={`project-notes-${project.title}`}
                   position="absolute"
                   inset="0"
                   zIndex="2"
@@ -174,6 +182,7 @@ const HireMeProjects = () => {
                         Project Notes
                       </Text>
                       <Button
+                        type="button"
                         variant="ghost"
                         leftIcon={<HiArrowLeft />}
                         px={0}

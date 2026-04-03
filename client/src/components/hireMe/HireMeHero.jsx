@@ -279,17 +279,19 @@ const HireMeHero = () => {
                     return (
                       <Button
                         key={view.id}
+                        type="button"
                         size="sm"
                         variant="ghost"
                         borderRadius="full"
                         bg={isActive ? "#e9f0ff" : "transparent"}
                         color={isActive ? "#163b8d" : "#64748b"}
                         fontWeight="700"
+                        aria-pressed={isActive}
                         onClick={() => setActiveViewId(view.id)}
                         _hover={{ bg: isActive ? "#e9f0ff" : "#f2f5fa" }}
-                >
-                  {view.label}
-                  </Button>
+                      >
+                        {view.label}
+                      </Button>
                     );
                   })}
                 </HStack>

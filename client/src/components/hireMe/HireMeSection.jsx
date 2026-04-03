@@ -3,11 +3,20 @@ import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
 
-const HireMeSection = ({ id, eyebrow, title, description, children, bg = "transparent" }) => (
+const HireMeSection = ({
+  id,
+  eyebrow,
+  title,
+  description,
+  children,
+  bg = "transparent",
+  py = { base: 20, md: 24, lg: 28 },
+  spacing = { base: 10, md: 12 },
+}) => (
   <MotionBox
     as="section"
     id={id}
-    py={{ base: 20, md: 24, lg: 28 }}
+    py={py}
     bg={bg}
     initial={{ opacity: 0, y: 26 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -15,7 +24,7 @@ const HireMeSection = ({ id, eyebrow, title, description, children, bg = "transp
     transition={{ duration: 0.55, ease: "easeOut" }}
   >
     <Container maxW="1340px" px={{ base: 5, md: 7 }}>
-      <VStack align="stretch" spacing={{ base: 10, md: 12 }}>
+      <VStack align="stretch" spacing={spacing}>
         {(eyebrow || title || description) && (
           <VStack align="start" spacing={4} maxW="760px">
             {eyebrow ? (
