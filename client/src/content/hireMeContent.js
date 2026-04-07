@@ -1,6 +1,9 @@
 import financeDashboardImage from "../images/Personal_Finance_Dashboard.jpeg";
 import marketplaceImage from "../images/Marketplace.jpeg";
-import uiUxImage from "../images/UI_UX.jpeg";
+import telegramBotImage from "../images/Telegram_bot.png";
+import stockManagementImage from "../images/Stock_management.png";
+import crmImage from "../images/CRM.png";
+import digitalFarmingImage from "../images/Digital_Farming.png";
 
 export const hireMeNavigation = [
   { label: "Projects", href: "#projects" },
@@ -146,7 +149,55 @@ export const hireMeProjects = [
     ],
     challenge: "Coordinate reminder timing, message context, and bot behavior across changing schedules.",
     outcome: "Shipped a more adaptive accountability bot flow with reliable reminder handling.",
-    image: uiUxImage,
+    image: telegramBotImage,
+    repoUrl: "https://github.com/rushabh-rajpara/Brobot.git",
+  },
+  {
+    title: "Shree Stocks Management",
+    role: "Inventory and stock management platform with web and mobile workflows.",
+    summary:
+      "A stock management system for tracking inventory movement, item availability, and operational updates across admin and mobile usage.",
+    stack: ["React", "Node.js", "MySQL", "Flutter"],
+    points: [
+      "Built stock tracking flows across web dashboards and mobile usage",
+      "Managed inventory logic, operational updates, and data consistency",
+      "Connected frontend, backend, and database workflows for daily usage",
+    ],
+    challenge: "Keep stock updates reliable across multiple entry points while maintaining accurate inventory data.",
+    outcome: "Delivered a practical stock operations system designed for real business usage and day-to-day tracking.",
+    image: stockManagementImage,
+  },
+  {
+    title: "Parikrman CRM",
+    role: "Sales tracking and order management CRM with cross-platform support.",
+    summary:
+      "A CRM system for managing sales activity, order workflows, and follow-through across web and mobile interfaces.",
+    stack: ["React", "Node.js", "MySQL", "React Native"],
+    points: [
+      "Built CRM workflows for sales tracking and order management",
+      "Structured backend flows for order updates and customer-facing records",
+      "Supported both web operations and mobile accessibility for teams",
+    ],
+    challenge: "Design a CRM flow that keeps sales activity and order status aligned across multiple users and platforms.",
+    outcome: "Created a cleaner sales and order workflow that helps teams track progress with less manual confusion.",
+    image: crmImage,
+    repoUrl: "https://play.google.com/store/apps/details?id=com.bytebran.parikraman&pcampaignid=web_share",
+  },
+  {
+    title: "Krishikaran",
+    role: "Farmer-focused e-commerce system with rewards and repeat-engagement logic.",
+    summary:
+      "An e-commerce platform for selling farmer-related products with reward points, user retention features, and mobile-ready buying flows.",
+    stack: ["React", "Node.js", "MySQL", "React Native"],
+    points: [
+      "Built reward-point flows tied to purchasing and user activity",
+      "Handled e-commerce product, order, and user account logic",
+      "Connected web storefront behavior with mobile-friendly purchase flows",
+    ],
+    challenge: "Balance commerce workflows, reward logic, and user retention features without making the product flow feel heavy.",
+    outcome: "Shaped a more practical e-commerce experience with loyalty mechanics that support repeat use and product discovery.",
+    image: digitalFarmingImage,
+    repoUrl: "https://play.google.com/store/apps/details?id=com.bytebran.krishikaran&pcampaignid=web_share",
   },
 ];
 

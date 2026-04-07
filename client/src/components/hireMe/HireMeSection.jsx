@@ -12,6 +12,7 @@ const HireMeSection = ({
   bg = "transparent",
   py = { base: 20, md: 24, lg: 28 },
   spacing = { base: 10, md: 12 },
+  revealOnMount = false,
 }) => (
   <MotionBox
     as="section"
@@ -19,8 +20,9 @@ const HireMeSection = ({
     py={py}
     bg={bg}
     initial={{ opacity: 0, y: 26 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.2 }}
+    {...(revealOnMount
+      ? { animate: { opacity: 1, y: 0 } }
+      : { whileInView: { opacity: 1, y: 0 }, viewport: { once: true, amount: 0.2 } })}
     transition={{ duration: 0.55, ease: "easeOut" }}
   >
     <Container maxW="1340px" px={{ base: 5, md: 7 }}>

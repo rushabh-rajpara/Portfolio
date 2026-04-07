@@ -18,20 +18,34 @@ import { useState } from "react";
 import { HiArrowLeft, HiArrowRight, HiCheckCircle, HiOutlinePlusSm } from "react-icons/hi";
 import HireMeSection from "./HireMeSection";
 import { hireMeProjects } from "../../content/hireMeContent";
+import { navigateWithinApp } from "../../utils/navigation";
 
-const HireMeProjects = () => {
+const HireMeProjects = ({
+  projects = hireMeProjects.slice(0, 3),
+  eyebrow = "Selected Build Work",
+  title = "Featured Projects",
+  description = "A focused selection of full-stack work that shows architecture thinking, production flows, and debugging depth.",
+  showAllLink = true,
+  sectionPy,
+  sectionSpacing,
+  revealOnMount = false,
+}) => {
   const [activeCardTitle, setActiveCardTitle] = useState("");
+  const allProjectsHref = `${import.meta.env.BASE_URL}dev/projects`;
 
   return (
     <HireMeSection
       id="projects"
-      eyebrow="Selected Build Work"
-      title="Featured Projects"
-      description="A focused selection of full-stack work that shows architecture thinking, production flows, and debugging depth."
+      eyebrow={eyebrow}
+      title={title}
+      description={description}
       bg="linear-gradient(180deg, rgba(255,255,255,0.74) 0%, rgba(247,249,252,0.92) 100%)"
+      py={sectionPy}
+      spacing={sectionSpacing}
+      revealOnMount={revealOnMount}
     >
       <SimpleGrid columns={{ base: 1, lg: 3 }} spacing={6}>
-        {hireMeProjects.map((project) => {
+        {projects.map((project) => {
           const isOpen = activeCardTitle === project.title;
 
           return (
@@ -66,7 +80,7 @@ const HireMeProjects = () => {
                     _groupHover={{ transform: "scale(1.03)" }}
                   />
                 ) : (
-                  <FlexPlaceholder title={project.title} />
+                  <FlexPlaceholder project={project} />
                 )}
               </Box>
 
@@ -217,6 +231,26 @@ const HireMeProjects = () => {
           );
         })}
       </SimpleGrid>
+
+      {showAllLink ? (
+        <HStack justify="center" pt={{ base: 8, md: 10 }}>
+          <Button
+            as={Link}
+            href={allProjectsHref}
+            onClick={(event) => {
+              event.preventDefault();
+              navigateWithinApp(allProjectsHref);
+            }}
+            bg="white"
+            color="#173f95"
+            border="1px solid rgba(199, 213, 238, 0.96)"
+            rightIcon={<HiArrowRight />}
+            _hover={{ textDecoration: "none", bg: "#f8fbff", borderColor: "#bfd0f6" }}
+          >
+            View All Projects
+          </Button>
+        </HStack>
+      ) : null}
     </HireMeSection>
   );
 };
@@ -245,30 +279,65 @@ const InfoBlock = ({ label, value }) => (
   </Box>
 );
 
-const FlexPlaceholder = ({ title }) => (
+const FlexPlaceholder = ({ project }) => (
   <Stack
     align="stretch"
-    justify="end"
+    justify="space-between"
     h="220px"
     px={6}
     py={5}
     borderRadius="0"
-    bg="linear-gradient(135deg, #0b1639 0%, #122b72 100%)"
+    bg="linear-gradient(135deg, #0d183c 0%, #143171 52%, #1f56c4 100%)"
     color="white"
-    spacing={3}
+    spacing={4}
   >
-    <Text
-      fontSize="0.72rem"
-      textTransform="uppercase"
-      letterSpacing="0.22em"
-      color="rgba(255,255,255,0.7)"
-    >
-      AI Systems
-    </Text>
-    <Heading fontSize="2xl" lineHeight="1.02">
-      {title}
-    </Heading>
-    <Box h="1px" w="72px" bg="rgba(255,255,255,0.22)" />
+    <HStack spacing={2} justify="space-between" align="start">
+      <VStack align="start" spacing={1}>
+        <Text
+          fontSize="0.68rem"
+          textTransform="uppercase"
+          letterSpacing="0.22em"
+          color="rgba(255,255,255,0.72)"
+        >
+          {project.stack.slice(0, 2).join(" / ")}
+        </Text>
+        <Heading fontSize="2xl" lineHeight="1.02">
+          {project.title}
+        </Heading>
+      </VStack>
+      <Box
+        w="58px"
+        h="58px"
+        borderRadius="18px"
+        bg="rgba(255,255,255,0.10)"
+        border="1px solid rgba(255,255,255,0.16)"
+      />
+    </HStack>
+
+    <VStack align="stretch" spacing={3}>
+      <Box
+        h="64px"
+        borderRadius="16px"
+        bg="rgba(255,255,255,0.10)"
+        border="1px solid rgba(255,255,255,0.14)"
+      />
+      <HStack spacing={3}>
+        <Box
+          flex="1"
+          h="42px"
+          borderRadius="14px"
+          bg="rgba(255,255,255,0.08)"
+          border="1px solid rgba(255,255,255,0.12)"
+        />
+        <Box
+          flex="1"
+          h="42px"
+          borderRadius="14px"
+          bg="rgba(255,255,255,0.08)"
+          border="1px solid rgba(255,255,255,0.12)"
+        />
+      </HStack>
+    </VStack>
   </Stack>
 );
 

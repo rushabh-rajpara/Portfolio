@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import theme from "./theme";
 import HomePage from "./pages/HomePage";
 import HireMePage from "./pages/HireMePage";
+import HireMeProjectsPage from "./pages/HireMeProjectsPage";
 import { LanguageProvider } from "./context/LanguageContext";
 
 if (import.meta.env.PROD) {
@@ -19,6 +20,9 @@ const normalizePath = (pathname) => {
 
 const resolveRoute = (pathname) => {
   const normalizedPath = normalizePath(pathname);
+  if (normalizedPath === "/dev/projects" || normalizedPath === "/hire-me/projects") {
+    return "/dev/projects";
+  }
   return normalizedPath === "/dev" || normalizedPath === "/hire-me" ? "/dev" : "/";
 };
 
@@ -43,7 +47,7 @@ function App() {
   }, []);
 
   const PageComponent = useMemo(
-    () => (route === "/dev" ? HireMePage : HomePage),
+    () => (route === "/dev/projects" ? HireMeProjectsPage : route === "/dev" ? HireMePage : HomePage),
     [route],
   );
 
